@@ -36,11 +36,13 @@ library
   build-depends:
       RSA
     , base >=4.7 && <5
+    , binary
     , bytestring
-    , cereal
     , containers
     , crypto-api
-    , hashing
+    , cryptonite
+    , memory
+    , mtl
     , network-simple
     , random
     , unix-time
@@ -51,7 +53,9 @@ executable BlockChat-exe
   other-modules:
       Account
       Block
-      Node
+      BootstrapNode
+      OrdinaryNode
+      ServiceType
       Transaction
       Wallet
       Paths_BlockChat
@@ -64,11 +68,13 @@ executable BlockChat-exe
       BlockChat
     , RSA
     , base >=4.7 && <5
+    , binary
     , bytestring
-    , cereal
     , containers
     , crypto-api
-    , hashing
+    , cryptonite
+    , memory
+    , mtl
     , network-simple
     , random
     , unix-time
@@ -88,11 +94,13 @@ test-suite BlockChat-test
       BlockChat
     , RSA
     , base >=4.7 && <5
+    , binary
     , bytestring
-    , cereal
     , containers
     , crypto-api
-    , hashing
+    , cryptonite
+    , memory
+    , mtl
     , network-simple
     , random
     , unix-time

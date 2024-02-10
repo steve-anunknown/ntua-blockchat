@@ -27,9 +27,11 @@ dependencies:
 - random
 - RSA
 - crypto-api
-- hashing
 - network-simple
-- cereal
+- binary
+- cryptonite
+- memory
+- mtl
 
 ghc-options:
 - -Wall

@@ -1,32 +1,75 @@
-module Block (
-    Block (..),
-    createBlock
-) where
+module Block
+  ( Block (..),
+    createBlock,
+    Blockchain
+  )
+where
 
 import Codec.Crypto.RSA (PublicKey)
-import Transaction (Transaction)
-import Data.UnixTime (UnixTime)
-import Data.ByteString.Lazy.Internal as LBSI
+import Crypto.Hash (SHA256 (..), hashWith)
+import Data.Binary
+import Data.ByteArray   (convert)
+import Data.ByteString  (ByteString)
+import Data.UnixTime    (UnixTime)
+import Transaction      (Transaction)
+import qualified Data.ByteString.Lazy as B
 
-data Block = Block {
-    blockIndex :: Int, -- index number of block
+data BlockInit = BlockInit
+  { initIndex :: Int, -- index number of block
+    initTimestamp :: UnixTime, -- microseconds since 1st Jan 1970
+    initTransactions :: [Transaction], -- list of transactions
+    initValidator :: PublicKey, -- public key of the node that validated the transaction,
+    initPreviousHash :: ByteString -- the hash of the previous block
+  }
+
+type Blockchain = [Block]
+
+instance Binary BlockInit where
+  put (BlockInit index time trans val prev) = do
+    put index
+    put time
+    put trans
+    put val
+    put prev
+  get = do
+    index <- get
+    time  <- get
+    trans <- get
+    val   <- get
+    BlockInit index time trans val <$> get
+
+data Block = Block
+  { blockIndex :: Int, -- index number of block
     blockTimestamp :: UnixTime, -- microseconds since 1st Jan 1970
     blockTransactions :: [Transaction], -- list of transactions
     blockValidator :: PublicKey, -- public key of the node that validated the transaction,
-    blockPreviousHash :: LBSI.ByteString, -- the hash of the previous block
-    blockCurrentHash :: Maybe LBSI.ByteString -- the hash of the block
-                                     -- it's a Maybe because at some point it may
-                                     -- not be hashed yet.
-}
+    blockPreviousHash :: ByteString, -- the hash of the previous block
+    blockCurrentHash :: ByteString
+  }
+
+computeBlockHash :: BlockInit -> ByteString
+computeBlockHash = convert . hashWith SHA256 . B.toStrict . encode
+
+finalizeBlock :: BlockInit -> Block
+finalizeBlock initBlock =
+  Block
+    { blockIndex        = initIndex initBlock,
+      blockTimestamp    = initTimestamp initBlock,
+      blockTransactions = initTransactions initBlock,
+      blockValidator    = initValidator initBlock,
+      blockPreviousHash = initPreviousHash initBlock,
+      blockCurrentHash  = computeBlockHash initBlock
+    }
+-- genesis block is
+-- { 0, whatever time, [bootstrap transaction], zero pubkey, 1}
+
 -- the capacity of transactions that the block holds is specified
 -- by an environmental constant called "capacity".
-createBlock = Block
-
+createBlock :: Int -> UnixTime -> [Transaction] -> PublicKey -> ByteString -> Block
+createBlock ind time list pub prev = finalizeBlock $ BlockInit ind time list pub prev
 
 -- TODO: implement "mintBlock"
 
-
 -- TODO: implement "broadcastBlock"
-
 
 -- TODO: implement "validateBlock"

@@ -1,42 +1,82 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main (main) where
 
-import Lib
+-- import Lib
+import Network.Simple.TCP
 import System.Environment
 import System.Exit
+import Control.Monad.Reader
+import BootstrapNode
+import OrdinaryNode
 
+main :: IO ()
 main = getArgs >>= parseArgs >>= startDoingStuff
 
-startDoingStuff :: [String] -> IO a
-startDoingStuff [num, host, port] = bootstrapNode (nodes, host, port)
-    -- HostName = String and ServiceName = String so all ok
-    where nodes = stringToInt 10 num
-startDoingStuff [host, port] = ordinaryNode (host, port)
+startDoingStuff :: [String] -> IO ()
+startDoingStuff [num, host, port] = bootstrapNode (BootstrapInfo 0 host port nodes)
+   where
+     nodes = read num :: Int
+startDoingStuff [host, port, bip, bport] = ordinaryNode bip bport (NodeInfo 1 host port)
+startDoingStuff _ = usage >> exit
 
--- TODO: implement the logic for bootstrapNode
-bootstrapNode (Int, HostName, ServiceName) :: IO a
-bootstrapNode (nodes, host, port) = error "Not implemented"
--- bootstrapNode (nodes, host, port) = do
---     (bootstrapPubKey, boostrapPrivKey)<- generateWallet 2048
---     currTime <- getUnixTime
+bootstrapNode :: BootstrapInfo -> IO ()
+bootstrapNode = runReaderT bootstrapNodeLogic
+
+bootstrapNodeLogic :: ReaderT BootstrapInfo IO ()
+bootstrapNodeLogic = do
+  info <- ask
+  let ip = bootNodeIP info
+      port = bootNodePort info
+      host = Host ip
+  liftIO $ putStrLn $ "Starting bootstrap node at " ++ ip ++ ":" ++ port
+  _ <- liftIO $ serve host port $ \(socket, addr) -> do
+    putStrLn $ "BT: TCP connection established from " ++ show addr
+    send socket "BT: Hello!"
+    msg <- recv socket 1024
+    putStrLn $ "BT: Received: " ++ show msg
+    send socket "BT: Goodbye!"
+    putStrLn "BT: Closing connection"
+    closeSock socket
+  return ()
 
 -- TODO: implement the logic for ordinaryNode
-ordinaryNode (HostName, ServiceName) :: IO a
-ordinaryNode (host, port) = error "Not implemented"
+ordinaryNode :: HostName -> ServiceName -> NodeInfo -> IO ()
+ordinaryNode bip bport = runReaderT $ ordinaryNodeLogic bip bport
+
+ordinaryNodeLogic :: HostName -> ServiceName -> ReaderT NodeInfo IO ()
+ordinaryNodeLogic bip bport = do
+  info <- ask
+  let ip = nodeIP info
+      port = nodePort info
+  liftIO $ putStrLn $ "Starting ordinary node at " ++ ip ++ ":" ++ port
+  _ <- liftIO $ connect bip bport $ \(socket,_) -> do
+    putStrLn "ORD: Connected to the bootstrap node"
+    send socket "ORD: Hello!"
+    msg <- recv socket 1024
+    putStrLn $ "ORD: Received: " ++ show msg
+    send socket "ORD: Goodbye!"
+    putStrLn "ORD: Closing connection"
+    closeSock socket
+  return ()
 
 parseArgs :: [String] -> IO [String]
 parseArgs ("--node" : restArgs) = help restArgs
-    where help :: [String] -> IO [String]
-          help ("--ip" : host : "--port" : port) = return [host, port]
-          help _ = usage >> exit
-parseArgs ("--boostrap" : restArgs) = help restArgs
-    where help :: [String] -> IO [String]
-          help ("--nodes" : num : "--ip" : host : "--port" : port) = return [num, host, port]
-          help _ = usage >> exit
+  where
+    help :: [String] -> IO [String]
+    help args | length args == 4 = return args
+    help _ = usage >> exit
+parseArgs ("--bootstrap" : restArgs) = help restArgs
+  where
+    help :: [String] -> IO [String]
+    help args | length args == 3 = return args
+    help _ = usage >> exit
 parseArgs _ = usage >> exit
 
 usage :: IO ()
-usage = putStrLn "Usage: main --node --ip <ip address> --port <port>\n
-                  or     main --bootstrap --nodes <num nodes> --ip <ip address> --port <port>"
+usage =
+  putStrLn "Usage: main --node <ip> <port> <bootstrap ip> <bootstrap port>"
+    >> putStrLn "       main --bootstrap <ip> <port> <num nodes>"
 
 exit :: IO a
-exit = exitWith ExitSuccess
+exit = exitSuccess

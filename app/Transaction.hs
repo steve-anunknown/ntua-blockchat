@@ -1,117 +1,123 @@
-module Transaction (
-    TransactionType (..),
-    Transaction (..),
-    TransactionSigned (..),
-    transactionCost,
-    createTransaction,
-    signTransaction, broadcastTransaction,
-    verifySignature,
-    validateTransaction
-) where
+{-# LANGUAGE OverloadedStrings #-}
+{-# OPTIONS_GHC -Wno-orphans #-}
 
+module Transaction
+  ( ServiceType (..),
+    Transaction (..),
+    transactionCost,
+    initializeTransaction,
+    createTransaction,
+    broadcastTransaction,
+    verifySignature,
+    validateTransaction,
+  )
+where
+
+import ServiceType 
+import Account (Account (..), availableBalance)
+import Codec.Crypto.RSA (PrivateKey, PublicKey (..), sign, verify)
+import Crypto.Hash (SHA256 (..), hashWith)
+import Data.Binary
+import Data.ByteArray (convert)
+import Data.ByteString (ByteString)
+import qualified Data.ByteString.Lazy as B
 import qualified Data.Map as Map
-import Data.Serialize
-import Crypto.Hash
-import Account          (Account(..), availableBalance)
-import qualified Data.ByteString.Lazy as LBSI
-import Codec.Crypto.RSA (PublicKey(..), PrivateKey, sign, verify)
 
 ---------------------------------------------------------
 -- PublicKey is not an instance of Ord, so we make it one
 -- in order to be able to index Maps using it.
 instance Ord PublicKey where
-    (<=) PublicKey{public_n = pn1} PublicKey{public_n = pn2} = pn1 <= pn2
+  (<=) PublicKey {public_n = pn1} PublicKey {public_n = pn2} = pn1 <= pn2
+
 -- This is perhaps bad design, I don't know.
 ---------------------------------------------------------
 
-data TransactionType = Coins Double
-                     | Message String
-                     | Both (Double, String) deriving(Show)
+data TransactionInit = TransactionInit
+  { initSenderAddress :: PublicKey, -- public key of the wallet which the transaction comes from
+    initReceiverAddress :: PublicKey, -- public key of the wallet which the transaction sends to
+    initServiceType :: ServiceType, -- type of the transaction
+    initNonce :: Int -- counter
+  }
+  deriving (Show)
 
-data Transaction = Transaction {
-    transSenderAddress :: PublicKey, -- public key of the wallet which the transaction comes from
-    transReceiverAddress :: PublicKey, -- public key of the wallet which the transaction sends to
-    transType :: TransactionType, -- type of the transaction
-    transNonce :: Int, -- counter 
-    transId :: LBSI.ByteString -- the hash of the transaction
-}
+initializeTransaction :: PublicKey -> PublicKey -> ServiceType -> Int -> TransactionInit
+initializeTransaction = TransactionInit -- for user
 
--- a Maybe Bytestring used to be used for the signature of the transaction
--- but i changed my mind and believe that this is better.
--- The downside is that, in order to extract transaction info from 
--- the new type, a double unwrapping is needed. E.g transSenderAddress (transaction signedTransaction)
-data TransactionSigned = TransactionSigned {
-    transaction :: Transaction,
-    signature :: LBSI.ByteString
-}
+instance Binary TransactionInit where
+  put (TransactionInit senderAddr receiverAddr transType n) = do
+    put senderAddr
+    put receiverAddr
+    put transType
+    put n
+  get = do
+    senderAddr <- get
+    receiverAddr <- get
+    transType <- get
+    TransactionInit senderAddr receiverAddr transType <$> get
 
-transactionCost :: TransactionType -> Double
-transactionCost (Coins amount) = amount + amount * 3 / 100 -- 3 % fee
-transactionCost (Message mess) = amount + amount * 3 / 100 -- TODO: not sure exactly when the fee applies
-    where amount = fromIntegral $ Prelude.length mess
-transactionCost (Both (amount,mess)) = total + total * 3 / 100
-    where total = amount + (fromIntegral $ Prelude.length mess)
+data Transaction = Transaction
+  { senderAddress :: PublicKey, -- public key of the wallet which the transaction comes from
+    receiverAddress :: PublicKey, -- public key of the wallet which the transaction sends to
+    serviceType :: ServiceType, -- type of the transaction
+    nonce :: Int, -- counter
+    hashID :: ByteString,
+    signature :: ByteString
+  }
+instance Binary Transaction where -- Transaction is made an instance of Binary for the hash of the block
+  put (Transaction senderAddr receiverAddr transType n h s) = do
+    put senderAddr
+    put receiverAddr
+    put transType
+    put n
+    put h
+    put s
+  get = do
+    senderAddr <- get
+    receiverAddr <- get
+    transType <- get
+    n <- get
+    h <- get
+    Transaction senderAddr receiverAddr transType n h <$> get
 
+transactionCost :: Transaction -> Double
+transactionCost = serviceCost . serviceType
 
--- TODO: Figure out how to hash the transaction fields
--- Serialize a Transaction into a Lazy ByteString
-serializeTransaction :: Transaction -> LBSI.ByteString
-serializeTransaction = encodeLazy
+computeHashID :: TransactionInit -> ByteString
+computeHashID = convert . hashWith SHA256 . B.toStrict . encode
 
--- Hash a Transaction
-hashTransaction :: Transaction -> LBSI.ByteString
-hashTransaction = hashLazy . serializeTransaction
+computeSignature :: PrivateKey -> ByteString -> ByteString
+computeSignature privkey bytestring = B.toStrict $ sign privkey (B.fromStrict bytestring)
 
+finalizeTransaction :: TransactionInit -> PrivateKey -> Transaction
+finalizeTransaction initTx privKey =
+  Transaction
+    { senderAddress = initSenderAddress initTx,
+      receiverAddress = initReceiverAddress initTx,
+      serviceType = initServiceType initTx,
+      nonce = initNonce initTx,
+      hashID = computeHashID initTx,
+      signature = computeSignature privKey (computeHashID initTx)
+    }
 
--- this is a pure function and just creates a transaction.
--- it is just a wrapper around the constructor
---createTransaction :: PublicKey -> PublicKey -> TransactionType -> Int -> LBSI.ByteString -> Transaction
---createTransaction = Transaction
+createTransaction :: PublicKey -> PublicKey -> ServiceType -> Int -> PrivateKey -> Transaction
+createTransaction p1 p2 s n = finalizeTransaction (initializeTransaction p1 p2 s n)
 
--- Create a new Transaction with the transId field filled in
-createTransaction :: PublicKey -> PublicKey -> TransactionType -> Int -> Transaction
-createTransaction sender receiver tType nonce =
-    let
-        transactionData = Transaction sender receiver tType nonce LBSI.empty -- Leave transId empty for now
-        transactionHash = hashTransaction transactionData
-    in
-        transactionData { transId = transactionHash } -- Fill in the transId field with the hash
-
-signTransaction :: PrivateKey -> Transaction -> TransactionSigned
-signTransaction privKey trans =
-    let
-        transHash = transId trans
-        signHash = sign privKey transHash
-    in
-        TransactionSigned trans signHash
-
--- TODO: implement "broadcastTransaction" 
+-- TODO: implement "broadcastTransaction"
 broadcastTransaction :: a -> a
 broadcastTransaction _ = error "Not implemented"
 
-verifySignature :: TransactionSigned -> Bool
-verifySignature t =
-    let
-        transInfo = transaction t
-        signHash = signature t
-
-        fromAddress = transSenderAddress transInfo
-        messageHash = transId transInfo
-    in
-        verify fromAddress messageHash signHash
+verifySignature :: Transaction -> Bool
+verifySignature t = verify from sig tid
+  where
+    from = senderAddress t
+    sig = B.fromStrict $ signature t
+    tid = B.fromStrict $ hashID t
 
 -- PublicKey has been made an instance of Ord, therefore it can be used
 -- as a key in a map.
-validateTransaction :: TransactionSigned -> Map.Map PublicKey Account -> Bool
-validateTransaction t m = maybe False validateSender senderAcc
-    where -- maybe has type b -> (a -> b) -> Maybe a -> b 
-        sigOk = verifySignature t :: Bool
-        transInfo = transaction t :: Transaction
-        senderAcc = Map.lookup (transSenderAddress transInfo) m :: Maybe Account 
-        validateSender :: Account -> Bool
-        validateSender acc = sigOk && balanceOk
-            where
-                transCost = transactionCost $ transType transInfo
-                balanceOk = availableBalance acc >= transCost
-
+validateTransaction :: Transaction -> Map.Map PublicKey Account -> Bool
+validateTransaction t m = verifySignature t && maybe False validateSender senderAcc
+  where
+    validateSender acc = availableBalance acc >= transactionCost t
+    senderAcc = Map.lookup (senderAddress t) m
 
