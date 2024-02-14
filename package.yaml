@@ -28,6 +28,7 @@ dependencies:
 - RSA
 - crypto-api
 - network-simple
+- network
 - binary
 - cryptonite
 - memory

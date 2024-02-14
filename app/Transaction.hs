@@ -62,7 +62,7 @@ data Transaction = Transaction
     nonce :: Int, -- counter
     hashID :: ByteString,
     signature :: ByteString
-  }
+  } deriving (Show, Eq)
 instance Binary Transaction where -- Transaction is made an instance of Binary for the hash of the block
   put (Transaction senderAddr receiverAddr transType n h s) = do
     put senderAddr

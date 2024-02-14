@@ -10,7 +10,7 @@ data ServiceType
   = Coins Double
   | Message String
   | Both (Double, String)
-  deriving (Show)
+  deriving (Show, Eq)
 
 instance Binary ServiceType where
   put (Coins amount) = do

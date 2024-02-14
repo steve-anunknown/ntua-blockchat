@@ -17,8 +17,8 @@ import qualified Data.ByteString.Lazy as B
 data BlockInit = BlockInit
   { initIndex :: Int, -- index number of block
     initTimestamp :: UnixTime, -- microseconds since 1st Jan 1970
-    initTransactions :: [Transaction], -- list of transactions
-    initValidator :: PublicKey, -- public key of the node that validated the transaction,
+    initTransactions :: [Transaction], -- list of txs
+    initValidator :: PublicKey, -- public key of the node that validated the tx
     initPreviousHash :: ByteString -- the hash of the previous block
   }
 
@@ -41,11 +41,27 @@ instance Binary BlockInit where
 data Block = Block
   { blockIndex :: Int, -- index number of block
     blockTimestamp :: UnixTime, -- microseconds since 1st Jan 1970
-    blockTransactions :: [Transaction], -- list of transactions
-    blockValidator :: PublicKey, -- public key of the node that validated the transaction,
+    blockTransactions :: [Transaction], -- list of txs
+    blockValidator :: PublicKey, -- public key of the node that validated the tx
     blockPreviousHash :: ByteString, -- the hash of the previous block
     blockCurrentHash :: ByteString
-  }
+  } deriving (Show, Eq)
+
+instance Binary Block where
+  put (Block index time trans val prev curr) = do
+    put index
+    put time
+    put trans
+    put val
+    put prev 
+    put curr
+  get = do
+    index <- get
+    time  <- get
+    trans <- get
+    val   <- get
+    prev  <- get
+    Block index time trans val prev <$> get
 
 computeBlockHash :: BlockInit -> ByteString
 computeBlockHash = convert . hashWith SHA256 . B.toStrict . encode

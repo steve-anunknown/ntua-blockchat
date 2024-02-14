@@ -1,0 +1,87 @@
+-- TODO: implement the logic for bootstrapNode
+-- TODO: 1) listen for incoming connections (accept a total of num connections)
+-- TODO: 2) send an ID to each node that connects and increment the ID
+-- TODO: 3) update the map (pubkey -> (ip, port)) with the pubkey of the node that connected
+-- TODO: 4) once all nodes have connected, broadcast the map to all nodes.
+-- TODO: 5) once all nodes have received the map, broadcast the blockchain to all nodes.
+bootstrapNodeStart :: ReaderT BootstrapInfo IO ()
+bootstrapNodeStart = do
+  info <- ask
+  let ip = bootNodeIP info
+      port = bootNodePort info
+      host = Host ip
+
+      bootstrapServer :: IORef BootstrapState -> (Socket, SockAddr) -> IO ()
+      bootstrapServer ioref (socket, addr) = do
+        state <- readIORef ioref
+        unless (bootCurrID state == bootNodeNumb info) $ do
+            putStrLn $ "TCP connection established from " ++ show addr
+            bytes <- recv socket 4096
+            let msg = decodeMaybe bytes :: PublicKey
+            atomicModifyIORef ioref (\s -> (s { bootCurrID = bootCurrID s + 1 }, ()))
+            send socket $ BS.toStrict $ encode (bootCurrID state)
+            
+
+  liftIO $ putStrLn $ "1) Starting bootstrap node at " ++ ip ++ ":" ++ port
+  state <- liftIO $ newIORef $ BootstrapState 0 Map.empty []
+  _     <- liftIO $ serve host port $ bootstrapServer state
+
+  -- _ <- liftIO $ serve host port $ \(socket, addr) -> do
+  --   putStrLn $ "3) TCP connection established from " ++ show addr
+  --   msg <- recv socket 4096
+  --   putStrLn $ "4) Received: " ++ show (decodeMaybe msg :: PublicKey)
+  --   putStrLn $ "5) Sending: " ++ show (1 :: Int)
+  --   send socket $ BS.toStrict $ encode (1 :: Int)
+  --   putStrLn "6) Bootstrap: Closing connection"
+  --   closeSock socket
+
+  return ()
+
+
+-- TODO: implement the logic for ordinaryNode
+ordinaryNode :: HostName -> ServiceName -> NodeInfo -> IO ()
+ordinaryNode bip bport = runReaderT $ ordinaryNodeLogic bip bport
+
+ordinaryNodeLogic :: HostName -> ServiceName -> ReaderT NodeInfo IO ()
+ordinaryNodeLogic bip bport = do
+  info <- ask
+  (pubkey, _) <- liftIO $ generateWallet 2048
+  let ip = nodeIP info
+      port = nodePort info
+
+      getIDfromBootstrap :: (Socket, SockAddr) -> IO Int
+      getIDfromBootstrap (socket, _) = do
+          send socket $ BS.toStrict $ encode pubkey
+          bytes <- recv socket 32            -- try to receive an Int
+          closeSock socket
+          let msg = decodeMaybe bytes :: Int -- decode it
+          return msg
+      
+      getFriendsFromBootstrap :: (Socket, SockAddr) -> IO KeyNodeMap
+      getFriendsFromBootstrap (socket, _) = do
+          bytes <- recv socket 4096
+          closeSock socket
+          let msg = decodeMaybe bytes :: KeyNodeMap
+          return msg
+
+      getBlockchainFromBootstrap :: (Socket, SockAddr) -> IO Blockchain
+      getBlockchainFromBootstrap (socket, _) = do
+          bytes <- recv socket 4096
+          closeSock socket
+          let msg = decodeMaybe bytes :: Blockchain
+          return msg
+
+  liftIO $ putStrLn $ "2) Starting ordinary node at " ++ ip ++ ":" ++ port
+  myNodeID      <- liftIO $ connect bip bport getIDfromBootstrap
+  myNodeFriends <- liftIO $ connect bip bport getFriendsFromBootstrap
+  myBlockchain  <- liftIO $ connect bip bport getBlockchainFromBootstrap
+
+  let myNodeState = NodeState myNodeID myNodeFriends myBlockchain
+  
+  _ <- ordinaryNodeProtocol
+
+  return ()
+
+ordinaryNodeProtocol :: a
+ordinaryNodeProtocol = error "Not implemented"
+
