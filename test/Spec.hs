@@ -8,15 +8,17 @@ import Control.Concurrent
 import Control.Monad (void)
 import Network.Socket (HostName, ServiceName)
 
+import qualified Data.List as List
+import qualified Data.Map as Map
+
 main :: IO ()
-main = testSetup 30
+main = testSetup 100
 
 testSetup :: Int -> IO ()
 testSetup nodes = do
-    let 
-        low      = 32590
+    let low      = 32590
         high     = low + nodes - 1
-        hostip   = "192.168.1.9"
+        hostip   = "127.0.0.1"
         hosts    = replicate nodes hostip
         ports    = map show [low .. high :: Int]
         infos    = zipWith NodeInfo hosts ports
@@ -32,20 +34,28 @@ testSetup nodes = do
         logBootstrapNode mvar info logfile = do
             void $ forkIO (do
                 state <- bootstrapNode info
-                writeFile logfile $ show (bootFriends state, bootBlockchain state)
+                let keys = List.sort $ bootPublicKeys state -- this is sorted to facilitate the comparison later
+                    peers = bootPeers state :: [(HostName, ServiceName)]
+                    nodeinfos = map (uncurry NodeInfo) peers
+                    chain = bootBlockchain state
+                writeFile logfile $ show (keys, nodeinfos, chain)
                 putMVar mvar 1)
 
         logOrdinaryNode :: HostName -> ServiceName -> MVar Int -> NodeInfo -> String -> IO ()
         logOrdinaryNode bip bport mvar info logfile = do
             void $ forkIO (do
                 state <- ordinaryNode bip bport info
-                writeFile logfile $ show (nodeFriends state, nodeBlockchain state)
+                let accounts = nodeAccounts state
+                    keys = Map.keys accounts -- the keys are sorted!! therefore the list previously must be sorted too
+                writeFile logfile $ show (keys, nodePeers state, nodeBlockchain state)
                 putMVar mvar 1)
 
     bootmvar  <- newEmptyMVar
-    nodemvars <- mapM (const newEmptyMVar) [1..nodes]
     logBootstrapNode bootmvar boot bootlog -- spawn a thread for the bootstrapping node
-    mapM_ (uncurry3 $ logOrdinaryNode (bootNodeIP boot) (bootNodePort boot)) (zip3 nodemvars infos nodelogs) -- spawn a thread for each ordinary node
+    threadDelay 1500000 -- give the bootstrapping node time to start
+
+    nodemvars <- mapM (const newEmptyMVar) [1..nodes]
+    mapM_ (uncurry3 $ logOrdinaryNode hostip (bootNodePort boot)) (zip3 nodemvars infos nodelogs) -- spawn a thread for each ordinary node
     
     _ <- takeMVar bootmvar -- the main program waits for the bootstrapping to finish
     mapM_ takeMVar nodemvars -- the main program waits for the nodes to finish
@@ -55,7 +65,6 @@ testSetup nodes = do
     nodeOutputs <- mapM readFile nodelogs
 
     let allEqual = all (== bootOutput) nodeOutputs
-
     -- clean up the logs
     mapM_ removeFile (bootlog : nodelogs)
 

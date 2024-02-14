@@ -32,6 +32,7 @@ library
       OrdinaryNode
       ServiceType
       Transaction
+      Utils
       Wallet
   other-modules:
       Paths_BlockChat

@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -Wno-orphans #-}
 
 module Transaction
@@ -13,6 +12,7 @@ module Transaction
   )
 where
 
+import Utils
 import ServiceType 
 import Account (Account (..), availableBalance)
 import Codec.Crypto.RSA (PrivateKey, PublicKey (..), sign, verify)
@@ -20,6 +20,7 @@ import Crypto.Hash (SHA256 (..), hashWith)
 import Data.Binary
 import Data.ByteArray (convert)
 import Data.ByteString (ByteString)
+import Network.Simple.TCP 
 import qualified Data.ByteString.Lazy as B
 import qualified Data.Map as Map
 
@@ -102,9 +103,11 @@ finalizeTransaction initTx privKey =
 createTransaction :: PublicKey -> PublicKey -> ServiceType -> Int -> PrivateKey -> Transaction
 createTransaction p1 p2 s n = finalizeTransaction (initializeTransaction p1 p2 s n)
 
--- TODO: implement "broadcastTransaction"
-broadcastTransaction :: a -> a
-broadcastTransaction _ = error "Not implemented"
+broadcastTransaction :: Transaction -> [(HostName, ServiceName)]-> IO ()
+broadcastTransaction t = mapM_ sendMsg
+    where msg = encodeStrict t
+          sendMsg :: (HostName, ServiceName) -> IO ()
+          sendMsg (host, port) = connect host port $ \(sock, _) -> do send sock msg
 
 verifySignature :: Transaction -> Bool
 verifySignature t = verify from sig tid

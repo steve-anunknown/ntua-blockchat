@@ -1,9 +1,13 @@
 module Block
   ( Block (..),
     createBlock,
-    Blockchain
+    Blockchain,
+    broadcastBlock
   )
 where
+
+import Utils
+import Transaction      (Transaction)
 
 import Codec.Crypto.RSA (PublicKey)
 import Crypto.Hash (SHA256 (..), hashWith)
@@ -11,7 +15,7 @@ import Data.Binary
 import Data.ByteArray   (convert)
 import Data.ByteString  (ByteString)
 import Data.UnixTime    (UnixTime)
-import Transaction      (Transaction)
+import Network.Simple.TCP   
 import qualified Data.ByteString.Lazy as B
 
 data BlockInit = BlockInit
@@ -76,8 +80,6 @@ finalizeBlock initBlock =
       blockPreviousHash = initPreviousHash initBlock,
       blockCurrentHash  = computeBlockHash initBlock
     }
--- genesis block is
--- { 0, whatever time, [bootstrap transaction], zero pubkey, 1}
 
 -- the capacity of transactions that the block holds is specified
 -- by an environmental constant called "capacity".
@@ -86,6 +88,11 @@ createBlock ind time list pub prev = finalizeBlock $ BlockInit ind time list pub
 
 -- TODO: implement "mintBlock"
 
--- TODO: implement "broadcastBlock"
+broadcastBlock :: Block -> [(HostName, ServiceName)] -> IO ()
+broadcastBlock block = mapM_ sendBlock
+    where msg = encodeStrict block
+          sendBlock :: (HostName, ServiceName) -> IO ()
+          sendBlock (host, port) = connect host port $ \(sock, _) -> do send sock msg
+    
 
 -- TODO: implement "validateBlock"
