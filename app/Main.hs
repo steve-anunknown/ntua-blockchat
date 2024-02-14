@@ -2,22 +2,21 @@
 
 module Main (main) where
 
-
 import BootstrapNode
 import OrdinaryNode
-import Block
 
+import Control.Monad (void)
 import System.Environment
 import System.Exit
 
 main :: IO ()
-main = getArgs >>= parseArgs >>= startDoingStuff  >> exit
+main = getArgs >>= parseArgs >>= startDoingStuff >> exit
 
-startDoingStuff :: [String] -> IO (KeyNodeMap, Blockchain)
-startDoingStuff [num, host, port] = bootstrapNode (BootInfo 0 host port nodes)
+startDoingStuff :: [String] -> IO ()
+startDoingStuff [num, host, port] = void $ bootstrapNode (BootInfo 0 host port nodes)
    where
      nodes = read num :: Int
-startDoingStuff [host, port, bip, bport] = ordinaryNode bip bport (NodeInfo host port)
+startDoingStuff [host, port, bip, bport] = void $ ordinaryNode bip bport (NodeInfo host port)
 startDoingStuff _ = usage >> exit
 
 ----------------------------------------------------------------------------------------

@@ -48,6 +48,7 @@ library
     , containers
     , crypto-api
     , cryptonite
+    , directory
     , memory
     , mtl
     , network
@@ -75,6 +76,7 @@ executable BlockChat-exe
     , containers
     , crypto-api
     , cryptonite
+    , directory
     , memory
     , mtl
     , network

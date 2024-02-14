@@ -31,15 +31,15 @@ testSetup nodes = do
         logBootstrapNode :: MVar Int -> BootInfo -> String -> IO ()
         logBootstrapNode mvar info logfile = do
             void $ forkIO (do
-                (friends, chain) <- bootstrapNode info
-                writeFile logfile $ show (friends, chain)
+                state <- bootstrapNode info
+                writeFile logfile $ show (bootFriends state, bootBlockchain state)
                 putMVar mvar 1)
 
         logOrdinaryNode :: HostName -> ServiceName -> MVar Int -> NodeInfo -> String -> IO ()
         logOrdinaryNode bip bport mvar info logfile = do
             void $ forkIO (do
-                (friends, chain) <- ordinaryNode bip bport info
-                writeFile logfile $ show (friends, chain)
+                state <- ordinaryNode bip bport info
+                writeFile logfile $ show (nodeFriends state, nodeBlockchain state)
                 putMVar mvar 1)
 
     bootmvar  <- newEmptyMVar

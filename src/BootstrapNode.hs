@@ -3,7 +3,6 @@
 module BootstrapNode (
     BootInfo(..),
     BootState(..),
-    BootApp,
     bootstrapNode,
 )   where
 
@@ -11,7 +10,6 @@ import Block
 import Wallet
 import Transaction
 
-import Control.Monad.State (StateT)
 import Control.Monad.Reader
 import Control.Monad (when)
 import Control.Concurrent
@@ -30,40 +28,24 @@ data BootInfo = BootInfo
   , bootNodeIP      :: HostName
   , bootNodePort    :: ServiceName
   , bootNodeNumb    :: Int -- number of nodes to insert into the network 
-  } deriving (Show)
+  } deriving (Show, Eq)
 
 -- BootInfo does not change. It is set once, using the arguments
 -- passed to the program and then remains constant. The IP and the PORT
 -- of the Boot node are known to the other nodes beforehand.
 
-data BootState = BootState
-  { bootCurrID      :: Int
-  , bootFriends     :: Map.Map PublicKey (HostName, ServiceName)
-  , blockchain      :: Blockchain
-  }
-
--- BootState is the state of the node regarding the blockchain.
--- It is mutable and changes as nodes connect to the network.
-type BootApp = ReaderT BootInfo (StateT BootState IO)
 type KeyNodeMap = Map.Map PublicKey (HostName, ServiceName)
 
--- reminder that StateT :: (s -> m (a, s)) -> StateT s m a
--- in this case:
--- (StateT BootState IO) :: (BootState -> IO (a, BootState))
--- that is, the return type of the computation is free.
---
--- ReaderT :: (r -> m a) -> ReaderT r m a
--- in this case:
--- (ReaderT BootInfo (StateT BootState IO)) ::
---                        (BootInfo -> StateT BootState IO a)
--- that is, the return type of the computation is free.
---
--- Therefore, BootApp also has a free return type.
+data BootState = BootState
+  { bootCurrID      :: Int
+  , bootFriends     :: KeyNodeMap
+  , bootBlockchain      :: Blockchain
+  } deriving (Show, Eq)
 
-bootstrapNode :: BootInfo -> IO (KeyNodeMap, Blockchain)
+bootstrapNode :: BootInfo -> IO BootState
 bootstrapNode = runReaderT bootstrapNodeLogic
 
-bootstrapNodeLogic :: ReaderT BootInfo IO (KeyNodeMap, Blockchain)
+bootstrapNodeLogic :: ReaderT BootInfo IO BootState
 bootstrapNodeLogic = do
     info <- ask -- get the environment
     time <- liftIO getUnixTime -- get the current time
@@ -107,12 +89,11 @@ bootstrapNodeLogic = do
     let friendMap = bootFriends fstate :: KeyNodeMap
         keys    = Map.keys friendMap :: [PublicKey]
         friends = Map.elems friendMap :: [(HostName, ServiceName)]
+    -- broadcast
     _ <- liftIO $ mapM (\(ip, port) -> connect ip port $ \x -> send (fst x) $ encodeStrict (keys, friends, genesisBl)) friends
-
-    -- liftIO $ print friendMap
-    -- liftIO $ print genesisBl
-    return (friendMap, [genesisBl])
-
+    
+    _ <- liftIO $ atomicModifyIORef istate $ \s -> (s {bootBlockchain = [genesisBl]}, ())
+    liftIO $ readIORef istate
 
 encodeStrict :: Binary a => a -> BS.ByteString
 encodeStrict = BS.toStrict . encode
