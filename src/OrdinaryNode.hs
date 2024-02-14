@@ -78,20 +78,20 @@ ordinaryNodeLogic bip bport = do
             putMVar mvar 1
             closeSock socket
     
-    liftIO $ putStrLn $ "Starting ordinary node at " ++ ip ++ ":" ++ port
+    --liftIO $ putStrLn $ "Starting ordinary node at " ++ ip ++ ":" ++ port
 
     state <- liftIO $ newIORef (NodeState 0 Map.empty [])
     _ <- liftIO $ connect bip bport $ getIDfromBoot state 
-    readState <- liftIO $ readIORef state
-    liftIO $ putStrLn $ "Node ID: " ++ show (nodeID readState)
+    -- readState <- liftIO $ readIORef state
+    -- liftIO $ putStrLn $ "Node ID: " ++ show (nodeID readState)
 
     trigger <- liftIO newEmptyMVar
     _ <- liftIO $ forkIO $ serve (Host ip) port $ getBroadcast trigger state 
     _ <- liftIO $ takeMVar trigger
 
     final <- liftIO $ readIORef state -- important to read the state again.
-    liftIO $ putStrLn $ "Map is " ++ show (nodeFriends final)
-    liftIO $ putStrLn $ "Blockchain is " ++ show (nodeblockchain final)
+    -- liftIO $ print (nodeFriends final)
+    -- liftIO $ print (nodeblockchain final)
 
     return (nodeFriends final, nodeblockchain final)
 

@@ -25,7 +25,14 @@ source-repository head
 
 library
   exposed-modules:
+      Account
+      Block
+      BootstrapNode
       Lib
+      OrdinaryNode
+      ServiceType
+      Transaction
+      Wallet
   other-modules:
       Paths_BlockChat
   autogen-modules:
@@ -46,19 +53,13 @@ library
     , network
     , network-simple
     , random
+    , silently
     , unix-time
   default-language: Haskell2010
 
 executable BlockChat-exe
   main-is: Main.hs
   other-modules:
-      Account
-      Block
-      BootstrapNode
-      OrdinaryNode
-      ServiceType
-      Transaction
-      Wallet
       Paths_BlockChat
   autogen-modules:
       Paths_BlockChat
@@ -79,6 +80,7 @@ executable BlockChat-exe
     , network
     , network-simple
     , random
+    , silently
     , unix-time
   default-language: Haskell2010
 
@@ -101,10 +103,12 @@ test-suite BlockChat-test
     , containers
     , crypto-api
     , cryptonite
+    , directory
     , memory
     , mtl
     , network
     , network-simple
     , random
+    , silently
     , unix-time
   default-language: Haskell2010

@@ -75,7 +75,7 @@ bootstrapNodeLogic = do
         myhost     = Host myip
         -- setup the genesis block
         prevHash  = encodeStrict (1 :: Int)
-        zeropub   = PublicKey 0 0 0
+        zeropub   = PublicKey 0 0 65537
         txtype    = Coins $ 1000 * fromIntegral totalNodes
         genesisTx = createTransaction zeropub mypub txtype 1 mypriv
         genesisBl = createBlock 1 time [genesisTx] zeropub prevHash
@@ -99,7 +99,6 @@ bootstrapNodeLogic = do
             else do 
                 closeSock socket
     
-    liftIO $ putStrLn $ "Starting bootstrap node at " ++ myip ++ ":" ++ myport
     istate <- liftIO $ newIORef $ BootState 1 Map.empty []
     trigger <- liftIO newEmptyMVar
     _ <- liftIO $ forkIO $ serve myhost myport $ serverLogic trigger istate -- thread that never returns
@@ -110,8 +109,8 @@ bootstrapNodeLogic = do
         friends = Map.elems friendMap :: [(HostName, ServiceName)]
     _ <- liftIO $ mapM (\(ip, port) -> connect ip port $ \x -> send (fst x) $ encodeStrict (keys, friends, genesisBl)) friends
 
-    liftIO $ putStrLn $ "Map is " ++ show friendMap
-    liftIO $ putStrLn $ "Genesis is " ++ show genesisBl
+    -- liftIO $ print friendMap
+    -- liftIO $ print genesisBl
     return (friendMap, [genesisBl])
 
 

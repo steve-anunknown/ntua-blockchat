@@ -2,7 +2,6 @@
 
 module Main (main) where
 
--- import Lib
 
 import BootstrapNode
 import OrdinaryNode

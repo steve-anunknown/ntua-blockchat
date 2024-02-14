@@ -33,6 +33,7 @@ dependencies:
 - cryptonite
 - memory
 - mtl
+- silently
 
 ghc-options:
 - -Wall
@@ -69,3 +70,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - BlockChat
+    - directory
