@@ -9,7 +9,7 @@ import Control.Monad (void)
 import Network.Socket (HostName, ServiceName)
 
 main :: IO ()
-main = testSetup 10
+main = testSetup 30
 
 testSetup :: Int -> IO ()
 testSetup nodes = do
