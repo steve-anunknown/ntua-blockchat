@@ -4,7 +4,8 @@
 module OrdinaryNode
   ( NodeInfo (..),
     node,
-    sampleValidator -- export it just for testing
+    sampleValidator, -- export it just for testing
+    nodeStartupTest, -- export it just for testing
   )
 where
 
@@ -14,6 +15,7 @@ import Account
   )
 import Block (Block (..), createBlock, emptyBlock, validateBlock)
 import BootstrapNode (BootstrapNode (..))
+import CLI ( CLISharedState, CLIInfo(CLIInfo), shell )
 import Codec.Crypto.RSA (PublicKey (..))
 import Control.Concurrent
   ( MVar,
@@ -71,7 +73,6 @@ import Transaction
 import Types (Peer, PubKeyToAcc)
 import Utils (decodeMaybe, encodeStrict)
 import Wallet (Wallet)
-import CLI
 
 type TXQueue = TQueue Transaction
 
@@ -120,7 +121,7 @@ broadcastBlockTo peers block = do
   mapM_ (forkIO . sendBlock) (zip peers triggers)
   mapM_ takeMVar triggers
   where
-    msg = BS.append (encodeStrict ("2" :: String)) (encodeStrict block)
+    msg = BS.append "2" (encodeStrict block)
     sendBlock :: ((HostName, ServiceName), MVar Int) -> IO ()
     sendBlock ((h, p), trig) = do
       connect h p $ \(sock, _) -> send sock msg
@@ -181,11 +182,10 @@ nodeLogic bootstrap capacity = do
   -- create references for the shared state
   blockchainRef <- liftIO $ newIORef [genesis]
   accountRef <- liftIO $ newIORef initialAccount
-  let 
-      initialAccounts = Map.fromList $ map (,initialAccount) keys
+  let initialAccounts = Map.fromList $ map (,initialAccount) keys
       clishared = (blockchainRef, accountRef) :: CLISharedState
-      peers = filter (/= (myid, mypub)) (zip [1 ..] keys)
-      cliinfo = CLIInfo mywallet (Map.fromList peers) ip port
+      mypeers = filter (/= (myid, mypub)) (zip [1 ..] keys)
+      cliinfo = CLIInfo mywallet (Map.fromList mypeers) ip port
       -- This function processes transactions (keeping track of the counter) and mints
       -- a new block when the counter reaches the capacity.
       processTXs :: IO ()
@@ -240,3 +240,21 @@ nodeLogic bootstrap capacity = do
   _ <- (liftIO . forkIO) processTXs
   liftIO $ runReaderT (shell clishared) cliinfo
   return ()
+
+nodeStartupTest :: BootstrapNode -> ReaderT NodeInfo IO (Int, StartupState)
+nodeStartupTest bootstrap = do
+  -- start by setting up the startup state.
+  ip <- asks nodeIP
+  port <- asks nodePort
+  myid <- nodeGetID bootstrap -- connect to bootstrap and get id
+  trigger <- liftIO newEmptyMVar -- initialize trigger for broadcast
+  queuedTXs <- liftIO (newTQueueIO :: IO TXQueue)
+  queuedBlocks <- liftIO (newTQueueIO :: IO BLQueue)
+  startupState <- liftIO $ newTVarIO ([] :: [PublicKey], [] :: [Peer], emptyBlock)
+
+  -- setup a server that never returns. it discriminates between
+  -- the types of messages it receives and acts accordingly.
+  _ <- liftIO . forkIO $ serve (Host ip) port $ server (ServerEnv startupState trigger queuedTXs queuedBlocks)
+  _ <- liftIO $ takeMVar trigger -- wait for the broadcast to finish
+  (keys, friends, genesis) <- liftIO $ readTVarIO startupState
+  return (myid, (keys, friends, genesis))
