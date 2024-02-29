@@ -26,6 +26,9 @@ import Network.Simple.TCP (HostName, ServiceName, connect, send)
 import ServiceType (ServiceType (..), serviceCost, serviceFee)
 import Types (Peer, PubKeyToAcc)
 import Utils (encodeStrict)
+import Control.Monad.IO.Class (liftIO)
+import Control.Concurrent.MVar (newEmptyMVar, takeMVar, MVar, putMVar)
+import Control.Concurrent (forkIO)
 
 ---------------------------------------------------------
 -- PublicKey is not an instance of Ord, so we make it one
@@ -154,12 +157,17 @@ createTransaction p1 p2 s n = finalizeTransaction (TransactionInit p1 p2 s n)
 -- and sends the encoded transaction to each peer using the 'sendMsg' function.
 -- The 'sendMsg' function establishes a connection with the peer and sends the
 -- transaction over the socket.
-broadcastTransaction :: Transaction -> [Peer] -> IO ()
-broadcastTransaction t = mapM_ sendMsg
+broadcastTransaction :: [Peer] -> Transaction -> IO ()
+broadcastTransaction peers t = do
+  triggers <- liftIO $ mapM (const newEmptyMVar) peers
+  mapM_ (forkIO . sendMsg) (zip peers triggers)
+  mapM_ takeMVar triggers
   where
     msg = encodeStrict t
-    sendMsg :: (HostName, ServiceName) -> IO ()
-    sendMsg (host, port) = connect host port $ \(sock, _) -> do send sock msg
+    sendMsg :: ((HostName, ServiceName), MVar Int) -> IO ()
+    sendMsg ((host, port), trigger) = do
+      connect host port $ \(sock, _) -> send sock msg
+      putMVar trigger 1
 
 -- | Verifies the signature of a transaction.
 verifySignature :: Transaction -> Bool
@@ -168,7 +176,6 @@ verifySignature t = verify from sig tid
     from = senderAddress t
     sig = B.fromStrict $ signature t
     tid = B.fromStrict $ hashID t
-
 
 -- | This function takes a transaction and a map of public keys to accounts and returns
 -- whether the transaction is valid or not.
