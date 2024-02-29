@@ -184,7 +184,8 @@ nodeLogic bootstrap capacity = do
   let 
       initialAccounts = Map.fromList $ map (,initialAccount) keys
       clishared = (blockchainRef, accountRef) :: CLISharedState
-      cliinfo = CLIInfo mywallet (Map.fromList $ zip [1 ..] keys) ip port
+      peers = filter (/= (myid, mypub)) (zip [1 ..] keys)
+      cliinfo = CLIInfo mywallet (Map.fromList peers) ip port
       -- This function processes transactions (keeping track of the counter) and mints
       -- a new block when the counter reaches the capacity.
       processTXs :: IO ()
