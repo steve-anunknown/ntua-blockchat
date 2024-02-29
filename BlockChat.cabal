@@ -28,6 +28,7 @@ library
       Account
       Block
       BootstrapNode
+      CLI
       Lib
       OrdinaryNode
       ServiceType
@@ -66,7 +67,6 @@ library
 executable BlockChat-exe
   main-is: Main.hs
   other-modules:
-      CLI
       Paths_BlockChat
   autogen-modules:
       Paths_BlockChat

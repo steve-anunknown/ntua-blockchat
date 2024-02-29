@@ -1,24 +1,22 @@
 {-# LANGUAGE InstanceSigs #-}
+
 module Block
   ( Block (..),
     Blockchain,
     createBlock,
     validateBlock,
-    emptyBlock
+    emptyBlock,
   )
 where
 
-import Account
-
-import Codec.Crypto.RSA (PublicKey(..))
+import Codec.Crypto.RSA (PublicKey (..))
 import Crypto.Hash (SHA256 (..), hashWith)
 import Data.Binary
 import Data.ByteArray (convert)
 import Data.ByteString (ByteString)
-import qualified Data.ByteString.Lazy as B
 import qualified Data.ByteString as BS
-import qualified Data.Map as Map
-import Data.UnixTime (UnixTime(..))
+import qualified Data.ByteString.Lazy as B
+import Data.UnixTime (UnixTime (..))
 import Transaction (Transaction)
 
 data BlockInit = BlockInit

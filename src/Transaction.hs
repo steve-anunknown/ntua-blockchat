@@ -14,7 +14,7 @@ module Transaction
   )
 where
 
-import Account (availableBalance, updateBalanceBy)
+import Account (availableBalance, updateBalanceBy, updateNonce)
 import Codec.Crypto.RSA (PrivateKey, PublicKey (..), sign, verify)
 import Crypto.Hash (SHA256 (..), hashWith)
 import Data.Binary (Binary (get, put), encode)
@@ -104,17 +104,17 @@ updateAccsByTX t m = case serviceType t of
     let cost = -txCost t
         sender = senderAddress t
         receiver = receiverAddress t
-        temp = Map.adjust (updateBalanceBy cost) sender m
+        temp = Map.adjust (updateBalanceBy cost . updateNonce) sender m
      in Map.adjust (updateBalanceBy c) receiver temp
   Message _ ->
     let cost = -txCost t
         sender = senderAddress t
-     in Map.adjust (updateBalanceBy cost) sender m
+     in Map.adjust (updateBalanceBy cost . updateNonce) sender m
   Both (c, _) ->
     let cost = -txCost t
         sender = senderAddress t
         receiver = receiverAddress t
-        temp = Map.adjust (updateBalanceBy cost) sender m
+        temp = Map.adjust (updateBalanceBy cost . updateNonce) sender m
      in Map.adjust (updateBalanceBy c) receiver temp
 
 -- | This function takes a list of transactions and a state of accounts as arguments and returns

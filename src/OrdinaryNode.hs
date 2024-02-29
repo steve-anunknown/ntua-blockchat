@@ -11,7 +11,7 @@ import Account
   ( Account (accountBalance, accountStake),
     initialAccount,
   )
-import Block (Block (..), Blockchain, createBlock, emptyBlock, validateBlock)
+import Block (Block (..), createBlock, emptyBlock, validateBlock)
 import BootstrapNode (BootstrapNode (..))
 import Codec.Crypto.RSA (PublicKey (..))
 import Control.Concurrent
@@ -67,9 +67,10 @@ import Transaction
     updateAccsByTXs,
     validateTransaction,
   )
+import Types (Peer, PubKeyToAcc)
 import Utils (decodeMaybe, encodeStrict)
 import Wallet (Wallet)
-import Types (Peer, PubKeyToAcc)
+import CLI
 
 type TXQueue = TQueue Transaction
 
@@ -161,10 +162,11 @@ nodeLogic bootstrap capacity = do
   ip <- asks nodeIP
   port <- asks nodePort
   myid <- nodeGetID bootstrap -- connect to bootstrap and get id
+  mywallet@(mypub, _) <- asks nodeInfoWallet -- used in processTXs
   trigger <- liftIO newEmptyMVar -- initialize trigger for broadcast
-  startupState <- liftIO $ newTVarIO ([] :: [PublicKey], [] :: [Peer], emptyBlock)
   queuedTXs <- liftIO (newTQueueIO :: IO TXQueue)
   queuedBlocks <- liftIO (newTQueueIO :: IO BLQueue)
+  startupState <- liftIO $ newTVarIO ([] :: [PublicKey], [] :: [Peer], emptyBlock)
 
   -- setup a server that never returns. it discriminates between
   -- the types of messages it receives and acts accordingly.
@@ -175,23 +177,32 @@ nodeLogic bootstrap capacity = do
   -- Up to this point, the broadcast has finished. Each node has its own id,
   -- a list of peers and the genesis block. Now we can start the node.
 
-  let myblockchain = [genesis] -- starting blockchain
+  -- create a reference to the blockchain. This will be used both by
+  -- the transaction processing thread but also from the frontend, that
+  -- will want to see the blockchain.
+  blockchainRef <- liftIO $ newIORef [genesis]
+  accountRef <- liftIO $ newIORef initialAccount
+  let 
       initialAccounts = Map.fromList $ map (,initialAccount) keys
-
+      clishared = (blockchainRef, accountRef) :: CLISharedState
+      cliinfo = CLIInfo mywallet (Map.fromList $ zip [1 ..] keys) ip port
       -- This function processes transactions (keeping track of the counter) and mints
       -- a new block when the counter reaches the capacity.
       processTXs :: IO ()
-      processTXs = processTXs' [] queuedTXs (initialAccounts, initialAccounts) myblockchain
+      processTXs = processTXs' clishared [] queuedTXs (initialAccounts, initialAccounts)
         where
-          processTXs' :: [Transaction] -> TXQueue -> (PubKeyToAcc, PubKeyToAcc) -> Blockchain -> IO ()
-          processTXs' vTxs qTxs (accmap, fallback) blockchain = do
+          processTXs' :: CLISharedState -> [Transaction] -> TXQueue -> (PubKeyToAcc, PubKeyToAcc) -> IO ()
+          processTXs' sharedState vTxs qTxs (accmap, fallback) = do
             when (length vTxs /= capacity) $ do
               tx <- atomically $ dequeueTQ qTxs
               if validateTransaction tx accmap
-                then processTXs' (tx : vTxs) qTxs (updateAccsByTX tx accmap, fallback) blockchain
-                else processTXs' vTxs qTxs (accmap, fallback) blockchain
+                then processTXs' sharedState (tx : vTxs) qTxs (updateAccsByTX tx accmap, fallback)
+                else processTXs' sharedState vTxs qTxs (accmap, fallback)
+            blockchain <- (readIORef . fst) sharedState
             (newaccs, newblock) <- mint (head blockchain) vTxs (accmap, fallback)
-            processTXs' [] qTxs (newaccs, newaccs) (newblock : blockchain)
+            writeIORef (fst sharedState) (newblock : blockchain)
+            writeIORef (snd sharedState) (newaccs Map.! mypub)
+            processTXs' sharedState [] qTxs (newaccs, newaccs)
 
       getValidatorBlock :: Block -> PublicKey -> IO Block
       getValidatorBlock = getValidatorBlockFrom queuedBlocks
@@ -227,4 +238,5 @@ nodeLogic bootstrap capacity = do
 
   -- spawn a thread to process transactions
   _ <- (liftIO . forkIO) processTXs
+  liftIO $ runReaderT (shell clishared) cliinfo
   return ()
