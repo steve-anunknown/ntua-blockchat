@@ -25,6 +25,8 @@ dependencies:
 - bytestring
 - unix-time
 - random
+- random-fu
+- rvar
 - RSA
 - crypto-api
 - network-simple
@@ -35,6 +37,7 @@ dependencies:
 - mtl
 - silently
 - directory
+- stm
 
 ghc-options:
 - -Wall

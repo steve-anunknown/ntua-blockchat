@@ -55,13 +55,17 @@ library
     , network
     , network-simple
     , random
+    , random-fu
+    , rvar
     , silently
+    , stm
     , unix-time
   default-language: Haskell2010
 
 executable BlockChat-exe
   main-is: Main.hs
   other-modules:
+      CLI
       Paths_BlockChat
   autogen-modules:
       Paths_BlockChat
@@ -83,7 +87,10 @@ executable BlockChat-exe
     , network
     , network-simple
     , random
+    , random-fu
+    , rvar
     , silently
+    , stm
     , unix-time
   default-language: Haskell2010
 
@@ -112,6 +119,9 @@ test-suite BlockChat-test
     , network
     , network-simple
     , random
+    , random-fu
+    , rvar
     , silently
+    , stm
     , unix-time
   default-language: Haskell2010

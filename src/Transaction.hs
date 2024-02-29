@@ -1,48 +1,48 @@
+{-# LANGUAGE InstanceSigs #-}
 {-# OPTIONS_GHC -Wno-orphans #-}
 
 module Transaction
-  ( ServiceType (..),
-    Transaction (..),
-    transactionCost,
-    initializeTransaction,
+  ( Transaction (..),
+    txCost,
+    txsFee,
     createTransaction,
     broadcastTransaction,
     verifySignature,
     validateTransaction,
+    updateAccsByTX,
+    updateAccsByTXs
   )
 where
 
-import Utils
-import ServiceType 
-import Account (Account (..), availableBalance)
+import Account (Account (..), availableBalance, updateBalanceBy)
 import Codec.Crypto.RSA (PrivateKey, PublicKey (..), sign, verify)
 import Crypto.Hash (SHA256 (..), hashWith)
 import Data.Binary
 import Data.ByteArray (convert)
 import Data.ByteString (ByteString)
-import Network.Simple.TCP 
 import qualified Data.ByteString.Lazy as B
 import qualified Data.Map as Map
+import Network.Simple.TCP
+import ServiceType
+import Utils
 
 ---------------------------------------------------------
 -- PublicKey is not an instance of Ord, so we make it one
 -- in order to be able to index Maps using it.
 instance Ord PublicKey where
+  (<=) :: PublicKey -> PublicKey -> Bool
   (<=) PublicKey {public_n = pn1} PublicKey {public_n = pn2} = pn1 <= pn2
 
 -- This is perhaps bad design, I don't know.
 ---------------------------------------------------------
 
 data TransactionInit = TransactionInit
-  { initSenderAddress :: PublicKey, -- public key of the wallet which the transaction comes from
-    initReceiverAddress :: PublicKey, -- public key of the wallet which the transaction sends to
-    initServiceType :: ServiceType, -- type of the transaction
+  { initSenderAddress :: PublicKey, -- pub key which the tx comes from
+    initReceiverAddress :: PublicKey, -- pub key which the tx sends to
+    initServiceType :: ServiceType, -- type of the tx
     initNonce :: Int -- counter
   }
   deriving (Show)
-
-initializeTransaction :: PublicKey -> PublicKey -> ServiceType -> Int -> TransactionInit
-initializeTransaction = TransactionInit -- for user
 
 instance Binary TransactionInit where
   put (TransactionInit senderAddr receiverAddr transType n) = do
@@ -63,7 +63,9 @@ data Transaction = Transaction
     nonce :: Int, -- counter
     hashID :: ByteString,
     signature :: ByteString
-  } deriving (Show, Eq)
+  }
+  deriving (Show, Eq)
+
 instance Binary Transaction where -- Transaction is made an instance of Binary for the hash of the block
   put (Transaction senderAddr receiverAddr transType n h s) = do
     put senderAddr
@@ -80,8 +82,38 @@ instance Binary Transaction where -- Transaction is made an instance of Binary f
     h <- get
     Transaction senderAddr receiverAddr transType n h <$> get
 
-transactionCost :: Transaction -> Double
-transactionCost = serviceCost . serviceType
+-- this is deducted from the sender's account
+txCost :: Transaction -> Double
+txCost = serviceCost . serviceType
+
+-- this is used during the minting phase
+txsFee :: [Transaction] -> Double
+txsFee = sum . map txFee
+  where txFee Transaction {serviceType = service} = case service of
+          Coins c -> c * serviceFee
+          Message msg -> fromIntegral (length msg) * serviceFee
+          Both (c , msg) -> c * serviceFee + fromIntegral (length msg) * serviceFee
+
+-- use this to update the state of the accounts, specifically the balances
+-- of the sender and the receiver
+updateAccsByTX :: Transaction -> Map.Map PublicKey Account -> Map.Map PublicKey Account
+updateAccsByTX t m = case serviceType t of
+  Coins c -> let cost = - txCost t
+                 sender = senderAddress t
+                 receiver = receiverAddress t
+                 temp = Map.adjust (updateBalanceBy cost) sender m
+             in Map.adjust (updateBalanceBy c) receiver temp
+  Message _ -> let cost = - txCost t
+                   sender = senderAddress t
+               in Map.adjust (updateBalanceBy cost) sender m
+  Both (c, _) -> let cost = - txCost t
+                     sender = senderAddress t
+                     receiver = receiverAddress t
+                     temp = Map.adjust (updateBalanceBy cost) sender m
+                 in Map.adjust (updateBalanceBy c) receiver temp
+
+updateAccsByTXs :: [Transaction] -> Map.Map PublicKey Account -> Map.Map PublicKey Account
+updateAccsByTXs txs initial = foldr updateAccsByTX initial txs
 
 computeHashID :: TransactionInit -> ByteString
 computeHashID = convert . hashWith SHA256 . B.toStrict . encode
@@ -101,13 +133,14 @@ finalizeTransaction initTx privKey =
     }
 
 createTransaction :: PublicKey -> PublicKey -> ServiceType -> Int -> PrivateKey -> Transaction
-createTransaction p1 p2 s n = finalizeTransaction (initializeTransaction p1 p2 s n)
+createTransaction p1 p2 s n = finalizeTransaction (TransactionInit p1 p2 s n)
 
-broadcastTransaction :: Transaction -> [(HostName, ServiceName)]-> IO ()
+broadcastTransaction :: Transaction -> [(HostName, ServiceName)] -> IO ()
 broadcastTransaction t = mapM_ sendMsg
-    where msg = encodeStrict t
-          sendMsg :: (HostName, ServiceName) -> IO ()
-          sendMsg (host, port) = connect host port $ \(sock, _) -> do send sock msg
+  where
+    msg = encodeStrict t
+    sendMsg :: (HostName, ServiceName) -> IO ()
+    sendMsg (host, port) = connect host port $ \(sock, _) -> do send sock msg
 
 verifySignature :: Transaction -> Bool
 verifySignature t = verify from sig tid
@@ -121,6 +154,5 @@ verifySignature t = verify from sig tid
 validateTransaction :: Transaction -> Map.Map PublicKey Account -> Bool
 validateTransaction t m = verifySignature t && maybe False validateSender senderAcc
   where
-    validateSender acc = availableBalance acc >= transactionCost t
+    validateSender acc = availableBalance acc >= txCost t
     senderAcc = Map.lookup (senderAddress t) m
-

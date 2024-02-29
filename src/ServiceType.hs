@@ -1,16 +1,17 @@
-module ServiceType (
-    ServiceType(..),
-    serviceCost
-) where
+module ServiceType
+  ( ServiceType (..),
+    serviceCost,
+    serviceFee,
+  )
+where
 
-
-import Data.Binary (Binary(..), Word8, Get)
+import Data.Binary (Binary (..), Get, Word8)
 
 data ServiceType
   = Coins Double
   | Message String
   | Both (Double, String)
-  deriving (Show, Eq)
+  deriving (Read, Show, Eq)
 
 instance Binary ServiceType where
   put (Coins amount) = do
@@ -31,12 +32,10 @@ instance Binary ServiceType where
       2 -> Both <$> get
       _ -> fail "Invalid ServiceType tag"
 
-serviceCost :: ServiceType -> Double
-serviceCost (Coins amount) = amount + amount * 3 / 100 -- 3 % fee
-serviceCost (Message mess) = amount + amount * 3 / 100 -- TODO: not sure exactly when the fee applies
-  where
-    amount = fromIntegral $ Prelude.length mess
-serviceCost (Both (amount, mess)) = total + total * 3 / 100
-  where
-    total = amount + fromIntegral (Prelude.length mess)
+serviceFee :: Double
+serviceFee = 3 / 100
 
+serviceCost :: ServiceType -> Double
+serviceCost (Coins amount) = amount + amount * serviceFee -- 3 % fee
+serviceCost (Message mess) = fromIntegral $ length mess -- 1 coin per character
+serviceCost (Both (amount, mess)) = serviceCost (Coins amount) + serviceCost (Message mess)
