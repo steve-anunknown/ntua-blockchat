@@ -32,6 +32,7 @@ library
       OrdinaryNode
       ServiceType
       Transaction
+      Types
       Utils
       Wallet
   other-modules:

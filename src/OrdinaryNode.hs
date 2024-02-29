@@ -69,6 +69,13 @@ import Transaction
   )
 import Utils (decodeMaybe, encodeStrict)
 import Wallet (Wallet)
+import Types (Peer, PubKeyToAcc)
+
+type TXQueue = TQueue Transaction
+
+type BLQueue = TQueue Block
+
+type StartupState = ([PublicKey], [Peer], Block)
 
 -- NodeInfo does not change. It is set once, using the arguments passed to the program and then remains constant.
 data NodeInfo = NodeInfo
@@ -77,16 +84,6 @@ data NodeInfo = NodeInfo
     nodeInfoWallet :: Wallet
   }
   deriving (Show, Eq)
-
-type Peer = (HostName, ServiceName)
-
-type TXQueue = TQueue Transaction
-
-type BLQueue = TQueue Block
-
-type StartupState = ([PublicKey], [Peer], Block)
-
-type PubKeyToAcc = Map.Map PublicKey Account
 
 enqueueTQ :: TQueue a -> a -> STM ()
 enqueueTQ = writeTQueue

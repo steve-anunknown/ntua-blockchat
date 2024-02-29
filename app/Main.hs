@@ -3,11 +3,12 @@
 module Main (main) where
 
 import BootstrapNode
+    ( bootstrapNode, BootInfo(BootInfo), BootstrapNode(BootstrapNode) )
 import Control.Monad (void)
-import OrdinaryNode
-import System.Environment
-import System.Exit
-import Wallet
+import OrdinaryNode ( NodeInfo(NodeInfo), node )
+import System.Environment ( getArgs )
+import System.Exit ( exitSuccess )
+import Wallet ( generateWallet )
 
 main :: IO ()
 main = getArgs >>= parseArgs >>= startDoingStuff >> exit

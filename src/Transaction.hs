@@ -10,21 +10,22 @@ module Transaction
     verifySignature,
     validateTransaction,
     updateAccsByTX,
-    updateAccsByTXs
+    updateAccsByTXs,
   )
 where
 
-import Account (Account (..), availableBalance, updateBalanceBy)
+import Account (availableBalance, updateBalanceBy)
 import Codec.Crypto.RSA (PrivateKey, PublicKey (..), sign, verify)
 import Crypto.Hash (SHA256 (..), hashWith)
-import Data.Binary
+import Data.Binary (Binary (get, put), encode)
 import Data.ByteArray (convert)
 import Data.ByteString (ByteString)
 import qualified Data.ByteString.Lazy as B
 import qualified Data.Map as Map
-import Network.Simple.TCP
-import ServiceType
-import Utils
+import Network.Simple.TCP (HostName, ServiceName, connect, send)
+import ServiceType (ServiceType (..), serviceCost, serviceFee)
+import Types (Peer, PubKeyToAcc)
+import Utils (encodeStrict)
 
 ---------------------------------------------------------
 -- PublicKey is not an instance of Ord, so we make it one
@@ -89,38 +90,48 @@ txCost = serviceCost . serviceType
 -- this is used during the minting phase
 txsFee :: [Transaction] -> Double
 txsFee = sum . map txFee
-  where txFee Transaction {serviceType = service} = case service of
-          Coins c -> c * serviceFee
-          Message msg -> fromIntegral (length msg) * serviceFee
-          Both (c , msg) -> c * serviceFee + fromIntegral (length msg) * serviceFee
+  where
+    txFee Transaction {serviceType = service} = case service of
+      Coins c -> c * serviceFee
+      Message msg -> fromIntegral (length msg) * serviceFee
+      Both (c, msg) -> c * serviceFee + fromIntegral (length msg) * serviceFee
 
--- use this to update the state of the accounts, specifically the balances
--- of the sender and the receiver
-updateAccsByTX :: Transaction -> Map.Map PublicKey Account -> Map.Map PublicKey Account
+-- | This function takes a transaction and a state of accounts as arguments and returns
+-- a new state of accounts, as a result of the transaction.
+updateAccsByTX :: Transaction -> PubKeyToAcc -> PubKeyToAcc
 updateAccsByTX t m = case serviceType t of
-  Coins c -> let cost = - txCost t
-                 sender = senderAddress t
-                 receiver = receiverAddress t
-                 temp = Map.adjust (updateBalanceBy cost) sender m
-             in Map.adjust (updateBalanceBy c) receiver temp
-  Message _ -> let cost = - txCost t
-                   sender = senderAddress t
-               in Map.adjust (updateBalanceBy cost) sender m
-  Both (c, _) -> let cost = - txCost t
-                     sender = senderAddress t
-                     receiver = receiverAddress t
-                     temp = Map.adjust (updateBalanceBy cost) sender m
-                 in Map.adjust (updateBalanceBy c) receiver temp
+  Coins c ->
+    let cost = -txCost t
+        sender = senderAddress t
+        receiver = receiverAddress t
+        temp = Map.adjust (updateBalanceBy cost) sender m
+     in Map.adjust (updateBalanceBy c) receiver temp
+  Message _ ->
+    let cost = -txCost t
+        sender = senderAddress t
+     in Map.adjust (updateBalanceBy cost) sender m
+  Both (c, _) ->
+    let cost = -txCost t
+        sender = senderAddress t
+        receiver = receiverAddress t
+        temp = Map.adjust (updateBalanceBy cost) sender m
+     in Map.adjust (updateBalanceBy c) receiver temp
 
-updateAccsByTXs :: [Transaction] -> Map.Map PublicKey Account -> Map.Map PublicKey Account
+-- | This function takes a list of transactions and a state of accounts as arguments and returns
+-- a new state of accounts, as a result of the transactions.
+updateAccsByTXs :: [Transaction] -> PubKeyToAcc -> PubKeyToAcc
 updateAccsByTXs txs initial = foldr updateAccsByTX initial txs
 
+-- | This function takes a transaction (only the initial fields) and returns its hash.
 computeHashID :: TransactionInit -> ByteString
 computeHashID = convert . hashWith SHA256 . B.toStrict . encode
 
+-- | This function takes a private key and a bytestring and returns the signature of the bytestring.
 computeSignature :: PrivateKey -> ByteString -> ByteString
 computeSignature privkey bytestring = B.toStrict $ sign privkey (B.fromStrict bytestring)
 
+-- | This function takes a transaction and a private key and
+-- returns the transaction with the signature field filled.
 finalizeTransaction :: TransactionInit -> PrivateKey -> Transaction
 finalizeTransaction initTx privKey =
   Transaction
@@ -132,10 +143,12 @@ finalizeTransaction initTx privKey =
       signature = computeSignature privKey (computeHashID initTx)
     }
 
+-- | This function takes a public key (sender), another public key (receiver), a service type,
+-- a counter and a private key and returns a transaction.
 createTransaction :: PublicKey -> PublicKey -> ServiceType -> Int -> PrivateKey -> Transaction
 createTransaction p1 p2 s n = finalizeTransaction (TransactionInit p1 p2 s n)
 
-broadcastTransaction :: Transaction -> [(HostName, ServiceName)] -> IO ()
+broadcastTransaction :: Transaction -> [Peer] -> IO ()
 broadcastTransaction t = mapM_ sendMsg
   where
     msg = encodeStrict t
@@ -151,7 +164,7 @@ verifySignature t = verify from sig tid
 
 -- PublicKey has been made an instance of Ord, therefore it can be used
 -- as a key in a map.
-validateTransaction :: Transaction -> Map.Map PublicKey Account -> Bool
+validateTransaction :: Transaction -> PubKeyToAcc -> Bool
 validateTransaction t m = verifySignature t && maybe False validateSender senderAcc
   where
     validateSender acc = availableBalance acc >= txCost t
