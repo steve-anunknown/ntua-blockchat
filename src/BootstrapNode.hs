@@ -1,3 +1,6 @@
+{-# LANGUAGE OverloadedStrings #-}
+
+
 module BootstrapNode
   ( BootInfo (..),
     BootState (..),
@@ -6,18 +9,45 @@ module BootstrapNode
   )
 where
 
-import Block
+import Block (Blockchain, createBlock)
 import Codec.Crypto.RSA (PublicKey (..))
 import Control.Concurrent
+  ( MVar,
+    forkIO,
+    newEmptyMVar,
+    putMVar,
+    takeMVar,
+  )
 import Control.Monad (when)
 import Control.Monad.Reader
+  ( MonadIO (liftIO),
+    MonadReader (ask),
+    ReaderT (runReaderT),
+  )
+import qualified Data.ByteString as BS
 import Data.IORef
-import Data.UnixTime
+  ( IORef,
+    atomicModifyIORef',
+    modifyIORef',
+    newIORef,
+    readIORef,
+  )
+import Data.UnixTime (getUnixTime)
 import Network.Simple.TCP
-import ServiceType
-import Transaction
-import Utils
-import Wallet
+  ( HostName,
+    HostPreference (Host),
+    ServiceName,
+    SockAddr,
+    Socket,
+    connect,
+    recv,
+    send,
+    serve,
+  )
+import ServiceType (ServiceType (Coins))
+import Transaction (createTransaction)
+import Utils (decodeMaybe, encodeStrict)
+import Wallet (generateWallet)
 
 data BootstrapNode = BootstrapNode HostName ServiceName
 
@@ -97,6 +127,6 @@ bootstrapNodeLogic = do
   fstate <- liftIO $ readIORef state
   let keys = bootPublicKeys fstate :: [PublicKey]
       friends = bootPeers fstate :: [(HostName, ServiceName)]
-      msg = encodeStrict (keys, friends, genesisBl)
+      msg = BS.append "0" (encodeStrict (keys, friends, genesisBl))
   _ <- liftIO $ mapM (\(ip, port) -> connect ip port $ \x -> send (fst x) msg) friends
   liftIO $ readIORef state
