@@ -4,6 +4,7 @@
 module OrdinaryNode
   ( NodeInfo (..),
     node,
+    sampleValidator -- export it just for testing
   )
 where
 
@@ -177,9 +178,7 @@ nodeLogic bootstrap capacity = do
   -- Up to this point, the broadcast has finished. Each node has its own id,
   -- a list of peers and the genesis block. Now we can start the node.
 
-  -- create a reference to the blockchain. This will be used both by
-  -- the transaction processing thread but also from the frontend, that
-  -- will want to see the blockchain.
+  -- create references for the shared state
   blockchainRef <- liftIO $ newIORef [genesis]
   accountRef <- liftIO $ newIORef initialAccount
   let 

@@ -6,7 +6,7 @@ module Utils
   )
 where
 
-import Data.Binary
+import Data.Binary ( Binary, decode, encode )
 import qualified Data.ByteString as BS
 
 encodeStrict :: (Binary a) => a -> BS.ByteString

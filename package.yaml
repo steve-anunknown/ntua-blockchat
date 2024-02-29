@@ -38,6 +38,7 @@ dependencies:
 - silently
 - directory
 - stm
+- hspec
 
 ghc-options:
 - -Wall

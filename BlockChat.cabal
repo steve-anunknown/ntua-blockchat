@@ -52,6 +52,7 @@ library
     , crypto-api
     , cryptonite
     , directory
+    , hspec
     , memory
     , mtl
     , network
@@ -83,6 +84,7 @@ executable BlockChat-exe
     , crypto-api
     , cryptonite
     , directory
+    , hspec
     , memory
     , mtl
     , network
@@ -115,6 +117,7 @@ test-suite BlockChat-test
     , crypto-api
     , cryptonite
     , directory
+    , hspec
     , memory
     , mtl
     , network

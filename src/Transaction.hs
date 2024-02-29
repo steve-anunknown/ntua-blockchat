@@ -148,6 +148,12 @@ finalizeTransaction initTx privKey =
 createTransaction :: PublicKey -> PublicKey -> ServiceType -> Int -> PrivateKey -> Transaction
 createTransaction p1 p2 s n = finalizeTransaction (TransactionInit p1 p2 s n)
 
+-- | Broadcasts a transaction to a list of peers.
+--
+-- The 'broadcastTransaction' function takes a 'Transaction' and a list of 'Peer's,
+-- and sends the encoded transaction to each peer using the 'sendMsg' function.
+-- The 'sendMsg' function establishes a connection with the peer and sends the
+-- transaction over the socket.
 broadcastTransaction :: Transaction -> [Peer] -> IO ()
 broadcastTransaction t = mapM_ sendMsg
   where
@@ -155,6 +161,7 @@ broadcastTransaction t = mapM_ sendMsg
     sendMsg :: (HostName, ServiceName) -> IO ()
     sendMsg (host, port) = connect host port $ \(sock, _) -> do send sock msg
 
+-- | Verifies the signature of a transaction.
 verifySignature :: Transaction -> Bool
 verifySignature t = verify from sig tid
   where
@@ -162,8 +169,9 @@ verifySignature t = verify from sig tid
     sig = B.fromStrict $ signature t
     tid = B.fromStrict $ hashID t
 
--- PublicKey has been made an instance of Ord, therefore it can be used
--- as a key in a map.
+
+-- | This function takes a transaction and a map of public keys to accounts and returns
+-- whether the transaction is valid or not.
 validateTransaction :: Transaction -> PubKeyToAcc -> Bool
 validateTransaction t m = verifySignature t && maybe False validateSender senderAcc
   where
