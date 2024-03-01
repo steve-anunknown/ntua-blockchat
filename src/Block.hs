@@ -11,7 +11,7 @@ where
 
 import Codec.Crypto.RSA (PublicKey (..))
 import Crypto.Hash (SHA256 (..), hashWith)
-import Data.Binary
+import Data.Binary ( Binary(get, put), encode, Get, Put )
 import Data.ByteArray (convert)
 import Data.ByteString (ByteString)
 import qualified Data.ByteString as BS
