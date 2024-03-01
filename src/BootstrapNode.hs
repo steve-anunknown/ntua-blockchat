@@ -1,6 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-
 module BootstrapNode
   ( BootInfo (..),
     BootState (..),
@@ -9,7 +8,7 @@ module BootstrapNode
   )
 where
 
-import Block (Blockchain, createBlock)
+import Block (Block, Blockchain, createBlock)
 import Codec.Crypto.RSA (PublicKey (..))
 import Control.Concurrent
   ( MVar,
@@ -20,19 +19,15 @@ import Control.Concurrent
   )
 import Control.Monad (when)
 import Control.Monad.Reader
-  ( MonadIO (liftIO),
-    MonadReader (ask),
-    ReaderT (runReaderT),
-  )
+    ( MonadIO(liftIO), ReaderT(runReaderT), asks )
 import qualified Data.ByteString as BS
 import Data.IORef
   ( IORef,
     atomicModifyIORef',
-    modifyIORef',
     newIORef,
     readIORef,
   )
-import Data.UnixTime (getUnixTime)
+import Data.UnixTime (UnixTime, getUnixTime)
 import Network.Simple.TCP
   ( HostName,
     HostPreference (Host),
@@ -45,9 +40,9 @@ import Network.Simple.TCP
     serve,
   )
 import ServiceType (ServiceType (Coins))
-import Transaction (createTransaction)
+import Transaction (Transaction, createTransaction)
 import Utils (decodeMaybe, encodeStrict)
-import Wallet (generateWallet)
+import Wallet (Wallet, generateWallet)
 
 data BootstrapNode = BootstrapNode HostName ServiceName
 
@@ -65,7 +60,7 @@ data BootInfo = BootInfo
 
 data BootState = BootState
   { bootCurrID :: Int,
-    bootPublicKeys :: [PublicKey],
+    bootPublicKeys :: [(Int, PublicKey)],
     bootPeers :: [(HostName, ServiceName)],
     bootBlockchain :: Blockchain
   }
@@ -77,56 +72,66 @@ emptyBootState = BootState 0 [] [] []
 bootstrapNode :: BootInfo -> IO BootState
 bootstrapNode = runReaderT bootstrapNodeLogic
 
+-- | This is a helper function that updates the state of the boot node
+updateState :: (Int, (PublicKey, HostName, ServiceName)) -> BootState -> (BootState, ())
+updateState t s = (s {bootPublicKeys = newKeys, bootPeers = newPeers}, ())
+  where
+    (num, (pub, ip, port)) = t
+    newKeys = (num, pub) : bootPublicKeys s
+    newPeers = (ip, port) : bootPeers s
+
+-- | This is a helper function that increments the current ID of the boot state
+incrementID :: BootState -> (BootState, Int)
+incrementID s = (s {bootCurrID = newID}, newID)
+  where
+    newID = bootCurrID s + 1
+
+-- | This is the function that handles the server logic
+server :: [MVar Int] -> IORef BootState -> (Socket, SockAddr) -> IO ()
+server triggers ioref (socket, _) = do
+  currID <- atomicModifyIORef' ioref incrementID
+  when (currID <= length triggers) $ do
+    msg <- recv socket 4096 -- should be enough to hold a public key (2048), an ip and a port
+    let keyval = decodeMaybe msg :: (PublicKey, HostName, ServiceName)
+    atomicModifyIORef' ioref $ updateState (currID, keyval)
+    send socket $ encodeStrict currID
+    putMVar (triggers !! (currID - 1)) 1
+
+createGenesisTX :: Wallet -> Int -> Transaction
+createGenesisTX (pub, priv) totalnodes = createTransaction zeropub pub tx 1 priv
+  where
+    tx = Coins $ 1000 * fromIntegral totalnodes
+    zeropub = PublicKey 0 0 65537
+
+createGenesisBlock :: UnixTime -> Wallet -> Int -> Block
+createGenesisBlock time wallet totalnodes = createBlock 1 time [genesisTX] zeropub prevHash
+  where
+    prevHash = encodeStrict (1 :: Int)
+    zeropub = PublicKey 0 0 65537
+    genesisTX = createGenesisTX wallet totalnodes
+
 bootstrapNodeLogic :: ReaderT BootInfo IO BootState
 bootstrapNodeLogic = do
-  info <- ask -- get the environment
-  time <- liftIO getUnixTime -- get the current time
-  (mypub, mypriv) <- liftIO $ generateWallet 2048 -- get a wallet
-  let -- extract info from the environment
-      myip = bootNodeIP info
-      myport = bootNodePort info
-      totalNodes = bootNodeNumb info
-      myhost = Host myip
-      -- setup the genesis block
-      prevHash = encodeStrict (1 :: Int)
-      zeropub = PublicKey 0 0 65537
-      txtype = Coins $ 1000 * fromIntegral totalNodes
-      genesisTx = createTransaction zeropub mypub txtype 1 mypriv
-      genesisBl = createBlock 1 time [genesisTx] zeropub prevHash
-      -- helper to update state while running the server
-      updateState :: (PublicKey, HostName, ServiceName) -> BootState -> (BootState, ())
-      updateState t s = (s {bootPublicKeys = newKeys, bootPeers = newPeers}, ())
-        where
-          (pub, ip, port) = t
-          newKeys = pub : bootPublicKeys s
-          newPeers = (ip, port) : bootPeers s
-      incrementID :: BootState -> (BootState, Int)
-      incrementID s = (s {bootCurrID = newID}, newID)
-        where
-          newID = bootCurrID s + 1
-      -- write the server logic. Assign an ID to each node, build up
-      -- a map from public keys to (ip, port) pairs, and broadcast
-      -- the map and the genesis blocks.
-      serverLogic :: [MVar Int] -> IORef BootState -> (Socket, SockAddr) -> IO ()
-      serverLogic trigger ioref (socket, _) = do
-        currID <- atomicModifyIORef' ioref incrementID
-        when (currID <= totalNodes) $ do
-          msg <- recv socket 512 -- 512 bytes should be enough to hold a public key (2048), an ip and a port
-          let keyval = decodeMaybe msg :: (PublicKey, HostName, ServiceName)
-          atomicModifyIORef' ioref $ updateState keyval
-          send socket $ encodeStrict currID
-          putMVar (trigger !! (currID - 1)) 1
+  myip <- asks bootNodeIP
+  myport <- asks bootNodePort
+  mywallet <- liftIO $ generateWallet 2048 -- get a wallet
+  totalNodes <- asks bootNodeNumb
   -- setup the state and locks
   state <- liftIO $ newIORef emptyBootState
-  trigger <- liftIO $ mapM (const newEmptyMVar) [1 .. totalNodes]
-  -- start serving
-  _ <- liftIO $ forkIO $ serve myhost myport $ serverLogic trigger state -- thread that never returns
-  _ <- liftIO $ mapM takeMVar trigger -- wait for all nodes to connect
-  _ <- liftIO $ modifyIORef' state $ \s -> (s {bootBlockchain = [genesisBl]})
-  -- get the final state
+  triggers <- liftIO $ mapM (const newEmptyMVar) [1 .. totalNodes]
+  _ <- liftIO $ forkIO $ serve (Host myip) myport $ server triggers state -- thread that never returns
+  liftIO $ mapM_ takeMVar triggers -- wait for all nodes to connect
+
+  time <- liftIO getUnixTime
   fstate <- liftIO $ readIORef state
-  let keys = bootPublicKeys fstate :: [PublicKey]
-      friends = bootPeers fstate :: [(HostName, ServiceName)]
+  let genesisBl = createGenesisBlock time mywallet totalNodes
+      final = fstate {bootBlockchain = [genesisBl]}
+      keys = bootPublicKeys final :: [(Int, PublicKey)]
+      friends = bootPeers final :: [(HostName, ServiceName)]
       msg = BS.append "0" (encodeStrict (keys, friends, genesisBl))
-  _ <- liftIO $ mapM (\(ip, port) -> connect ip port $ \x -> send (fst x) msg) friends
-  liftIO $ readIORef state
+  
+  -- reversing the list of friends seems to actually matter, at least when creating nodes
+  -- from the command line. It seems that the bootstrap node tries to connect to the last
+  -- node to enter the network too fast, before the node has time to start the server.
+  liftIO $ mapM_ (\(ip, port) -> connect ip port (\x -> send (fst x) msg)) (reverse friends)
+  return final
