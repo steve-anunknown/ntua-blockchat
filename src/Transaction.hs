@@ -152,11 +152,6 @@ createTransaction :: PublicKey -> PublicKey -> ServiceType -> Int -> PrivateKey 
 createTransaction p1 p2 s n = finalizeTransaction (TransactionInit p1 p2 s n)
 
 -- | Broadcasts a transaction to a list of peers.
---
--- The 'broadcastTransaction' function takes a 'Transaction' and a list of 'Peer's,
--- and sends the encoded transaction to each peer using the 'sendMsg' function.
--- The 'sendMsg' function establishes a connection with the peer and sends the
--- transaction over the socket.
 broadcastTransaction :: [Peer] -> Transaction -> IO ()
 broadcastTransaction peers t = do
   triggers <- liftIO $ mapM (const newEmptyMVar) peers
@@ -171,8 +166,9 @@ broadcastTransaction peers t = do
 
 -- | Verifies the signature of a transaction.
 verifySignature :: Transaction -> Bool
-verifySignature t = verify from sig tid
+verifySignature t = verify from tid sig
   where
+    -- pay attention to the order of the arguments
     from = senderAddress t
     sig = B.fromStrict $ signature t
     tid = B.fromStrict $ hashID t
