@@ -14,14 +14,12 @@ main :: IO ()
 main = getArgs >>= parseArgs >>= startDoingStuff >> exit
 
 startDoingStuff :: [String] -> IO ()
-startDoingStuff [num, host, port] = void $ bootstrapNode (BootInfo 0 host port nodes)
-  where
-    nodes = read num :: Int
 startDoingStuff [host, port, bip, bport, capacity] = void $ do
   wallet <- generateWallet 2056
-  node (BootstrapNode bip bport) cap (NodeInfo host port wallet)
+  node (BootstrapNode bip bport) (read capacity) (NodeInfo host port wallet)
+startDoingStuff [host, port, num] = void $ bootstrapNode (BootInfo 0 host port nodes)
   where
-    cap = read capacity :: Int
+    nodes = read num :: Int
 startDoingStuff _ = usage >> exit
 
 ----------------------------------------------------------------------------------------
@@ -35,7 +33,7 @@ parseArgs :: [String] -> IO [String]
 parseArgs ("--node" : restArgs) = help restArgs
   where
     help :: [String] -> IO [String]
-    help args | length args == 4 = return args
+    help args | length args == 5 = return args
     help _ = usage >> exit
 parseArgs ("--bootstrap" : restArgs) = help restArgs
   where
