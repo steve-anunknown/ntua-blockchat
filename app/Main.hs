@@ -22,13 +22,6 @@ startDoingStuff [host, port, num] = void $ bootstrapNode (BootInfo 0 host port n
     nodes = read num :: Int
 startDoingStuff _ = usage >> exit
 
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------
-
--- decodeStrict :: Binary a => BS.ByteString -> a
--- decodeStrict = decode . BS.fromStrict
-
 parseArgs :: [String] -> IO [String]
 parseArgs ("--node" : restArgs) = help restArgs
   where
