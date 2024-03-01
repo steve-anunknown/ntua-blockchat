@@ -15,7 +15,7 @@ import Account
   )
 import Block (Block (..), createBlock, emptyBlock, validateBlock)
 import BootstrapNode (BootstrapNode (..))
-import CLI ( CLISharedState, CLIInfo(CLIInfo), shell )
+import CLI (CLIInfo (..), CLISharedState, shell)
 import Codec.Crypto.RSA (PublicKey (..))
 import Control.Concurrent
   ( MVar,
@@ -78,7 +78,7 @@ type TXQueue = TQueue Transaction
 
 type BLQueue = TQueue Block
 
-type StartupState = ([PublicKey], [Peer], Block)
+type StartupState = ([(Int, PublicKey)], [Peer], Block)
 
 -- NodeInfo does not change. It is set once, using the arguments passed to the program and then remains constant.
 data NodeInfo = NodeInfo
@@ -110,7 +110,7 @@ server (ServerEnv startupState trigger queuedTxs queuedBlocks) (socket, _) = do
       putMVar trigger (1 :: Int) -- set the trigger that will allow the node to start
     "1" -> atomically $ enqueueTQ queuedTxs (decode $ BS.fromStrict msg) -- receive transaction
     "2" -> atomically $ enqueueTQ queuedBlocks (decode $ BS.fromStrict msg) -- receive block
-    _ -> return () -- do nothing if header is not recognized
+    _ -> liftIO $ putStrLn "What the fuck" -- do nothing if header is not recognized
 
 -- | Helper function to broadcast a block to all peers.
 broadcastBlockTo :: [Peer] -> Block -> IO ()
@@ -149,14 +149,12 @@ nodeGetID (BootstrapNode bip bport) = do
   port <- asks nodePort
   (pub, _) <- asks nodeInfoWallet
   let msg = encodeStrict (pub, ip, port)
-  myid <- liftIO $ newIORef 0
-  let getIDfromBoot :: (Socket, SockAddr) -> IO ()
+      getIDfromBoot :: (Socket, SockAddr) -> IO Int
       getIDfromBoot (socket, _) = do
         send socket msg
         resp <- recv socket 32 -- 32 bytes enough to hold an Int
-        writeIORef myid $ decodeMaybe resp
-  _ <- liftIO $ connect bip bport getIDfromBoot
-  liftIO $ readIORef myid
+        return $ decodeMaybe resp
+  liftIO $ connect bip bport getIDfromBoot
 
 nodeLogic :: BootstrapNode -> Int -> ReaderT NodeInfo IO ()
 nodeLogic bootstrap capacity = do
@@ -164,15 +162,17 @@ nodeLogic bootstrap capacity = do
   ip <- asks nodeIP
   port <- asks nodePort
   myid <- nodeGetID bootstrap -- connect to bootstrap and get id
+  liftIO $ putStrLn $ "My id is: " ++ show myid
   mywallet@(mypub, _) <- asks nodeInfoWallet -- used in processTXs
   trigger <- liftIO newEmptyMVar -- initialize trigger for broadcast
   queuedTXs <- liftIO (newTQueueIO :: IO TXQueue)
   queuedBlocks <- liftIO (newTQueueIO :: IO BLQueue)
-  startupState <- liftIO $ newTVarIO ([] :: [PublicKey], [] :: [Peer], emptyBlock)
+  startupState <- liftIO $ newTVarIO ([] :: [(Int, PublicKey)], [] :: [Peer], emptyBlock)
 
   -- setup a server that never returns. it discriminates between
   -- the types of messages it receives and acts accordingly.
-  _ <- liftIO . forkIO $ serve (Host ip) port $ server (ServerEnv startupState trigger queuedTXs queuedBlocks)
+  let env = ServerEnv startupState trigger queuedTXs queuedBlocks
+  _ <- liftIO . forkIO $ serve (Host ip) port $ server env
   _ <- liftIO $ takeMVar trigger -- wait for the broadcast to finish
   (keys, friends, genesis) <- liftIO $ readTVarIO startupState
 
@@ -182,9 +182,9 @@ nodeLogic bootstrap capacity = do
   -- create references for the shared state
   blockchainRef <- liftIO $ newIORef [genesis]
   accountRef <- liftIO $ newIORef initialAccount
-  let initialAccounts = Map.fromList $ map (,initialAccount) keys
+  let initialAccounts = Map.fromList $ map ((,initialAccount) . snd) keys
       clishared = (blockchainRef, accountRef) :: CLISharedState
-      mypeers = filter (/= (myid, mypub)) (zip [1 ..] keys)
+      mypeers = filter (/= (myid, mypub)) keys
       cliinfo = CLIInfo mywallet (Map.fromList mypeers) ip port
       -- This function processes transactions (keeping track of the counter) and mints
       -- a new block when the counter reaches the capacity.
@@ -239,8 +239,9 @@ nodeLogic bootstrap capacity = do
   -- spawn a thread to process transactions
   _ <- (liftIO . forkIO) processTXs
   liftIO $ runReaderT (shell clishared) cliinfo
-  return ()
 
+-- | This function is used to test the node startup. It returns the id of the node
+-- and the startup state.
 nodeStartupTest :: BootstrapNode -> ReaderT NodeInfo IO (Int, StartupState)
 nodeStartupTest bootstrap = do
   -- start by setting up the startup state.
@@ -250,7 +251,7 @@ nodeStartupTest bootstrap = do
   trigger <- liftIO newEmptyMVar -- initialize trigger for broadcast
   queuedTXs <- liftIO (newTQueueIO :: IO TXQueue)
   queuedBlocks <- liftIO (newTQueueIO :: IO BLQueue)
-  startupState <- liftIO $ newTVarIO ([] :: [PublicKey], [] :: [Peer], emptyBlock)
+  startupState <- liftIO $ newTVarIO ([] :: [(Int, PublicKey)], [] :: [Peer], emptyBlock)
 
   -- setup a server that never returns. it discriminates between
   -- the types of messages it receives and acts accordingly.
