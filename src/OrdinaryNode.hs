@@ -209,7 +209,6 @@ nodeLogic bootstrap capacity = do
 
             validator = sampleValidator (mkStdGen seed) weights
             valkey = fst $ Map.elemAt (validator - 1) accountMap
-        print ("validator is " ++ show validator)
         if validator == selfID
           then do
             currtime <- getUnixTime
