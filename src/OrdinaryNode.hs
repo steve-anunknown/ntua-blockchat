@@ -13,7 +13,7 @@ import Account
   ( Account (accountBalance, accountStake),
     initialAccount,
   )
-import Block (Block (..), createBlock, emptyBlock, validateBlock)
+import Block (Block (..), broadcastBlock, createBlock, emptyBlock, validateBlock)
 import BootstrapNode (BootstrapNode (..))
 import CLI (CLIInfo (..), CLISharedState, shell)
 import Codec.Crypto.RSA (PublicKey (..))
@@ -112,24 +112,12 @@ server (ServerEnv startupState trigger queuedTxs queuedBlocks) (socket, _) = do
     "2" -> atomically $ enqueueTQ queuedBlocks (decode $ BS.fromStrict msg) -- receive block
     _ -> liftIO $ putStrLn "What the fuck" -- do nothing if header is not recognized
 
--- | Helper function to broadcast a block to all peers.
-broadcastBlockTo :: [Peer] -> Block -> IO ()
-broadcastBlockTo peers block = do
-  -- spawn threads that send the block to each peer
-  -- and block until all of them have received it
-  triggers <- liftIO $ mapM (const newEmptyMVar) peers
-  mapM_ (forkIO . sendBlock) (zip peers triggers)
-  mapM_ takeMVar triggers
-  where
-    msg = BS.append "2" (encodeStrict block)
-    sendBlock :: ((HostName, ServiceName), MVar Int) -> IO ()
-    sendBlock ((h, p), trig) = do
-      connect h p $ \(sock, _) -> send sock msg
-      putMVar trig (1 :: Int)
-
 -- | This function simulate the lottery for the validator.
 sampleValidator :: (RandomGen g) => g -> [(Double, Int)] -> Int
-sampleValidator g probs = evalState (sampleStateRVar (weightedCategorical probs)) g
+sampleValidator g probs = evalState (sampleStateRVar (weightedCategorical epsProbs)) g
+  where
+    epsilon = 0.0001 :: Double
+    epsProbs = map (\(x, y) -> (x + epsilon, y)) probs
 
 -- | Helper function to get a valid block from a queue of blocks
 --  given the last block and the public key of the validator.
@@ -185,7 +173,7 @@ nodeLogic bootstrap capacity = do
   let initialAccounts = Map.fromList $ map ((,initialAccount) . snd) keys
       clishared = (blockchainRef, accountRef) :: CLISharedState
       mypeers = filter (/= (myid, mypub)) keys
-      cliinfo = CLIInfo mywallet (Map.fromList mypeers) ip port
+      cliinfo = CLIInfo mywallet (Map.fromList mypeers) ip port friends
       -- This function processes transactions (keeping track of the counter) and mints
       -- a new block when the counter reaches the capacity.
       processTXs :: IO ()
@@ -213,22 +201,23 @@ nodeLogic bootstrap capacity = do
       mint' :: Int -> [Peer] -> Block -> [Transaction] -> (PubKeyToAcc, PubKeyToAcc) -> IO (PubKeyToAcc, Block)
       mint' selfID peers lastBlock vTxs (accountMap, fallback) = do
         let accs = Map.elems accountMap
-            weights = zip (map accountStake accs) [1 .. length accs]
+            weights = zip (map accountStake accs) [1 ..]
 
             prevhash = blockPreviousHash lastBlock
+            currhash = blockCurrentHash lastBlock
             seed = decode . BS.fromStrict $ prevhash
 
             validator = sampleValidator (mkStdGen seed) weights
-            valkey = fst $ Map.elemAt validator accountMap
-
+            valkey = fst $ Map.elemAt (validator - 1) accountMap
+        print ("validator is " ++ show validator)
         if validator == selfID
           then do
             currtime <- getUnixTime
-            let newBlock = createBlock (blockIndex lastBlock + 1) currtime vTxs valkey prevhash
-                fees = txsFee $ blockTransactions lastBlock
+            let newBlock = createBlock (blockIndex lastBlock + 1) currtime vTxs valkey currhash
+                fees = txsFee vTxs
                 plusFees acc = acc {accountBalance = accountBalance acc + fees}
                 newAccs = Map.update (Just . plusFees) valkey accountMap
-            broadcastBlockTo peers newBlock
+            broadcastBlock peers newBlock
             return (newAccs, newBlock)
           else do
             -- spin on the queue of blocks until a valid one is found
