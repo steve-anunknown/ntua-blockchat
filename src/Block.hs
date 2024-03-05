@@ -1,4 +1,5 @@
 {-# LANGUAGE InstanceSigs #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Block
   ( Block (..),
@@ -6,18 +7,23 @@ module Block
     createBlock,
     validateBlock,
     emptyBlock,
+    broadcastBlock,
   )
 where
 
 import Codec.Crypto.RSA (PublicKey (..))
+import Control.Concurrent (forkIO)
 import Crypto.Hash (SHA256 (..), hashWith)
-import Data.Binary ( Binary(get, put), encode, Get, Put )
+import Data.Binary (Binary (get, put), Get, Put, encode)
 import Data.ByteArray (convert)
 import Data.ByteString (ByteString)
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as B
 import Data.UnixTime (UnixTime (..))
+import Network.Simple.TCP (HostName, ServiceName, connect, send)
 import Transaction (Transaction)
+import Types (Peer)
+import Utils (encodeStrict)
 
 data BlockInit = BlockInit
   { initIndex :: Int, -- index number of block
@@ -28,6 +34,9 @@ data BlockInit = BlockInit
   }
 
 type Blockchain = [Block]
+
+blockMsgHeader :: ByteString
+blockMsgHeader = "2"
 
 instance Binary BlockInit where
   put :: BlockInit -> Put
@@ -108,3 +117,11 @@ validateBlock newblock prevblock validator = validatorOK && hashOK
 
 -- I don't think this is ever going to be used, because for the time being the network is
 -- static. A fixed number of nodes enter and that's it.
+
+-- | Helper function to broadcast a block to all peers.
+broadcastBlock :: [Peer] -> Block -> IO ()
+broadcastBlock peers block = mapM_ (forkIO . sendBlock) peers
+  where
+    msg = BS.append blockMsgHeader $ encodeStrict block
+    sendBlock :: (HostName, ServiceName) -> IO ()
+    sendBlock (host, port) = connect host port $ \(sock, _) -> send sock msg
