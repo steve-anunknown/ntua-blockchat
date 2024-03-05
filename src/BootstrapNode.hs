@@ -19,7 +19,10 @@ import Control.Concurrent
   )
 import Control.Monad (when)
 import Control.Monad.Reader
-    ( MonadIO(liftIO), ReaderT(runReaderT), asks )
+  ( MonadIO (liftIO),
+    ReaderT (runReaderT),
+    asks,
+  )
 import qualified Data.ByteString as BS
 import Data.IORef
   ( IORef,
@@ -40,7 +43,7 @@ import Network.Simple.TCP
     serve,
   )
 import ServiceType (ServiceType (Coins))
-import Transaction (Transaction, createTransaction)
+import Transaction (Transaction, createTransaction, zeropub)
 import Utils (decodeMaybe, encodeStrict)
 import Wallet (Wallet, generateWallet)
 
@@ -101,13 +104,11 @@ createGenesisTX :: Wallet -> Int -> Transaction
 createGenesisTX (pub, priv) totalnodes = createTransaction zeropub pub tx 1 priv
   where
     tx = Coins $ 1000 * fromIntegral totalnodes
-    zeropub = PublicKey 0 0 65537
 
 createGenesisBlock :: UnixTime -> Wallet -> Int -> Block
 createGenesisBlock time wallet totalnodes = createBlock 1 time [genesisTX] zeropub prevHash
   where
     prevHash = encodeStrict (1 :: Int)
-    zeropub = PublicKey 0 0 65537
     genesisTX = createGenesisTX wallet totalnodes
 
 bootstrapNodeLogic :: ReaderT BootInfo IO BootState
@@ -121,7 +122,6 @@ bootstrapNodeLogic = do
   triggers <- liftIO $ mapM (const newEmptyMVar) [1 .. totalNodes]
   _ <- liftIO $ forkIO $ serve (Host myip) myport $ server triggers state -- thread that never returns
   liftIO $ mapM_ takeMVar triggers -- wait for all nodes to connect
-
   time <- liftIO getUnixTime
   fstate <- liftIO $ readIORef state
   let genesisBl = createGenesisBlock time mywallet totalNodes
@@ -129,7 +129,7 @@ bootstrapNodeLogic = do
       keys = bootPublicKeys final :: [(Int, PublicKey)]
       friends = bootPeers final :: [(HostName, ServiceName)]
       msg = BS.append "0" (encodeStrict (keys, friends, genesisBl))
-  
+
   -- reversing the list of friends seems to actually matter, at least when creating nodes
   -- from the command line. It seems that the bootstrap node tries to connect to the last
   -- node to enter the network too fast, before the node has time to start the server.
