@@ -71,7 +71,7 @@ handle input shared = do
       prettyPrintBlock (head blockchain)
     ["balance"] -> liftIO $ print (accountBalance acc)
     ["peers"] -> do
-      keymap<- asks cliIDtoKey
+      keymap <- asks cliIDtoKey
       liftIO $ prettyPrintPeers keymap
     ["help"] -> do
       liftIO $ putStrLn "t <recipient id> Coins <coins>          - send coins"
