@@ -184,10 +184,12 @@ nodeLogic bootstrap capacity = do
             when (length vTxs /= capacity) $ do
               tx <- atomically $ dequeueTQ qTxs
               if validateTransaction tx accmap
-                then processTXs' sharedState (tx : vTxs) qTxs (updateAccsByTX tx accmap, fallback)
-                else processTXs' sharedState vTxs qTxs (accmap, fallback)
+                then do
+                  processTXs' sharedState (tx : vTxs) qTxs (updateAccsByTX tx accmap, fallback)
+                else do
+                  processTXs' sharedState vTxs qTxs (accmap, fallback)
             blockchain <- (readIORef . fst) sharedState
-            (newaccs, newblock) <- mint (head blockchain) vTxs (accmap, fallback)
+            (newblock, newaccs) <- mint (head blockchain) vTxs (accmap, fallback)
             writeIORef (fst sharedState) (newblock : blockchain)
             writeIORef (snd sharedState) (newaccs Map.! mypub)
             processTXs' sharedState [] qTxs (newaccs, newaccs)
@@ -195,11 +197,11 @@ nodeLogic bootstrap capacity = do
       getValidatorBlock :: Block -> PublicKey -> IO Block
       getValidatorBlock = getValidatorBlockFrom queuedBlocks
 
-      mint :: Block -> [Transaction] -> (PubKeyToAcc, PubKeyToAcc) -> IO (PubKeyToAcc, Block)
-      mint = mint' myid (filter ((ip, port) /=) friends)
+      mint :: Block -> [Transaction] -> (PubKeyToAcc, PubKeyToAcc) -> IO (Block, PubKeyToAcc)
+      mint = mint' (filter ((ip, port) /=) friends)
 
-      mint' :: Int -> [Peer] -> Block -> [Transaction] -> (PubKeyToAcc, PubKeyToAcc) -> IO (PubKeyToAcc, Block)
-      mint' selfID peers lastBlock vTxs (accountMap, fallback) = do
+      mint' :: [Peer] -> Block -> [Transaction] -> (PubKeyToAcc, PubKeyToAcc) -> IO (Block, PubKeyToAcc)
+      mint' peers lastBlock vTxs (accountMap, fallback) = do
         let accs = Map.elems accountMap
             weights = zip (map accountStake accs) [1 ..]
 
@@ -209,7 +211,7 @@ nodeLogic bootstrap capacity = do
 
             validator = sampleValidator (mkStdGen seed) weights
             valkey = fst $ Map.elemAt (validator - 1) accountMap
-        if validator == selfID
+        if valkey == mypub
           then do
             currtime <- getUnixTime
             let newBlock = createBlock (blockIndex lastBlock + 1) currtime vTxs valkey currhash
@@ -217,12 +219,12 @@ nodeLogic bootstrap capacity = do
                 plusFees acc = acc {accountBalance = accountBalance acc + fees}
                 newAccs = Map.update (Just . plusFees) valkey accountMap
             broadcastBlock peers newBlock
-            return (newAccs, newBlock)
+            return (newBlock, newAccs)
           else do
             -- spin on the queue of blocks until a valid one is found
             block <- getValidatorBlock lastBlock valkey
             let finalAccs = updateAccsByTXs (blockTransactions block) fallback
-            return (finalAccs, block)
+            return (block, finalAccs)
 
   -- spawn a thread to process transactions
   _ <- (liftIO . forkIO) processTXs
