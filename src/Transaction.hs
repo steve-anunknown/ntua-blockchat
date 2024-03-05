@@ -1,4 +1,5 @@
 {-# LANGUAGE InstanceSigs #-}
+{-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -Wno-orphans #-}
 
 module Transaction
@@ -11,24 +12,23 @@ module Transaction
     validateTransaction,
     updateAccsByTX,
     updateAccsByTXs,
+    zeropub,
   )
 where
 
-import Account (availableBalance, updateBalanceBy, updateNonce)
+import Account (availableBalance, updateBalanceBy, updateNonce, updateStakeBy)
 import Codec.Crypto.RSA (PrivateKey, PublicKey (..), sign, verify)
+import Control.Concurrent (forkIO)
 import Crypto.Hash (SHA256 (..), hashWith)
 import Data.Binary (Binary (get, put), encode)
 import Data.ByteArray (convert)
-import Data.ByteString (ByteString)
+import Data.ByteString (ByteString, append)
 import qualified Data.ByteString.Lazy as B
 import qualified Data.Map as Map
 import Network.Simple.TCP (HostName, ServiceName, connect, send)
 import ServiceType (ServiceType (..), serviceCost, serviceFee)
 import Types (Peer, PubKeyToAcc)
 import Utils (encodeStrict)
-import Control.Monad.IO.Class (liftIO)
-import Control.Concurrent.MVar (newEmptyMVar, takeMVar, MVar, putMVar)
-import Control.Concurrent (forkIO)
 
 ---------------------------------------------------------
 -- PublicKey is not an instance of Ord, so we make it one
@@ -39,6 +39,12 @@ instance Ord PublicKey where
 
 -- This is perhaps bad design, I don't know.
 ---------------------------------------------------------
+
+zeropub :: PublicKey
+zeropub = PublicKey 0 0 65537
+
+txMsgHeader :: ByteString
+txMsgHeader = "1"
 
 data TransactionInit = TransactionInit
   { initSenderAddress :: PublicKey, -- pub key which the tx comes from
@@ -104,20 +110,21 @@ txsFee = sum . map txFee
 updateAccsByTX :: Transaction -> PubKeyToAcc -> PubKeyToAcc
 updateAccsByTX t m = case serviceType t of
   Coins c ->
-    let cost = -txCost t
+    let cost = txCost t
         sender = senderAddress t
         receiver = receiverAddress t
-        temp = Map.adjust (updateBalanceBy cost . updateNonce) sender m
+        stakeup = if receiver == zeropub then updateStakeBy cost else id
+        temp = Map.adjust (updateBalanceBy (- cost) . updateNonce . stakeup) sender m
      in Map.adjust (updateBalanceBy c) receiver temp
   Message _ ->
-    let cost = -txCost t
+    let cost = txCost t
         sender = senderAddress t
-     in Map.adjust (updateBalanceBy cost . updateNonce) sender m
+     in Map.adjust (updateBalanceBy (- cost) . updateNonce) sender m
   Both (c, _) ->
-    let cost = -txCost t
+    let cost = txCost t
         sender = senderAddress t
         receiver = receiverAddress t
-        temp = Map.adjust (updateBalanceBy cost . updateNonce) sender m
+        temp = Map.adjust (updateBalanceBy (- cost) . updateNonce) sender m
      in Map.adjust (updateBalanceBy c) receiver temp
 
 -- | This function takes a list of transactions and a state of accounts as arguments and returns
@@ -153,16 +160,11 @@ createTransaction p1 p2 s n = finalizeTransaction (TransactionInit p1 p2 s n)
 
 -- | Broadcasts a transaction to a list of peers.
 broadcastTransaction :: [Peer] -> Transaction -> IO ()
-broadcastTransaction peers t = do
-  triggers <- liftIO $ mapM (const newEmptyMVar) peers
-  mapM_ (forkIO . sendMsg) (zip peers triggers)
-  mapM_ takeMVar triggers
+broadcastTransaction peers t = mapM_ (forkIO . sendMsg) peers
   where
-    msg = encodeStrict t
-    sendMsg :: ((HostName, ServiceName), MVar Int) -> IO ()
-    sendMsg ((host, port), trigger) = do
-      connect host port $ \(sock, _) -> send sock msg
-      putMVar trigger 1
+    msg = append txMsgHeader $ encodeStrict t
+    sendMsg :: (HostName, ServiceName) -> IO ()
+    sendMsg (host, port) = connect host port $ \(sock, _) -> send sock msg
 
 -- | Verifies the signature of a transaction.
 verifySignature :: Transaction -> Bool
