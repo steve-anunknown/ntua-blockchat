@@ -4,6 +4,7 @@ module Account
     availableBalance,
     updateBalanceBy,
     updateNonce,
+    updateStakeBy
   )
 where
 
@@ -31,3 +32,6 @@ updateBalanceBy amount acc  = acc {accountBalance = accountBalance acc + amount}
 
 updateNonce :: Account -> Account
 updateNonce acc = acc {accountNonce = accountNonce acc + 1}
+
+updateStakeBy :: Double -> Account -> Account
+updateStakeBy amount acc = acc {accountStake = accountStake acc + amount}
