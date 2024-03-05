@@ -120,7 +120,7 @@ validateBlock newblock prevblock validator = validatorOK && hashOK
 
 -- | Helper function to broadcast a block to all peers.
 broadcastBlock :: [Peer] -> Block -> IO ()
-broadcastBlock peers block = mapM_ (forkIO . sendBlock) peers
+broadcastBlock peers block = mapM_ sendBlock peers
   where
     msg = BS.append blockMsgHeader $ encodeStrict block
     sendBlock :: (HostName, ServiceName) -> IO ()

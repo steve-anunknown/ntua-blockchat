@@ -18,7 +18,6 @@ where
 
 import Account (availableBalance, updateBalanceBy, updateNonce, updateStakeBy)
 import Codec.Crypto.RSA (PrivateKey, PublicKey (..), sign, verify)
-import Control.Concurrent (forkIO)
 import Crypto.Hash (SHA256 (..), hashWith)
 import Data.Binary (Binary (get, put), encode)
 import Data.ByteArray (convert)
@@ -113,7 +112,7 @@ updateAccsByTX t m = case serviceType t of
     let cost = txCost t
         sender = senderAddress t
         receiver = receiverAddress t
-        stakeup = if receiver == zeropub then updateStakeBy cost else id
+        stakeup = if receiver == zeropub then updateStakeBy c else id
         temp = Map.adjust (updateBalanceBy (- cost) . updateNonce . stakeup) sender m
      in Map.adjust (updateBalanceBy c) receiver temp
   Message _ ->
@@ -160,7 +159,7 @@ createTransaction p1 p2 s n = finalizeTransaction (TransactionInit p1 p2 s n)
 
 -- | Broadcasts a transaction to a list of peers.
 broadcastTransaction :: [Peer] -> Transaction -> IO ()
-broadcastTransaction peers t = mapM_ (forkIO . sendMsg) peers
+broadcastTransaction peers t = mapM_ sendMsg peers
   where
     msg = append txMsgHeader $ encodeStrict t
     sendMsg :: (HostName, ServiceName) -> IO ()
@@ -172,8 +171,8 @@ verifySignature t = verify from tid sig
   where
     -- pay attention to the order of the arguments
     from = senderAddress t
-    sig = B.fromStrict $ signature t
     tid = B.fromStrict $ hashID t
+    sig = B.fromStrict $ signature t
 
 -- | This function takes a transaction and a map of public keys to accounts and returns
 -- whether the transaction is valid or not.
