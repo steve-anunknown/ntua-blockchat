@@ -25,7 +25,7 @@ initialAccount :: Account
 initialAccount = Account 1000 0 0
 
 availableBalance :: Account -> Double
-availableBalance Account {accountBalance = bal, accountStake = st} = bal - bal * st
+availableBalance Account {accountBalance = bal, accountStake = st} = bal - st
 
 updateBalanceBy :: Double -> Account -> Account
 updateBalanceBy amount acc  = acc {accountBalance = accountBalance acc + amount}
