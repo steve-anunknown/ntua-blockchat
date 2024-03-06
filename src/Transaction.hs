@@ -16,7 +16,7 @@ module Transaction
   )
 where
 
-import Account (availableBalance, updateBalanceBy, updateNonce, updateStakeBy)
+import Account (availableBalance, updateBalanceBy, updateNonce, updateStake)
 import Codec.Crypto.RSA (PrivateKey, PublicKey (..), sign, verify)
 import Crypto.Hash (SHA256 (..), hashWith)
 import Data.Binary (Binary (get, put), encode)
@@ -91,30 +91,39 @@ instance Binary Transaction where -- Transaction is made an instance of Binary f
     h <- get
     Transaction senderAddr receiverAddr transType n h <$> get
 
--- this is deducted from the sender's account
+-- | This function takes a transaction as an argument and returns the cost of the transaction.
+-- This includes the coins and the fee, in the case where coins are send.
 txCost :: Transaction -> Double
 txCost = serviceCost . serviceType
 
--- this is used during the minting phase
+-- | This function takes a list of transactions as an argument and returns the sum of the fees of the transactions.
+-- It is to be used in the minting phase.
 txsFee :: [Transaction] -> Double
 txsFee = sum . map txFee
-  where
-    txFee Transaction {serviceType = service} = case service of
-      Coins c -> c * serviceFee
-      Message msg -> fromIntegral (length msg) * serviceFee
-      Both (c, msg) -> c * serviceFee + fromIntegral (length msg) * serviceFee
+
+-- | This function takes a transaction as an argument and returns the fee of the transaction.
+-- It does not include the coins, only the fee.
+txFee :: Transaction -> Double
+txFee Transaction {serviceType = service} = case service of
+  Coins c -> c * serviceFee
+  Message msg -> fromIntegral (length msg)
+  Both (c, msg) -> c * serviceFee + fromIntegral (length msg)
 
 -- | This function takes a transaction and a state of accounts as arguments and returns
 -- a new state of accounts, as a result of the transaction.
 updateAccsByTX :: Transaction -> PubKeyToAcc -> PubKeyToAcc
 updateAccsByTX t m = case serviceType t of
   Coins c ->
-    let cost = txCost t
-        sender = senderAddress t
-        receiver = receiverAddress t
-        stakeup = if receiver == zeropub then updateStakeBy c else id
-        temp = Map.adjust (updateBalanceBy (- cost) . updateNonce . stakeup) sender m
-     in Map.adjust (updateBalanceBy c) receiver temp
+    -- if the receiver is the zeropub, then the transaction is a staking transaction
+    if receiverAddress t == zeropub 
+    then
+      Map.adjust (updateBalanceBy (- txFee t) . updateNonce . updateStake c) (senderAddress t) m
+    else
+      let cost = txCost t
+          sender = senderAddress t
+          receiver = receiverAddress t
+          temp = Map.adjust (updateBalanceBy (- cost) . updateNonce) sender m
+       in Map.adjust (updateBalanceBy c) receiver temp
   Message _ ->
     let cost = txCost t
         sender = senderAddress t
