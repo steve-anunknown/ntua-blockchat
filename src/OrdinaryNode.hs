@@ -185,8 +185,12 @@ nodeLogic bootstrap capacity = do
               tx <- atomically $ dequeueTQ qTxs
               if validateTransaction tx accmap
                 then do
-                  processTXs' sharedState (tx : vTxs) qTxs (updateAccsByTX tx accmap, fallback)
-                else do
+                  let newaccs = updateAccsByTX tx accmap
+                      newacc = newaccs Map.! mypub
+                  myacc <- readIORef (snd sharedState)
+                  when (myacc /= newacc) $ writeIORef (snd sharedState) newacc
+                  processTXs' sharedState (tx : vTxs) qTxs (newaccs, fallback)
+                else 
                   processTXs' sharedState vTxs qTxs (accmap, fallback)
             blockchain <- (readIORef . fst) sharedState
             (newblock, newaccs) <- mint (head blockchain) vTxs (accmap, fallback)
@@ -214,7 +218,7 @@ nodeLogic bootstrap capacity = do
         if valkey == mypub
           then do
             currtime <- getUnixTime
-            let newBlock = createBlock (blockIndex lastBlock + 1) currtime vTxs valkey currhash
+            let newBlock = createBlock (blockIndex lastBlock + 1) currtime (reverse vTxs) valkey currhash
                 fees = txsFee vTxs
                 plusFees acc = acc {accountBalance = accountBalance acc + fees}
                 newAccs = Map.update (Just . plusFees) valkey accountMap
