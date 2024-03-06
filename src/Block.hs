@@ -12,7 +12,6 @@ module Block
 where
 
 import Codec.Crypto.RSA (PublicKey (..))
-import Control.Concurrent (forkIO)
 import Crypto.Hash (SHA256 (..), hashWith)
 import Data.Binary (Binary (get, put), Get, Put, encode)
 import Data.ByteArray (convert)
