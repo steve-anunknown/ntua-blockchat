@@ -30,14 +30,12 @@ dependencies:
 - RSA
 - crypto-api
 - network-simple
-- network
 - binary
 - cryptonite
 - memory
 - mtl
-- silently
-- directory
 - stm
+- directory
 - hspec
 
 ghc-options:
