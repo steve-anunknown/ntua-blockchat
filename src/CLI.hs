@@ -62,10 +62,22 @@ handle input shared = do
       (blockref, accref) = shared
   acc <- liftIO $ readIORef accref
   case tokens of
-    ["t", num, "Coins", coins] -> sendTx (read num) (Coins (read coins)) acc
-    ("t" : num : "Message" : msgParts) -> sendTx (read num) (Message $ unwords msgParts) acc
-    ["t", num, "Both", "(", coins, ",", msg, ")"] -> sendTx (read num) (Both (read coins, msg)) acc
-    ["stake", coins] -> stake (read coins) acc
+    ("t" : numStr : "Coins" : coinsStr : _) ->
+      case (reads numStr, reads coinsStr) of
+        ([(num, "")], [(coins, "")]) -> sendTx num (Coins coins) acc
+        _ -> liftIO $ putStrLn "Invalid command. Try entering 'help' for help."
+    ("t" : numStr : "Message" : msgParts) ->
+      case reads numStr of
+        [(num, "")] -> sendTx num (Message $ unwords msgParts) acc
+        _ -> liftIO $ putStrLn "Invalid command. Try entering 'help' for help."
+    ("t" : numStr : "Both" : coinsStr : "," : msgParts) ->
+      case (reads numStr, reads coinsStr) of
+        ([(num, "")], [(coins, "")]) -> sendTx num (Both (coins, unwords msgParts)) acc
+        _ -> liftIO $ putStrLn "Invalid command. Try entering 'help' for help."
+    ("stake" : coinsStr : _) ->
+      case reads coinsStr of
+        [(coins, "")] -> stake coins acc
+        _ -> liftIO $ putStrLn "Invalid command. Try entering 'help' for help."
     ["view"] -> do
       blockchain <- liftIO $ readIORef blockref
       prettyPrintBlock (head blockchain)
