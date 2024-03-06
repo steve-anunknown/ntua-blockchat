@@ -1,100 +1,100 @@
-id9 But the plans were on display
-id7 In the beginning the Universe was created.
-id7 Yes...
-id2 The Answer to what?
-id1 Forty-two
-id6 Time is an illusion.
-id1 It is a mistake to think you can solve any major problems just with potatoes.
-id0 Tricky
-id0 do you have...er...
-id0 Beware of the Leopard
-id6 That's the display department.
-id4 This has made a lot of people very angry.
-id1 There really is one?
-id0 To Everything?
-id4 An Answer for you?
-id9 Nothing travels faster than the speed of light with the possible exception of bad news.
-id0 The Answer to the Great Question...
-id2 On display?
-id4 Though I don't think that you're going to like it
-id5 There is an answer?
-id0 I'd far rather be happy than right any day.
-id2 Doesn't matter!
-id7 All right
-id9 Yes
-id1 Ah, well, the lights had probably gone.
-id5 Is...
-id7 Yes
-id7 But look
-id5 But can you do it?
-id9 Forty-two, said Deep Thought, with infinite majesty and calm.
-id2 With a flashlight.
-id5 Lunchtime doubly so.
-id1 Yes...!!!...?
-id1 Life!
-id4 Yes.
-id9 yes I did
-id7 I eventually had to go down to the cellar to find them.
-id4 For a moment, nothing happened.
-id5 Er..good morning, O Deep Thought
-id4 We want you to tell us...The Answer
-id7 Don't panic
-id0 The Universe!
-id4 Is...
-id8 So had the stairs.
-id1 Good Morning
-id8 Yes...!
-id0 There really is one.
-id0 Everything!
-id1 O Deep Thought computer
-id6 Of Life, the Universe and Everything...
-id9 But the plans were on display
-id7 In the beginning the Universe was created.
-id2 Yes...
-id4 The Answer to what?
-id4 Forty-two
-id8 Time is an illusion.
-id1 It is a mistake to think you can solve any major problems just with potatoes.
-id5 Tricky
-id4 do you have...er...
-id9 Beware of the Leopard
-id4 That's the display department.
-id0 This has made a lot of people very angry.
-id4 There really is one?
-id2 To Everything?
-id8 An Answer for you?
-id6 Nothing travels faster than the speed of light with the possible exception of bad news.
-id5 The Answer to the Great Question...
-id7 On display?
-id8 Though I don't think that you're going to like it
-id7 There is an answer?
-id7 I'd far rather be happy than right any day.
-id1 Doesn't matter!
-id4 All right
-id8 Yes
-id7 Ah, well, the lights had probably gone.
-id0 Is...
-id2 Yes
-id2 But look
-id8 But can you do it?
-id2 Forty-two, said Deep Thought, with infinite majesty and calm.
-id7 With a flashlight.
-id5 Lunchtime doubly so.
-id4 Yes...!!!...?
-id0 Life!
-id1 Yes.
-id0 yes I did
-id5 I eventually had to go down to the cellar to find them.
-id2 For a moment, nothing happened.
-id2 Er..good morning, O Deep Thought
-id5 We want you to tell us...The Answer
-id2 Don't panic
-id1 The Universe!
-id9 Is...
-id6 So had the stairs.
-id5 Good Morning
-id2 Yes...!
-id1 There really is one.
-id8 Everything!
-id7 O Deep Thought computer
-id8 Of Life, the Universe and Everything...
+t 9 Message But the plans were on display
+t 7 Message In the beginning the Universe was created.
+t 7 Message Yes...
+t 2 Message The Answer to what?
+t 1 Message Forty-two
+t 6 Message Time is an illusion.
+t 1 Message It is a mistake to think you can solve any major problems just with potatoes.
+t 0 Message Tricky
+t 0 Message do you have...er...
+t 0 Message Beware of the Leopard
+t 6 Message That's the display department.
+t 4 Message This has made a lot of people very angry.
+t 1 Message There really is one?
+t 0 Message To Everything?
+t 4 Message An Answer for you?
+t 9 Message Nothing travels faster than the speed of light with the possible exception of bad news.
+t 0 Message The Answer to the Great Question...
+t 2 Message On display?
+t 4 Message Though I don't think that you're going to like it
+t 5 Message There is an answer?
+t 0 Message I'd far rather be happy than right any day.
+t 2 Message Doesn't matter!
+t 7 Message All right
+t 9 Message Yes
+t 1 Message Ah, well, the lights had probably gone.
+t 5 Message Is...
+t 7 Message Yes
+t 7 Message But look
+t 5 Message But can you do it?
+t 9 Message Forty-two, said Deep Thought, with infinite majesty and calm.
+t 2 Message With a flashlight.
+t 5 Message Lunchtime doubly so.
+t 1 Message Yes...!!!...?
+t 1 Message Life!
+t 4 Message Yes.
+t 9 Message yes I did
+t 7 Message I eventually had to go down to the cellar to find them.
+t 4 Message For a moment, nothing happened.
+t 5 Message Er..good morning, O Deep Thought
+t 4 Message We want you to tell us...The Answer
+t 7 Message Don't panic
+t 0 Message The Universe!
+t 4 Message Is...
+t 8 Message So had the stairs.
+t 1 Message Good Morning
+t 8 Message Yes...!
+t 0 Message There really is one.
+t 0 Message Everything!
+t 1 Message O Deep Thought computer
+t 6 Message Of Life, the Universe and Everything...
+t 9 Message But the plans were on display
+t 7 Message In the beginning the Universe was created.
+t 2 Message Yes...
+t 4 Message The Answer to what?
+t 4 Message Forty-two
+t 8 Message Time is an illusion.
+t 1 Message It is a mistake to think you can solve any major problems just with potatoes.
+t 5 Message Tricky
+t 4 Message do you have...er...
+t 9 Message Beware of the Leopard
+t 4 Message That's the display department.
+t 0 Message This has made a lot of people very angry.
+t 4 Message There really is one?
+t 2 Message To Everything?
+t 8 Message An Answer for you?
+t 6 Message Nothing travels faster than the speed of light with the possible exception of bad news.
+t 5 Message The Answer to the Great Question...
+t 7 Message On display?
+t 8 Message Though I don't think that you're going to like it
+t 7 Message There is an answer?
+t 7 Message I'd far rather be happy than right any day.
+t 1 Message Doesn't matter!
+t 4 Message All right
+t 8 Message Yes
+t 7 Message Ah, well, the lights had probably gone.
+t 0 Message Is...
+t 2 Message Yes
+t 2 Message But look
+t 8 Message But can you do it?
+t 2 Message Forty-two, said Deep Thought, with infinite majesty and calm.
+t 7 Message With a flashlight.
+t 5 Message Lunchtime doubly so.
+t 4 Message Yes...!!!...?
+t 0 Message Life!
+t 1 Message Yes.
+t 0 Message yes I did
+t 5 Message I eventually had to go down to the cellar to find them.
+t 2 Message For a moment, nothing happened.
+t 2 Message Er..good morning, O Deep Thought
+t 5 Message We want you to tell us...The Answer
+t 2 Message Don't panic
+t 1 Message The Universe!
+t 9 Message Is...
+t 6 Message So had the stairs.
+t 5 Message Good Morning
+t 2 Message Yes...!
+t 1 Message There really is one.
+t 8 Message Everything!
+t 7 Message O Deep Thought computer
+t 8 Message Of Life, the Universe and Everything...
