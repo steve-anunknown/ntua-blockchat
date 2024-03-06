@@ -10,8 +10,6 @@ import System.Directory (removeFile)
 import System.Random (mkStdGen)
 import Test.Hspec
 import Wallet (generateWallet)
-import Block (createBlock, validateBlock)
-import Utils (encodeStrict)
 
 main :: IO ()
 main = hspec $ do
