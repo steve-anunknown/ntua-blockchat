@@ -19,6 +19,10 @@ import ServiceType (ServiceType (..))
 import System.IO (stdout)
 import Transaction (Transaction (..), createTransaction, broadcastTransaction, zeropub)
 import Wallet (Wallet)
+import Control.Exception (IOException, catch, throwIO)
+import System.IO.Error (isEOFError)
+import System.Exit (exitSuccess)
+import Control.Concurrent (threadDelay)
 
 data CLIInfo = CLIInfo
   { cliWallet :: Wallet, -- Wallet of the user
@@ -81,18 +85,32 @@ handle input shared = do
     ["view"] -> do
       blockchain <- liftIO $ readIORef blockref
       prettyPrintBlock (head blockchain)
+    ["blockchain"] -> do
+      liftIO $ threadDelay 1000000
+      blockchain <- liftIO $ readIORef blockref
+      prettyPrintBlockchain $ reverse blockchain
     ["balance"] -> liftIO $ print (accountBalance acc)
     ["peers"] -> do
       keymap <- asks cliIDtoKey
       liftIO $ prettyPrintPeers keymap
+    ["load", filename] -> do 
+      liftIO $ putStrLn $ "Loading transactions from " ++ filename
+      -- execute each line of the file as a command
+      contents <- liftIO $ readFile filename
+      mapM_ (`CLI.handle` shared) (lines contents)
+    ["exit"] -> -- wait a bit and then exit
+      liftIO $ putStrLn "Exiting..." >> exitSuccess
     ["help"] -> do
       liftIO $ putStrLn "t <recipient id> Coins <coins>          - send coins"
       liftIO $ putStrLn "t <recipient id> Message <msg>          - send message"
       liftIO $ putStrLn "t <recipient id> Both (<coins>, <msg>)  - send both"
       liftIO $ putStrLn "stake <coins>                           - stake coins"
       liftIO $ putStrLn "view                                    - view last block"
+      liftIO $ putStrLn "blockchain                              - view the entire blockchain"
       liftIO $ putStrLn "balance                                 - view account balance"
       liftIO $ putStrLn "peers                                   - show list of peers"
+      liftIO $ putStrLn "load <filename>                         - load transactions from a file"
+      liftIO $ putStrLn "exit                                    - exit the shell"
       liftIO $ putStrLn "help                                    - show this message"
     _ -> liftIO $ putStrLn "Invalid command. Try entering 'help' for help."
 
@@ -106,8 +124,22 @@ shell shared = do
     loop :: ReaderT CLIInfo IO ()
     loop = do
       liftIO $ putStr "> " >> hFlush stdout
-      input <- liftIO getLine
-      handle input shared >> loop
+      input <- liftIO safeGetLine
+      case input of
+        Nothing -> CLI.handle "exit" shared
+        Just line -> CLI.handle line shared >> loop
+
+-- Function to safely attempt reading a line, returning Nothing on EOF
+safeGetLine :: IO (Maybe String)
+safeGetLine = fmap Just getLine `catch` eofHandler
+  where
+    eofHandler :: IOException -> IO (Maybe String)
+    eofHandler e
+      | isEOFError e = return Nothing
+      | otherwise = throwIO e
+
+prettyPrintBlockchain :: Blockchain -> ReaderT CLIInfo IO ()
+prettyPrintBlockchain = mapM_ prettyPrintBlock
 
 prettyPrintBlock :: Block -> ReaderT CLIInfo IO ()
 prettyPrintBlock block = do
