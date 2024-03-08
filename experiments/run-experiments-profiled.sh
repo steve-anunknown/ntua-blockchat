@@ -3,20 +3,16 @@
 LOCALHOST="127.0.0.1"
 PORT="35900"
 EXEC="BlockChat-exe"
+SUFFIX="profiled_txdelayed_less_morecaps"
 
 # Compile the program with profiling enabled
 stack clean
 stack build --profile
 
-# Run the throughput test
-if [ ! -d "throughput_outdir_profiled" ]; then
-    mkdir throughput_outdir_profiled
-fi
-
 nodes="5"
-capacity=("5" "10" "20")
+capacity=("5" "10" "20" "25" "50")
 initial_stake="stake 10"
-for test in "throughput" "scalability"; do
+for test in  "scalability"; do
     if [ "$test" = "throughput" ]; then
         nodes="5"
     elif [ "$test" = "scalability" ]; then
@@ -29,7 +25,7 @@ for test in "throughput" "scalability"; do
     msg="Running $test test"
     for cap in "${capacity[@]}"; do
 
-        workdir="${test}_outdir_profiled/capacity${cap}"
+        workdir="${test}_outdir_${SUFFIX}/capacity${cap}"
         if [ ! -d "$workdir" ]; then
             mkdir -p "$workdir"
         fi
@@ -57,8 +53,8 @@ done
 exit
 
 # Run the fairness test
-if [ ! -d "fairness_outdir" ]; then
-    mkdir fairness_outdir
+if [ ! -d "fairness_outdir_${SUFFIX}" ]; then
+    mkdir fairness_outdir_${SUFFIX}
 fi
 
 nodes="5"
@@ -71,7 +67,6 @@ command="stack run -- --bootstrap $LOCALHOST $PORT $nodes"
 echo -e "\t$command"
 $command &
 sleep 1
-
 
 workdir="fairness_outdir/capacity${cap}"
 if [ ! -d "$workdir" ]; then

@@ -1,0 +1,22 @@
+BlockChat-exe: Data.Binary.Get.runGet at position 32554: not enough bytes
+CallStack (from HasCallStack):
+  error, called at libraries/binary/src/Data/Binary/Get.hs:345:5 in binary-0.8.9.1:Data.Binary.Get
+CallStack (from -prof):
+  OrdinaryNode.server (src/OrdinaryNode.hs:(102,1)-(113,42))
+  Control.Exception.Safe.finally.\ (src/Control/Exception/Safe.hs:(467,59)-(468,72))
+  Control.Exception.Safe.finally (src/Control/Exception/Safe.hs:(467,1)-(473,28))
+  Control.Exception.Safe.withException.\ (src/Control/Exception/Safe.hs:(440,65)-(441,72))
+  Control.Exception.Safe.withException (src/Control/Exception/Safe.hs:(440,1)-(446,25))
+  Control.Exception.Safe.onException (src/Control/Exception/Safe.hs:404:1-98)
+  Network.Simple.TCP.acceptFork.\ (src/Network/Simple/TCP.hs:(285,53)-(290,22))
+  Network.Simple.TCP.acceptFork (src/Network/Simple/TCP.hs:(285,1)-(290,22))
+  Control.Exception.Safe.catch (src/Control/Exception/Safe.hs:(247,1)-(252,23))
+  Network.Simple.TCP.serve.\ (src/Network/Simple/TCP.hs:(212,37)-(215,78))
+  Control.Exception.Safe.bracketWithError (src/Control/Exception/Safe.hs:(501,1)-(506,55))
+  Control.Exception.Safe.bracket (src/Control/Exception/Safe.hs:453:1-80)
+  Network.Simple.TCP.listen (src/Network/Simple/TCP.hs:(238,1)-(242,20))
+  Network.Simple.TCP.serve (src/Network/Simple/TCP.hs:(211,1)-(218,80))
+  OrdinaryNode.nodeLogic (src/OrdinaryNode.hs:(148,1)-(233,47))
+  OrdinaryNode.node (src/OrdinaryNode.hs:132:1-67)
+  Main.startDoingStuff (app/Main.hs:(20,1)-(26,33))
+  Main.main (app/Main.hs:17:1-56)
