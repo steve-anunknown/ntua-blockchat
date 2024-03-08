@@ -1,0 +1,3142 @@
+My id is: 2
+Welcome to (the s)hell!
+Type 'help' to ask for help.
+> Staking 10.0
+> Loading transactions from input10/trans2.txt
+Sending Message "In the beginning the Universe was created." to 6
+Sending Message "I'd far rather be happy than right any day." to 6
+Sending Message "I eventually had to go down to the cellar to find them." to 4
+Sending Message "So had the stairs." to 8
+Sending Message "Life!" to 7
+Sending Message "Yes...!!!...?" to 9
+Sending Message "The Answer to the Great Question..." to 6
+Sending Message "To Everything?" to 10
+Sending Message "Doesn't matter!" to 8
+Sending Message "With a flashlight." to 5
+Sending Message "Time is an illusion." to 5
+Sending Message "Everything!" to 3
+Sending Message "Though I don't think that you're going to like it" to 5
+Sending Message "There really is one." to 8
+Sending Message "That's the display department." to 7
+Sending Message "O Deep Thought computer" to 10
+Sending Message "Ah, well, the lights had probably gone." to 3
+Sending Message "Yes...!" to 1
+Sending Message "Er..good morning, O Deep Thought" to 10
+Sending Message "Yes." to 8
+Sending Message "Yes" to 6
+Sending Message "Lunchtime doubly so." to 5
+Sending Message "Is..." to 3
+Sending Message "All right" to 3
+Sending Message "It is a mistake to think you can solve any major problems just with potatoes." to 4
+Sending Message "But look" to 4
+Sending Message "Yes" to 1
+Sending Message "This has made a lot of people very angry." to 4
+Sending Message "Nothing travels faster than the speed of light with the possible exception of bad news." to 9
+Sending Message "Tricky" to 4
+Sending Message "Good Morning" to 5
+Sending Message "There is an answer?" to 1
+Sending Message "On display?" to 10
+Sending Message "Forty-two" to 1
+Sending Message "yes I did" to 1
+Sending Message "Beware of the Leopard" to 3
+Sending Message "do you have...er..." to 1
+Sending Message "There really is one?" to 6
+Sending Message "Yes..." to 7
+Sending Message "But can you do it?" to 5
+Sending Message "But the plans were on display" to 1
+Sending Message "An Answer for you?" to 6
+Sending Message "Forty-two, said Deep Thought, with infinite majesty and calm." to 1
+Sending Message "The Answer to what?" to 1
+Sending Message "Don't panic" to 10
+Sending Message "The Universe!" to 7
+Sending Message "For a moment, nothing happened." to 4
+Sending Message "Of Life, the Universe and Everything..." to 5
+Sending Message "We want you to tell us...The Answer" to 4
+Sending Message "Is..." to 3
+Sending Message "In the beginning the Universe was created." to 6
+Sending Message "I'd far rather be happy than right any day." to 4
+Sending Message "I eventually had to go down to the cellar to find them." to 9
+Sending Message "So had the stairs." to 9
+Sending Message "Life!" to 4
+Sending Message "Yes...!!!...?" to 6
+Sending Message "The Answer to the Great Question..." to 7
+Sending Message "To Everything?" to 6
+Sending Message "Doesn't matter!" to 6
+Sending Message "With a flashlight." to 3
+Sending Message "Time is an illusion." to 5
+Sending Message "Everything!" to 10
+Sending Message "Though I don't think that you're going to like it" to 6
+Sending Message "There really is one." to 5
+Sending Message "That's the display department." to 8
+Sending Message "O Deep Thought computer" to 6
+Sending Message "Ah, well, the lights had probably gone." to 3
+Sending Message "Yes...!" to 3
+Sending Message "Er..good morning, O Deep Thought" to 10
+Sending Message "Yes." to 7
+Sending Message "Yes" to 9
+Sending Message "Lunchtime doubly so." to 5
+Sending Message "Is..." to 4
+Sending Message "All right" to 4
+Sending Message "It is a mistake to think you can solve any major problems just with potatoes." to 10
+Sending Message "But look" to 9
+Sending Message "Yes" to 9
+Sending Message "This has made a lot of people very angry." to 6
+Sending Message "Nothing travels faster than the speed of light with the possible exception of bad news." to 1
+Sending Message "Tricky" to 8
+Sending Message "Good Morning" to 3
+Sending Message "There is an answer?" to 9
+Sending Message "On display?" to 8
+Sending Message "Forty-two" to 4
+Sending Message "yes I did" to 7
+Sending Message "Beware of the Leopard" to 1
+Sending Message "do you have...er..." to 10
+Sending Message "There really is one?" to 6
+Sending Message "Yes..." to 7
+Sending Message "But can you do it?" to 7
+Sending Message "But the plans were on display" to 9
+Sending Message "An Answer for you?" to 9
+Sending Message "Forty-two, said Deep Thought, with infinite majesty and calm." to 8
+Sending Message "The Answer to what?" to 7
+Sending Message "Don't panic" to 5
+Sending Message "The Universe!" to 7
+Sending Message "For a moment, nothing happened." to 4
+Sending Message "Of Life, the Universe and Everything..." to 1
+Sending Message "We want you to tell us...The Answer" to 5
+Sending Message "Is..." to 4
+> ===================================================
+Block Index: 1
+Block Timestamp: UnixTime {utSeconds = 1709901808, utMicroSeconds = 224998}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: genesis
+	|TX Receiver: bootstrap
+	|TX Service: Coins 10000.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+Block Validator: genesis
+===================================================
+===================================================
+Block Index: 2
+Block Timestamp: UnixTime {utSeconds = 1709901808, utMicroSeconds = 577087}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "On display?"
+	|TX Nonce: 2
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 7
+	|TX Service: Message "An Answer for you?"
+	|TX Nonce: 2
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 10
+	|TX Service: Message "But the plans were on display"
+	|TX Nonce: 2
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 7
+	|TX Service: Message "Nothing travels faster than the speed of light with the possible exception of bad news."
+	|TX Nonce: 2
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 3
+	|TX Service: Message "Yes"
+	|TX Nonce: 2
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 3
+	|TX Service: Message "Time is an illusion."
+	|TX Nonce: 2
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 6
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 2
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 6
+	|TX Service: Message "Everything!"
+	|TX Nonce: 3
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 7
+	|TX Service: Message "Everything!"
+	|TX Nonce: 3
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 7
+	|TX Service: Message "I eventually had to go down to the cellar to find them."
+	|TX Nonce: 3
+	|---------------------------------------------------
+Block Validator: 3
+===================================================
+===================================================
+Block Index: 3
+Block Timestamp: UnixTime {utSeconds = 1709901808, utMicroSeconds = 661634}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: you
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 2
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 1
+	|TX Service: Message "Good Morning"
+	|TX Nonce: 3
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 8
+	|TX Service: Message "Life!"
+	|TX Nonce: 3
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 8
+	|TX Service: Message "It is a mistake to think you can solve any major problems just with potatoes."
+	|TX Nonce: 3
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 9
+	|TX Service: Message "Yes...!"
+	|TX Nonce: 4
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 3
+	|TX Service: Message "Lunchtime doubly so."
+	|TX Nonce: 4
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 8
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 3
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 3
+	|TX Service: Message "Don't panic"
+	|TX Nonce: 3
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: you
+	|TX Service: Message "But look"
+	|TX Nonce: 4
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: you
+	|TX Service: Message "Forty-two, said Deep Thought, with infinite majesty and calm."
+	|TX Nonce: 4
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 6
+	|TX Service: Message "I'd far rather be happy than right any day."
+	|TX Nonce: 3
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 6
+	|TX Service: Message "It is a mistake to think you can solve any major problems just with potatoes."
+	|TX Nonce: 3
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 10
+	|TX Service: Message "O Deep Thought computer"
+	|TX Nonce: 5
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 6
+	|TX Service: Message "Yes"
+	|TX Nonce: 5
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 4
+	|TX Service: Message "But the plans were on display"
+	|TX Nonce: 4
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 8
+	|TX Service: Message "But can you do it?"
+	|TX Nonce: 4
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 8
+	|TX Service: Message "Yes..."
+	|TX Nonce: 4
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 4
+	|TX Service: Message "There really is one."
+	|TX Nonce: 5
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 10
+	|TX Service: Message "Is..."
+	|TX Nonce: 5
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: you
+	|TX Service: Message "Yes..."
+	|TX Nonce: 4
+	|---------------------------------------------------
+Block Validator: 9
+===================================================
+===================================================
+Block Index: 4
+Block Timestamp: UnixTime {utSeconds = 1709901808, utMicroSeconds = 734442}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 5
+	|TX Service: Message "The Answer to the Great Question..."
+	|TX Nonce: 5
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 5
+	|TX Service: Message "Good Morning"
+	|TX Nonce: 4
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 3
+	|TX Service: Message "Is..."
+	|TX Nonce: 6
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 3
+	|TX Service: Message "The Answer to what?"
+	|TX Nonce: 5
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "But the plans were on display"
+	|TX Nonce: 6
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 3
+	|TX Service: Message "Tricky"
+	|TX Nonce: 6
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 5
+	|TX Service: Message "Yes"
+	|TX Nonce: 6
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 10
+	|TX Service: Message "yes I did"
+	|TX Nonce: 6
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 4
+	|TX Service: Message "I eventually had to go down to the cellar to find them."
+	|TX Nonce: 4
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 8
+	|TX Service: Message "Yes..."
+	|TX Nonce: 5
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 9
+	|TX Service: Message "For a moment, nothing happened."
+	|TX Nonce: 7
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 10
+	|TX Service: Message "Nothing travels faster than the speed of light with the possible exception of bad news."
+	|TX Nonce: 6
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 4
+	|TX Service: Message "Forty-two"
+	|TX Nonce: 5
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: you
+	|TX Service: Message "Forty-two"
+	|TX Nonce: 6
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 4
+	|TX Service: Message "Yes...!"
+	|TX Nonce: 10
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 4
+	|TX Service: Message "O Deep Thought computer"
+	|TX Nonce: 7
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 3
+	|TX Service: Message "For a moment, nothing happened."
+	|TX Nonce: 7
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: you
+	|TX Service: Message "Everything!"
+	|TX Nonce: 7
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 3
+	|TX Service: Message "do you have...er..."
+	|TX Nonce: 7
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 3
+	|TX Service: Message "The Answer to what?"
+	|TX Nonce: 9
+	|---------------------------------------------------
+Block Validator: 6
+===================================================
+===================================================
+Block Index: 5
+Block Timestamp: UnixTime {utSeconds = 1709901808, utMicroSeconds = 805483}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 8
+	|TX Service: Message "An Answer for you?"
+	|TX Nonce: 6
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 1
+	|TX Service: Message "The Universe!"
+	|TX Nonce: 11
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 4
+	|TX Service: Message "There is an answer?"
+	|TX Nonce: 7
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 8
+	|TX Service: Message "So had the stairs."
+	|TX Nonce: 5
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 7
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 10
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 5
+	|TX Service: Message "Lunchtime doubly so."
+	|TX Nonce: 8
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: you
+	|TX Service: Message "It is a mistake to think you can solve any major problems just with potatoes."
+	|TX Nonce: 8
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: you
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 8
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 7
+	|TX Service: Message "Yes."
+	|TX Nonce: 8
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 8
+	|TX Service: Message "But the plans were on display"
+	|TX Nonce: 7
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 1
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 9
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 1
+	|TX Service: Message "Tricky"
+	|TX Nonce: 9
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 4
+	|TX Service: Message "yes I did"
+	|TX Nonce: 9
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 3
+	|TX Service: Message "But look"
+	|TX Nonce: 10
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 4
+	|TX Service: Message "Forty-two"
+	|TX Nonce: 8
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 5
+	|TX Service: Message "Ah, well, the lights had probably gone."
+	|TX Nonce: 11
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 7
+	|TX Service: Message "Life!"
+	|TX Nonce: 6
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 8
+	|TX Service: Message "There really is one."
+	|TX Nonce: 8
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 10
+	|TX Service: Message "There really is one."
+	|TX Nonce: 10
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 7
+	|TX Service: Message "Lunchtime doubly so."
+	|TX Nonce: 12
+	|---------------------------------------------------
+Block Validator: 10
+===================================================
+===================================================
+Block Index: 6
+Block Timestamp: UnixTime {utSeconds = 1709901808, utMicroSeconds = 896440}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 4
+	|TX Service: Message "Yes"
+	|TX Nonce: 12
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 5
+	|TX Service: Message "There is an answer?"
+	|TX Nonce: 11
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 5
+	|TX Service: Message "But can you do it?"
+	|TX Nonce: 9
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 4
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 9
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 9
+	|TX Service: Message "Yes...!!!...?"
+	|TX Nonce: 7
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: you
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 10
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 1
+	|TX Service: Message "do you have...er..."
+	|TX Nonce: 10
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 6
+	|TX Service: Message "Is..."
+	|TX Nonce: 12
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 6
+	|TX Service: Message "Life!"
+	|TX Nonce: 10
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 4
+	|TX Service: Message "But look"
+	|TX Nonce: 13
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 7
+	|TX Service: Message "There really is one?"
+	|TX Nonce: 11
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 1
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 11
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 6
+	|TX Service: Message "The Answer to the Great Question..."
+	|TX Nonce: 8
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 7
+	|TX Service: Message "Forty-two"
+	|TX Nonce: 13
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 6
+	|TX Service: Message "Though I don't think that you're going to like it"
+	|TX Nonce: 10
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 5
+	|TX Service: Message "The Answer to what?"
+	|TX Nonce: 13
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 5
+	|TX Service: Message "Ah, well, the lights had probably gone."
+	|TX Nonce: 11
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "We want you to tell us...The Answer"
+	|TX Nonce: 11
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 8
+	|TX Service: Message "Lunchtime doubly so."
+	|TX Nonce: 10
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 10
+	|TX Service: Message "Good Morning"
+	|TX Nonce: 11
+	|---------------------------------------------------
+Block Validator: 9
+===================================================
+===================================================
+Block Index: 7
+Block Timestamp: UnixTime {utSeconds = 1709901808, utMicroSeconds = 971765}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 7
+	|TX Service: Message "Doesn't matter!"
+	|TX Nonce: 14
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 8
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 14
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: you
+	|TX Service: Message "That's the display department."
+	|TX Nonce: 14
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 4
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 12
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "Yes"
+	|TX Nonce: 12
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 10
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 9
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 8
+	|TX Service: Message "yes I did"
+	|TX Nonce: 11
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 7
+	|TX Service: Message "That's the display department."
+	|TX Nonce: 12
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 7
+	|TX Service: Message "The Answer to what?"
+	|TX Nonce: 12
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 9
+	|TX Service: Message "This has made a lot of people very angry."
+	|TX Nonce: 13
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 5
+	|TX Service: Message "This has made a lot of people very angry."
+	|TX Nonce: 15
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 7
+	|TX Service: Message "For a moment, nothing happened."
+	|TX Nonce: 15
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "Forty-two, said Deep Thought, with infinite majesty and calm."
+	|TX Nonce: 13
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: you
+	|TX Service: Message "There really is one?"
+	|TX Nonce: 16
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 8
+	|TX Service: Message "Doesn't matter!"
+	|TX Nonce: 10
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 6
+	|TX Service: Message "Good Morning"
+	|TX Nonce: 13
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: you
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 12
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: you
+	|TX Service: Message "Yes..."
+	|TX Nonce: 13
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: you
+	|TX Service: Message "There really is one?"
+	|TX Nonce: 14
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 3
+	|TX Service: Message "Life!"
+	|TX Nonce: 14
+	|---------------------------------------------------
+Block Validator: 9
+===================================================
+===================================================
+Block Index: 8
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 50800}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "But look"
+	|TX Nonce: 14
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: you
+	|TX Service: Message "On display?"
+	|TX Nonce: 14
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 5
+	|TX Service: Message "So had the stairs."
+	|TX Nonce: 13
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: you
+	|TX Service: Message "There is an answer?"
+	|TX Nonce: 16
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 1
+	|TX Service: Message "Of Life, the Universe and Everything..."
+	|TX Nonce: 14
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: you
+	|TX Service: Message "Tricky"
+	|TX Nonce: 15
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 15
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 5
+	|TX Service: Message "So had the stairs."
+	|TX Nonce: 15
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 1
+	|TX Service: Message "That's the display department."
+	|TX Nonce: 17
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: you
+	|TX Service: Message "The Universe!"
+	|TX Nonce: 14
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 3
+	|TX Service: Message "All right"
+	|TX Nonce: 17
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 1
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 15
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 5
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 11
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: you
+	|TX Service: Message "Yes...!"
+	|TX Nonce: 17
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 5
+	|TX Service: Message "There really is one."
+	|TX Nonce: 15
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 7
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 16
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "This has made a lot of people very angry."
+	|TX Nonce: 16
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: you
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 18
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 5
+	|TX Service: Message "Time is an illusion."
+	|TX Nonce: 12
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 6
+	|TX Service: Message "Time is an illusion."
+	|TX Nonce: 18
+	|---------------------------------------------------
+Block Validator: 4
+===================================================
+===================================================
+Block Index: 9
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 125343}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 10
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 15
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 4
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 16
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 10
+	|TX Service: Message "Nothing travels faster than the speed of light with the possible exception of bad news."
+	|TX Nonce: 17
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "The Universe!"
+	|TX Nonce: 17
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: you
+	|TX Service: Message "Everything!"
+	|TX Nonce: 18
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 3
+	|TX Service: Message "Everything!"
+	|TX Nonce: 13
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 9
+	|TX Service: Message "An Answer for you?"
+	|TX Nonce: 16
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 10
+	|TX Service: Message "Yes..."
+	|TX Nonce: 17
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 6
+	|TX Service: Message "The Universe!"
+	|TX Nonce: 19
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 4
+	|TX Service: Message "The Answer to the Great Question..."
+	|TX Nonce: 19
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "Is..."
+	|TX Nonce: 18
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 10
+	|TX Service: Message "do you have...er..."
+	|TX Nonce: 19
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 1
+	|TX Service: Message "The Answer to the Great Question..."
+	|TX Nonce: 18
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 3
+	|TX Service: Message "On display?"
+	|TX Nonce: 18
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 3
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 16
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 6
+	|TX Service: Message "Yes...!!!...?"
+	|TX Nonce: 17
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 5
+	|TX Service: Message "Though I don't think that you're going to like it"
+	|TX Nonce: 14
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 7
+	|TX Service: Message "Er..good morning, O Deep Thought"
+	|TX Nonce: 22
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 9
+	|TX Service: Message "The Answer to what?"
+	|TX Nonce: 17
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 3
+	|TX Service: Message "All right"
+	|TX Nonce: 19
+	|---------------------------------------------------
+Block Validator: 5
+===================================================
+===================================================
+Block Index: 10
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 195321}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 8
+	|TX Service: Message "Yes...!"
+	|TX Nonce: 20
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 3
+	|TX Service: Message "Yes."
+	|TX Nonce: 19
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 9
+	|TX Service: Message "Yes"
+	|TX Nonce: 17
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 9
+	|TX Service: Message "On display?"
+	|TX Nonce: 20
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 3
+	|TX Service: Message "On display?"
+	|TX Nonce: 19
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 9
+	|TX Service: Message "Tricky"
+	|TX Nonce: 19
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 8
+	|TX Service: Message "There really is one."
+	|TX Nonce: 15
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 1
+	|TX Service: Message "On display?"
+	|TX Nonce: 24
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: you
+	|TX Service: Message "The Universe!"
+	|TX Nonce: 18
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 10
+	|TX Service: Message "The Answer to what?"
+	|TX Nonce: 20
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 5
+	|TX Service: Message "There really is one?"
+	|TX Nonce: 21
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 3
+	|TX Service: Message "Nothing travels faster than the speed of light with the possible exception of bad news."
+	|TX Nonce: 20
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 1
+	|TX Service: Message "Doesn't matter!"
+	|TX Nonce: 18
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 7
+	|TX Service: Message "The Answer to the Great Question..."
+	|TX Nonce: 21
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 6
+	|TX Service: Message "There is an answer?"
+	|TX Nonce: 21
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 9
+	|TX Service: Message "Yes..."
+	|TX Nonce: 20
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 1
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 22
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 10
+	|TX Service: Message "Yes."
+	|TX Nonce: 19
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "Yes"
+	|TX Nonce: 21
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 7
+	|TX Service: Message "We want you to tell us...The Answer"
+	|TX Nonce: 25
+	|---------------------------------------------------
+Block Validator: 8
+===================================================
+===================================================
+Block Index: 11
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 290106}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: you
+	|TX Service: Message "This has made a lot of people very angry."
+	|TX Nonce: 21
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 4
+	|TX Service: Message "On display?"
+	|TX Nonce: 23
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 7
+	|TX Service: Message "That's the display department."
+	|TX Nonce: 16
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 5
+	|TX Service: Message "It is a mistake to think you can solve any major problems just with potatoes."
+	|TX Nonce: 21
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "It is a mistake to think you can solve any major problems just with potatoes."
+	|TX Nonce: 22
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 8
+	|TX Service: Message "Yes...!"
+	|TX Nonce: 20
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 4
+	|TX Service: Message "It is a mistake to think you can solve any major problems just with potatoes."
+	|TX Nonce: 22
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 3
+	|TX Service: Message "Forty-two, said Deep Thought, with infinite majesty and calm."
+	|TX Nonce: 22
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 6
+	|TX Service: Message "Though I don't think that you're going to like it"
+	|TX Nonce: 26
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 9
+	|TX Service: Message "Life!"
+	|TX Nonce: 22
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 1
+	|TX Service: Message "I'd far rather be happy than right any day."
+	|TX Nonce: 22
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 1
+	|TX Service: Message "Yes...!!!...?"
+	|TX Nonce: 20
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 8
+	|TX Service: Message "Life!"
+	|TX Nonce: 25
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 4
+	|TX Service: Message "Er..good morning, O Deep Thought"
+	|TX Nonce: 23
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 4
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 23
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 10
+	|TX Service: Message "O Deep Thought computer"
+	|TX Nonce: 17
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 8
+	|TX Service: Message "Er..good morning, O Deep Thought"
+	|TX Nonce: 23
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 7
+	|TX Service: Message "Time is an illusion."
+	|TX Nonce: 21
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "Yes...!"
+	|TX Nonce: 23
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 10
+	|TX Service: Message "Of Life, the Universe and Everything..."
+	|TX Nonce: 21
+	|---------------------------------------------------
+Block Validator: 6
+===================================================
+===================================================
+Block Index: 12
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 361957}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 5
+	|TX Service: Message "Is..."
+	|TX Nonce: 24
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: you
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 26
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 3
+	|TX Service: Message "Doesn't matter!"
+	|TX Nonce: 23
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 6
+	|TX Service: Message "I eventually had to go down to the cellar to find them."
+	|TX Nonce: 27
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 1
+	|TX Service: Message "Don't panic"
+	|TX Nonce: 24
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: you
+	|TX Service: Message "This has made a lot of people very angry."
+	|TX Nonce: 22
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 1
+	|TX Service: Message "The Answer to the Great Question..."
+	|TX Nonce: 25
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 8
+	|TX Service: Message "All right"
+	|TX Nonce: 24
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 3
+	|TX Service: Message "Ah, well, the lights had probably gone."
+	|TX Nonce: 18
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 10
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 24
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 1
+	|TX Service: Message "Nothing travels faster than the speed of light with the possible exception of bad news."
+	|TX Nonce: 22
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 1
+	|TX Service: Message "I eventually had to go down to the cellar to find them."
+	|TX Nonce: 25
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 10
+	|TX Service: Message "Is..."
+	|TX Nonce: 24
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 9
+	|TX Service: Message "Yes"
+	|TX Nonce: 23
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 1
+	|TX Service: Message "Tricky"
+	|TX Nonce: 27
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 6
+	|TX Service: Message "All right"
+	|TX Nonce: 28
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 4
+	|TX Service: Message "There really is one."
+	|TX Nonce: 25
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 9
+	|TX Service: Message "So had the stairs."
+	|TX Nonce: 26
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 10
+	|TX Service: Message "Yes"
+	|TX Nonce: 25
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 8
+	|TX Service: Message "So had the stairs."
+	|TX Nonce: 26
+	|---------------------------------------------------
+Block Validator: 10
+===================================================
+===================================================
+Block Index: 13
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 436244}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 10
+	|TX Service: Message "But look"
+	|TX Nonce: 23
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 5
+	|TX Service: Message "There is an answer?"
+	|TX Nonce: 26
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 8
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 29
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 6
+	|TX Service: Message "Forty-two"
+	|TX Nonce: 26
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 1
+	|TX Service: Message "Yes...!"
+	|TX Nonce: 19
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: you
+	|TX Service: Message "All right"
+	|TX Nonce: 24
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: you
+	|TX Service: Message "I'd far rather be happy than right any day."
+	|TX Nonce: 25
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 8
+	|TX Service: Message "Yes."
+	|TX Nonce: 27
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 7
+	|TX Service: Message "Life!"
+	|TX Nonce: 27
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: you
+	|TX Service: Message "Ah, well, the lights had probably gone."
+	|TX Nonce: 26
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 4
+	|TX Service: Message "Forty-two, said Deep Thought, with infinite majesty and calm."
+	|TX Nonce: 28
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 5
+	|TX Service: Message "Don't panic"
+	|TX Nonce: 30
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 10
+	|TX Service: Message "Er..good morning, O Deep Thought"
+	|TX Nonce: 20
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 6
+	|TX Service: Message "There is an answer?"
+	|TX Nonce: 24
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 3
+	|TX Service: Message "That's the display department."
+	|TX Nonce: 27
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 7
+	|TX Service: Message "O Deep Thought computer"
+	|TX Nonce: 27
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 4
+	|TX Service: Message "Though I don't think that you're going to like it"
+	|TX Nonce: 29
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 6
+	|TX Service: Message "Yes"
+	|TX Nonce: 26
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 8
+	|TX Service: Message "Ah, well, the lights had probably gone."
+	|TX Nonce: 31
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 10
+	|TX Service: Message "Though I don't think that you're going to like it"
+	|TX Nonce: 28
+	|---------------------------------------------------
+Block Validator: 10
+===================================================
+===================================================
+Block Index: 14
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 518083}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 7
+	|TX Service: Message "The Answer to the Great Question..."
+	|TX Nonce: 28
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 6
+	|TX Service: Message "On display?"
+	|TX Nonce: 27
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: you
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 30
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 3
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 25
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 8
+	|TX Service: Message "Yes."
+	|TX Nonce: 21
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 6
+	|TX Service: Message "All right"
+	|TX Nonce: 28
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "There really is one?"
+	|TX Nonce: 28
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 3
+	|TX Service: Message "Everything!"
+	|TX Nonce: 32
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 8
+	|TX Service: Message "So had the stairs."
+	|TX Nonce: 30
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 7
+	|TX Service: Message "do you have...er..."
+	|TX Nonce: 29
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 8
+	|TX Service: Message "Yes"
+	|TX Nonce: 28
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 8
+	|TX Service: Message "Doesn't matter!"
+	|TX Nonce: 28
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 5
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 29
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 3
+	|TX Service: Message "Yes...!!!...?"
+	|TX Nonce: 31
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 9
+	|TX Service: Message "On display?"
+	|TX Nonce: 26
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 3
+	|TX Service: Message "Doesn't matter!"
+	|TX Nonce: 31
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 6
+	|TX Service: Message "Yes"
+	|TX Nonce: 22
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: you
+	|TX Service: Message "I'd far rather be happy than right any day."
+	|TX Nonce: 33
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 8
+	|TX Service: Message "But look"
+	|TX Nonce: 29
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 7
+	|TX Service: Message "O Deep Thought computer"
+	|TX Nonce: 30
+	|---------------------------------------------------
+Block Validator: you
+===================================================
+===================================================
+Block Index: 15
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 623928}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 10
+	|TX Service: Message "But can you do it?"
+	|TX Nonce: 29
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 9
+	|TX Service: Message "But can you do it?"
+	|TX Nonce: 32
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 8
+	|TX Service: Message "Is..."
+	|TX Nonce: 34
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 8
+	|TX Service: Message "Everything!"
+	|TX Nonce: 32
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 10
+	|TX Service: Message "Yes"
+	|TX Nonce: 27
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 5
+	|TX Service: Message "That's the display department."
+	|TX Nonce: 31
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 8
+	|TX Service: Message "Yes..."
+	|TX Nonce: 30
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 1
+	|TX Service: Message "Is..."
+	|TX Nonce: 30
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 1
+	|TX Service: Message "Doesn't matter!"
+	|TX Nonce: 31
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 5
+	|TX Service: Message "Lunchtime doubly so."
+	|TX Nonce: 23
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 7
+	|TX Service: Message "Yes...!!!...?"
+	|TX Nonce: 34
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 4
+	|TX Service: Message "do you have...er..."
+	|TX Nonce: 35
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 9
+	|TX Service: Message "That's the display department."
+	|TX Nonce: 28
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 8
+	|TX Service: Message "Time is an illusion."
+	|TX Nonce: 31
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 6
+	|TX Service: Message "But can you do it?"
+	|TX Nonce: 30
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 10
+	|TX Service: Message "Is..."
+	|TX Nonce: 31
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 3
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 35
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 6
+	|TX Service: Message "But the plans were on display"
+	|TX Nonce: 32
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 3
+	|TX Service: Message "Is..."
+	|TX Nonce: 24
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 7
+	|TX Service: Message "But can you do it?"
+	|TX Nonce: 32
+	|---------------------------------------------------
+Block Validator: 1
+===================================================
+===================================================
+Block Index: 16
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 686848}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 4
+	|TX Service: Message "Time is an illusion."
+	|TX Nonce: 29
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 1
+	|TX Service: Message "It is a mistake to think you can solve any major problems just with potatoes."
+	|TX Nonce: 33
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 3
+	|TX Service: Message "O Deep Thought computer"
+	|TX Nonce: 36
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 4
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 32
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 3
+	|TX Service: Message "We want you to tell us...The Answer"
+	|TX Nonce: 33
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: you
+	|TX Service: Message "Nothing travels faster than the speed of light with the possible exception of bad news."
+	|TX Nonce: 36
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: you
+	|TX Service: Message "For a moment, nothing happened."
+	|TX Nonce: 33
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 10
+	|TX Service: Message "Forty-two, said Deep Thought, with infinite majesty and calm."
+	|TX Nonce: 31
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 3
+	|TX Service: Message "All right"
+	|TX Nonce: 25
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 3
+	|TX Service: Message "Don't panic"
+	|TX Nonce: 30
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 3
+	|TX Service: Message "Lunchtime doubly so."
+	|TX Nonce: 34
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 9
+	|TX Service: Message "Don't panic"
+	|TX Nonce: 32
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 3
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 32
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 8
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 37
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 7
+	|TX Service: Message "Though I don't think that you're going to like it"
+	|TX Nonce: 34
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 6
+	|TX Service: Message "Nothing travels faster than the speed of light with the possible exception of bad news."
+	|TX Nonce: 35
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 4
+	|TX Service: Message "It is a mistake to think you can solve any major problems just with potatoes."
+	|TX Nonce: 26
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 1
+	|TX Service: Message "We want you to tell us...The Answer"
+	|TX Nonce: 37
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "An Answer for you?"
+	|TX Nonce: 33
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 1
+	|TX Service: Message "So had the stairs."
+	|TX Nonce: 33
+	|---------------------------------------------------
+Block Validator: 3
+===================================================
+===================================================
+Block Index: 17
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 762170}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 6
+	|TX Service: Message "Lunchtime doubly so."
+	|TX Nonce: 33
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 1
+	|TX Service: Message "But the plans were on display"
+	|TX Nonce: 34
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 4
+	|TX Service: Message "Forty-two, said Deep Thought, with infinite majesty and calm."
+	|TX Nonce: 38
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 4
+	|TX Service: Message "But look"
+	|TX Nonce: 27
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 4
+	|TX Service: Message "But the plans were on display"
+	|TX Nonce: 38
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: you
+	|TX Service: Message "Is..."
+	|TX Nonce: 36
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 1
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 34
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 1
+	|TX Service: Message "I'd far rather be happy than right any day."
+	|TX Nonce: 35
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 3
+	|TX Service: Message "All right"
+	|TX Nonce: 35
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 7
+	|TX Service: Message "Er..good morning, O Deep Thought"
+	|TX Nonce: 34
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 6
+	|TX Service: Message "Though I don't think that you're going to like it"
+	|TX Nonce: 32
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: you
+	|TX Service: Message "Yes...!!!...?"
+	|TX Nonce: 34
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 8
+	|TX Service: Message "But look"
+	|TX Nonce: 35
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 1
+	|TX Service: Message "Yes"
+	|TX Nonce: 28
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 8
+	|TX Service: Message "An Answer for you?"
+	|TX Nonce: 39
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 10
+	|TX Service: Message "Tricky"
+	|TX Nonce: 35
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 3
+	|TX Service: Message "Time is an illusion."
+	|TX Nonce: 37
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 5
+	|TX Service: Message "The Answer to what?"
+	|TX Nonce: 36
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 1
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 36
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 1
+	|TX Service: Message "Yes."
+	|TX Nonce: 39
+	|---------------------------------------------------
+Block Validator: 8
+===================================================
+===================================================
+Block Index: 18
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 847106}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: you
+	|TX Service: Message "Life!"
+	|TX Nonce: 35
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 9
+	|TX Service: Message "Forty-two, said Deep Thought, with infinite majesty and calm."
+	|TX Nonce: 33
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 4
+	|TX Service: Message "This has made a lot of people very angry."
+	|TX Nonce: 29
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 5
+	|TX Service: Message "Don't panic"
+	|TX Nonce: 38
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: you
+	|TX Service: Message "Ah, well, the lights had probably gone."
+	|TX Nonce: 37
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: you
+	|TX Service: Message "Forty-two, said Deep Thought, with infinite majesty and calm."
+	|TX Nonce: 40
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: you
+	|TX Service: Message "For a moment, nothing happened."
+	|TX Nonce: 41
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 10
+	|TX Service: Message "yes I did"
+	|TX Nonce: 37
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 1
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 37
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 8
+	|TX Service: Message "I eventually had to go down to the cellar to find them."
+	|TX Nonce: 37
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 10
+	|TX Service: Message "Tricky"
+	|TX Nonce: 34
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 6
+	|TX Service: Message "But look"
+	|TX Nonce: 39
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 5
+	|TX Service: Message "I eventually had to go down to the cellar to find them."
+	|TX Nonce: 38
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "But can you do it?"
+	|TX Nonce: 36
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 9
+	|TX Service: Message "Nothing travels faster than the speed of light with the possible exception of bad news."
+	|TX Nonce: 30
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 4
+	|TX Service: Message "An Answer for you?"
+	|TX Nonce: 38
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 10
+	|TX Service: Message "Yes"
+	|TX Nonce: 42
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 8
+	|TX Service: Message "Er..good morning, O Deep Thought"
+	|TX Nonce: 35
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 1
+	|TX Service: Message "Of Life, the Universe and Everything..."
+	|TX Nonce: 40
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 5
+	|TX Service: Message "Time is an illusion."
+	|TX Nonce: 39
+	|---------------------------------------------------
+Block Validator: you
+===================================================
+===================================================
+Block Index: 19
+Block Timestamp: UnixTime {utSeconds = 1709901809, utMicroSeconds = 945873}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 10
+	|TX Service: Message "There is an answer?"
+	|TX Nonce: 38
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: you
+	|TX Service: Message "So had the stairs."
+	|TX Nonce: 41
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 4
+	|TX Service: Message "Is..."
+	|TX Nonce: 36
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 3
+	|TX Service: Message "Of Life, the Universe and Everything..."
+	|TX Nonce: 40
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 9
+	|TX Service: Message "The Answer to the Great Question..."
+	|TX Nonce: 39
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 3
+	|TX Service: Message "Of Life, the Universe and Everything..."
+	|TX Nonce: 40
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 8
+	|TX Service: Message "I eventually had to go down to the cellar to find them."
+	|TX Nonce: 38
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 10
+	|TX Service: Message "So had the stairs."
+	|TX Nonce: 37
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 4
+	|TX Service: Message "Tricky"
+	|TX Nonce: 31
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 4
+	|TX Service: Message "I eventually had to go down to the cellar to find them."
+	|TX Nonce: 43
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 10
+	|TX Service: Message "Is..."
+	|TX Nonce: 43
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 1
+	|TX Service: Message "But look"
+	|TX Nonce: 41
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 5
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 42
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 10
+	|TX Service: Message "We want you to tell us...The Answer"
+	|TX Nonce: 40
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 5
+	|TX Service: Message "I eventually had to go down to the cellar to find them."
+	|TX Nonce: 37
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 7
+	|TX Service: Message "yes I did"
+	|TX Nonce: 41
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 6
+	|TX Service: Message "Er..good morning, O Deep Thought"
+	|TX Nonce: 40
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 8
+	|TX Service: Message "Though I don't think that you're going to like it"
+	|TX Nonce: 44
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 6
+	|TX Service: Message "Ah, well, the lights had probably gone."
+	|TX Nonce: 38
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: you
+	|TX Service: Message "Tricky"
+	|TX Nonce: 42
+	|---------------------------------------------------
+Block Validator: 1
+===================================================
+===================================================
+Block Index: 20
+Block Timestamp: UnixTime {utSeconds = 1709901810, utMicroSeconds = 29689}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 4
+	|TX Service: Message "Is..."
+	|TX Nonce: 42
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 8
+	|TX Service: Message "Don't panic"
+	|TX Nonce: 42
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 1
+	|TX Service: Message "Er..good morning, O Deep Thought"
+	|TX Nonce: 41
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 3
+	|TX Service: Message "I'd far rather be happy than right any day."
+	|TX Nonce: 39
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 5
+	|TX Service: Message "Good Morning"
+	|TX Nonce: 32
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 6
+	|TX Service: Message "Yes"
+	|TX Nonce: 43
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 3
+	|TX Service: Message "There really is one?"
+	|TX Nonce: 45
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 8
+	|TX Service: Message "Yes...!!!...?"
+	|TX Nonce: 43
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 5
+	|TX Service: Message "Life!"
+	|TX Nonce: 38
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 1
+	|TX Service: Message "There is an answer?"
+	|TX Nonce: 33
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 9
+	|TX Service: Message "yes I did"
+	|TX Nonce: 45
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 7
+	|TX Service: Message "That's the display department."
+	|TX Nonce: 46
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 1
+	|TX Service: Message "The Universe!"
+	|TX Nonce: 43
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 3
+	|TX Service: Message "Of Life, the Universe and Everything..."
+	|TX Nonce: 40
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: you
+	|TX Service: Message "Er..good morning, O Deep Thought"
+	|TX Nonce: 43
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 10
+	|TX Service: Message "do you have...er..."
+	|TX Nonce: 42
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 8
+	|TX Service: Message "That's the display department."
+	|TX Nonce: 44
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: you
+	|TX Service: Message "do you have...er..."
+	|TX Nonce: 39
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: you
+	|TX Service: Message "Yes...!!!...?"
+	|TX Nonce: 44
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 10
+	|TX Service: Message "Lunchtime doubly so."
+	|TX Nonce: 47
+	|---------------------------------------------------
+Block Validator: you
+===================================================
+===================================================
+Block Index: 21
+Block Timestamp: UnixTime {utSeconds = 1709901810, utMicroSeconds = 127412}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 9
+	|TX Service: Message "So had the stairs."
+	|TX Nonce: 45
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 5
+	|TX Service: Message "I'd far rather be happy than right any day."
+	|TX Nonce: 44
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 6
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 43
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 10
+	|TX Service: Message "On display?"
+	|TX Nonce: 34
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 6
+	|TX Service: Message "Doesn't matter!"
+	|TX Nonce: 41
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 4
+	|TX Service: Message "Good Morning"
+	|TX Nonce: 47
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 1
+	|TX Service: Message "yes I did"
+	|TX Nonce: 48
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: you
+	|TX Service: Message "Good Morning"
+	|TX Nonce: 46
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 6
+	|TX Service: Message "There really is one?"
+	|TX Nonce: 45
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 4
+	|TX Service: Message "Everything!"
+	|TX Nonce: 44
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 9
+	|TX Service: Message "This has made a lot of people very angry."
+	|TX Nonce: 40
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 10
+	|TX Receiver: 5
+	|TX Service: Message "Yes."
+	|TX Nonce: 45
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 3
+	|TX Service: Message "There is an answer?"
+	|TX Nonce: 49
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 9
+	|TX Service: Message "Yes...!"
+	|TX Nonce: 47
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 10
+	|TX Service: Message "For a moment, nothing happened."
+	|TX Nonce: 42
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 1
+	|TX Service: Message "Forty-two"
+	|TX Nonce: 35
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 3
+	|TX Service: Message "Yes"
+	|TX Nonce: 46
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 10
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 52
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 10
+	|TX Service: Message "There really is one?"
+	|TX Nonce: 41
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 1
+	|TX Service: Message "There really is one."
+	|TX Nonce: 48
+	|---------------------------------------------------
+Block Validator: 6
+===================================================
+===================================================
+Block Index: 22
+Block Timestamp: UnixTime {utSeconds = 1709901810, utMicroSeconds = 237720}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: you
+	|TX Service: Message "I'd far rather be happy than right any day."
+	|TX Nonce: 42
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 1
+	|TX Service: Message "yes I did"
+	|TX Nonce: 36
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "Is..."
+	|TX Nonce: 43
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 3
+	|TX Service: Message "Don't panic"
+	|TX Nonce: 53
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 6
+	|TX Service: Message "Of Life, the Universe and Everything..."
+	|TX Nonce: 47
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 3
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 37
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 1
+	|TX Service: Message "Everything!"
+	|TX Nonce: 49
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 5
+	|TX Service: Message "Life!"
+	|TX Nonce: 47
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 4
+	|TX Service: Message "Yes..."
+	|TX Nonce: 54
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "yes I did"
+	|TX Nonce: 44
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 1
+	|TX Service: Message "do you have...er..."
+	|TX Nonce: 38
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 10
+	|TX Service: Message "Yes..."
+	|TX Nonce: 43
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 3
+	|TX Service: Message "I'd far rather be happy than right any day."
+	|TX Nonce: 55
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: you
+	|TX Service: Message "O Deep Thought computer"
+	|TX Nonce: 50
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "In the beginning the Universe was created."
+	|TX Nonce: 45
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 6
+	|TX Service: Message "There really is one?"
+	|TX Nonce: 39
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 5
+	|TX Service: Message "Everything!"
+	|TX Nonce: 44
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 5
+	|TX Service: Message "Good Morning"
+	|TX Nonce: 48
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 8
+	|TX Service: Message "Tricky"
+	|TX Nonce: 56
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 7
+	|TX Service: Message "Of Life, the Universe and Everything..."
+	|TX Nonce: 51
+	|---------------------------------------------------
+Block Validator: you
+===================================================
+===================================================
+Block Index: 23
+Block Timestamp: UnixTime {utSeconds = 1709901810, utMicroSeconds = 457317}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 6
+	|TX Service: Message "Yes...!!!...?"
+	|TX Nonce: 46
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: 10
+	|TX Service: Message "But the plans were on display"
+	|TX Nonce: 52
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 7
+	|TX Service: Message "Yes..."
+	|TX Nonce: 40
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: 3
+	|TX Service: Message "But look"
+	|TX Nonce: 54
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 1
+	|TX Service: Message "Yes."
+	|TX Nonce: 57
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 3
+	|TX Service: Message "O Deep Thought computer"
+	|TX Nonce: 46
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 8
+	|TX Service: Message "Nothing travels faster than the speed of light with the possible exception of bad news."
+	|TX Nonce: 47
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 5
+	|TX Service: Message "But can you do it?"
+	|TX Nonce: 41
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 3
+	|TX Service: Message "Of Life, the Universe and Everything..."
+	|TX Nonce: 58
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 7
+	|TX Service: Message "This has made a lot of people very angry."
+	|TX Nonce: 59
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 1
+	|TX Service: Message "But the plans were on display"
+	|TX Nonce: 42
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 1
+	|TX Service: Message "yes I did"
+	|TX Nonce: 51
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 6
+	|TX Service: Message "An Answer for you?"
+	|TX Nonce: 43
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 5
+	|TX Service: Message "Yes"
+	|TX Nonce: 52
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 8
+	|TX Service: Message "Yes...!"
+	|TX Nonce: 60
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 4
+	|TX Service: Message "Life!"
+	|TX Nonce: 53
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 1
+	|TX Service: Message "The Answer to what?"
+	|TX Nonce: 45
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 6
+	|TX Receiver: 1
+	|TX Service: Message "The Universe!"
+	|TX Nonce: 61
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 8
+	|TX Receiver: 7
+	|TX Service: Message "Yes"
+	|TX Nonce: 55
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 10
+	|TX Service: Message "Don't panic"
+	|TX Nonce: 46
+	|---------------------------------------------------
+Block Validator: 6
+===================================================
+===================================================
+Block Index: 24
+Block Timestamp: UnixTime {utSeconds = 1709901810, utMicroSeconds = 912080}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 3
+	|TX Service: Message "But can you do it?"
+	|TX Nonce: 54
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 10
+	|TX Service: Message "On display?"
+	|TX Nonce: 52
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: you
+	|TX Service: Message "yes I did"
+	|TX Nonce: 56
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 5
+	|TX Service: Message "Yes..."
+	|TX Nonce: 55
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 7
+	|TX Receiver: 8
+	|TX Service: Message "Yes."
+	|TX Nonce: 51
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 6
+	|TX Service: Message "Everything!"
+	|TX Nonce: 53
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 9
+	|TX Receiver: 7
+	|TX Service: Message "For a moment, nothing happened."
+	|TX Nonce: 57
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 8
+	|TX Service: Message "Lunchtime doubly so."
+	|TX Nonce: 54
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 4
+	|TX Service: Message "O Deep Thought computer"
+	|TX Nonce: 55
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "But the plans were on display"
+	|TX Nonce: 56
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: 3
+	|TX Service: Message "Is..."
+	|TX Nonce: 51
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 8
+	|TX Service: Message "do you have...er..."
+	|TX Nonce: 57
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 7
+	|TX Service: Message "Yes."
+	|TX Nonce: 58
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "The Answer to the Great Question..."
+	|TX Nonce: 59
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "Life!"
+	|TX Nonce: 60
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 6
+	|TX Service: Message "We want you to tell us...The Answer"
+	|TX Nonce: 61
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "Yes"
+	|TX Nonce: 62
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 8
+	|TX Service: Message "Forty-two, said Deep Thought, with infinite majesty and calm."
+	|TX Nonce: 63
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "But look"
+	|TX Nonce: 64
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "Beware of the Leopard"
+	|TX Nonce: 65
+	|---------------------------------------------------
+Block Validator: 1
+===================================================
+===================================================
+Block Index: 25
+Block Timestamp: UnixTime {utSeconds = 1709901811, utMicroSeconds = 542191}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 3
+	|TX Service: Message "This has made a lot of people very angry."
+	|TX Nonce: 66
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: 9
+	|TX Service: Message "Yes."
+	|TX Nonce: 69
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "The Universe!"
+	|TX Nonce: 67
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 3
+	|TX Service: Message "Is..."
+	|TX Nonce: 68
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 7
+	|TX Service: Message "All right"
+	|TX Nonce: 69
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "The Answer to what?"
+	|TX Nonce: 70
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 8
+	|TX Service: Message "Yes"
+	|TX Nonce: 71
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "It is a mistake to think you can solve any major problems just with potatoes."
+	|TX Nonce: 72
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "Yes...!"
+	|TX Nonce: 73
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "With a flashlight."
+	|TX Nonce: 74
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 9
+	|TX Service: Message "There really is one."
+	|TX Nonce: 75
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 10
+	|TX Service: Message "Forty-two"
+	|TX Nonce: 76
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "That's the display department."
+	|TX Nonce: 77
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "There really is one?"
+	|TX Nonce: 78
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "Good Morning"
+	|TX Nonce: 79
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 5
+	|TX Service: Message "Yes..."
+	|TX Nonce: 80
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 8
+	|TX Service: Message "Time is an illusion."
+	|TX Nonce: 81
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 4
+	|TX Service: Message "To Everything?"
+	|TX Nonce: 82
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: you
+	|TX Service: Message "An Answer for you?"
+	|TX Nonce: 83
+	|---------------------------------------------------
+	|---------------------------------------------------
+	|TX Sender: 1
+	|TX Receiver: 7
+	|TX Service: Message "Er..good morning, O Deep Thought"
+	|TX Nonce: 84
+	|---------------------------------------------------
+Block Validator: 1
+===================================================
+> Exiting...

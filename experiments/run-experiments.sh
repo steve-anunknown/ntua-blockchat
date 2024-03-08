@@ -25,7 +25,7 @@ do
     do
         workdir="${test}_outdir/capacity${cap}"
         if [ ! -d "$workdir" ]; then
-            mkdir "$workdir"
+            mkdir -p "$workdir"
         fi
 
         echo "$msg with capacity $cap"
