@@ -1,0 +1,50 @@
+t 2 Message Forty-two, said Deep Thought, with infinite majesty and calm.
+t 4 Message There really is one.
+t 4 Message There is an answer?
+t 4 Message Forty-two
+t 4 Message With a flashlight.
+t 2 Message Yes...
+t 1 Message Of Life, the Universe and Everything...
+t 2 Message Tricky
+t 4 Message To Everything?
+t 2 Message The Universe!
+t 2 Message This has made a lot of people very angry.
+t 2 Message All right
+t 2 Message I'd far rather be happy than right any day.
+t 1 Message Is...
+t 1 Message So had the stairs.
+t 1 Message In the beginning the Universe was created.
+t 2 Message But the plans were on display
+t 4 Message An Answer for you?
+t 1 Message Er..good morning, O Deep Thought
+t 4 Message Everything!
+t 5 Message For a moment, nothing happened.
+t 5 Message Life!
+t 5 Message That's the display department.
+t 1 Message There really is one?
+t 4 Message O Deep Thought computer
+t 4 Message Forty-two, said Deep Thought, with infinite majesty and calm.
+t 2 Message yes I did
+t 5 Message There is an answer?
+t 4 Message Forty-two
+t 4 Message Though I don't think that you're going to like it
+t 2 Message The Answer to what?
+t 2 Message Yes...
+t 1 Message Yes...!
+t 1 Message This has made a lot of people very angry.
+t 4 Message I'd far rather be happy than right any day.
+t 4 Message Yes
+t 2 Message On display?
+t 4 Message But can you do it?
+t 4 Message Is...
+t 4 Message Is...
+t 4 Message Don't panic
+t 4 Message So had the stairs.
+t 4 Message An Answer for you?
+t 4 Message We want you to tell us...The Answer
+t 1 Message do you have...er...
+t 2 Message Ah, well, the lights had probably gone.
+t 5 Message Lunchtime doubly so.
+t 5 Message O Deep Thought computer
+t 5 Message Lunchtime doubly so.
+t 5 Message O Deep Thought computer

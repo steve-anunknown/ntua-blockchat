@@ -1,0 +1,50 @@
+t 2 Message In the beginning the Universe was created.
+t 3 Message Don't panic
+t 2 Message Yes...
+t 3 Message Tricky
+t 4 Message Yes...!
+t 1 Message The Universe!
+t 4 Message But look
+t 2 Message That's the display department.
+t 2 Message There really is one?
+t 3 Message All right
+t 2 Message Everything!
+t 4 Message It is a mistake to think you can solve any major problems just with potatoes.
+t 4 Message To Everything?
+t 2 Message Beware of the Leopard
+t 3 Message Doesn't matter!
+t 3 Message With a flashlight.
+t 2 Message Nothing travels faster than the speed of light with the possible exception of bad news.
+t 1 Message We want you to tell us...The Answer
+t 4 Message Forty-two, said Deep Thought, with infinite majesty and calm.
+t 2 Message For a moment, nothing happened.
+t 4 Message I eventually had to go down to the cellar to find them.
+t 1 Message Yes
+t 4 Message Good Morning
+t 3 Message There is an answer?
+t 3 Message Don't panic
+t 4 Message Yes...
+t 3 Message I'd far rather be happy than right any day.
+t 1 Message Yes.
+t 3 Message Of Life, the Universe and Everything...
+t 1 Message The Universe!
+t 3 Message Lunchtime doubly so.
+t 2 Message That's the display department.
+t 4 Message There really is one?
+t 3 Message All right
+t 4 Message On display?
+t 1 Message To Everything?
+t 4 Message There really is one.
+t 4 Message The Answer to what?
+t 2 Message Beware of the Leopard
+t 3 Message Doesn't matter!
+t 3 Message But can you do it?
+t 4 Message Er..good morning, O Deep Thought
+t 4 Message Nothing travels faster than the speed of light with the possible exception of bad news.
+t 4 Message O Deep Thought computer
+t 4 Message For a moment, nothing happened.
+t 4 Message I eventually had to go down to the cellar to find them.
+t 1 Message Yes
+t 1 Message Ah, well, the lights had probably gone.
+t 2 Message Forty-two
+t 2 Message In the beginning the Universe was created.

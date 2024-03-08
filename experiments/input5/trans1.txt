@@ -1,0 +1,50 @@
+t 3 Message Lunchtime doubly so.
+t 2 Message But the plans were on display
+t 3 Message do you have...er...
+t 2 Message Yes
+t 2 Message But look
+t 2 Message Beware of the Leopard
+t 5 Message This has made a lot of people very angry.
+t 2 Message Is...
+t 3 Message All right
+t 5 Message Yes
+t 5 Message It is a mistake to think you can solve any major problems just with potatoes.
+t 5 Message Yes...!
+t 4 Message There really is one.
+t 3 Message That's the display department.
+t 5 Message Good Morning
+t 4 Message To Everything?
+t 2 Message But can you do it?
+t 3 Message I'd far rather be happy than right any day.
+t 3 Message Of Life, the Universe and Everything...
+t 5 Message Is...
+t 2 Message yes I did
+t 3 Message Don't panic
+t 4 Message O Deep Thought computer
+t 5 Message But the plans were on display
+t 2 Message The Answer to the Great Question...
+t 5 Message Life!
+t 2 Message But look
+t 3 Message This has made a lot of people very angry.
+t 2 Message The Universe!
+t 3 Message Is...
+t 2 Message The Answer to what?
+t 5 Message It is a mistake to think you can solve any major problems just with potatoes.
+t 2 Message With a flashlight.
+t 5 Message That's the display department.
+t 5 Message There really is one?
+t 5 Message Good Morning
+t 5 Message Yes...
+t 4 Message To Everything?
+t 2 Message An Answer for you?
+t 5 Message Of Life, the Universe and Everything...
+t 3 Message For a moment, nothing happened.
+t 4 Message Nothing travels faster than the speed of light with the possible exception of bad news.
+t 3 Message Lunchtime doubly so.
+t 2 Message But the plans were on display
+t 3 Message do you have...er...
+t 2 Message Yes
+t 2 Message But look
+t 2 Message Beware of the Leopard
+t 5 Message This has made a lot of people very angry.
+t 2 Message Is...

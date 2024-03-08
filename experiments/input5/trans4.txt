@@ -1,0 +1,50 @@
+t 3 Message The Answer to what?
+t 2 Message Forty-two
+t 2 Message It is a mistake to think you can solve any major problems just with potatoes.
+t 1 Message Tricky
+t 1 Message do you have...er...
+t 1 Message Beware of the Leopard
+t 5 Message This has made a lot of people very angry.
+t 2 Message There really is one?
+t 1 Message To Everything?
+t 5 Message An Answer for you?
+t 1 Message The Answer to the Great Question...
+t 3 Message On display?
+t 5 Message Though I don't think that you're going to like it
+t 1 Message I'd far rather be happy than right any day.
+t 3 Message Doesn't matter!
+t 2 Message Ah, well, the lights had probably gone.
+t 3 Message With a flashlight.
+t 2 Message Yes...!!!...?
+t 2 Message Life!
+t 5 Message Yes.
+t 5 Message For a moment, nothing happened.
+t 5 Message We want you to tell us...The Answer
+t 1 Message The Universe!
+t 5 Message Is...
+t 2 Message Good Morning
+t 1 Message There really is one.
+t 1 Message Everything!
+t 2 Message O Deep Thought computer
+t 3 Message Yes...
+t 5 Message The Answer to what?
+t 5 Message Forty-two
+t 2 Message It is a mistake to think you can solve any major problems just with potatoes.
+t 5 Message do you have...er...
+t 5 Message That's the display department.
+t 1 Message This has made a lot of people very angry.
+t 5 Message There really is one?
+t 3 Message To Everything?
+t 2 Message Doesn't matter!
+t 5 Message All right
+t 1 Message Is...
+t 3 Message Yes
+t 3 Message But look
+t 3 Message Forty-two, said Deep Thought, with infinite majesty and calm.
+t 5 Message Yes...!!!...?
+t 1 Message Life!
+t 2 Message Yes.
+t 1 Message yes I did
+t 3 Message For a moment, nothing happened.
+t 3 Message Er..good morning, O Deep Thought
+t 3 Message Don't panic
