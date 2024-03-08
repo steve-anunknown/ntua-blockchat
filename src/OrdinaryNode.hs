@@ -10,10 +10,10 @@ module OrdinaryNode
 where
 
 import Account
-  ( Account (accountBalance, accountStake),
+  ( Account (accountBalance, accountStake, accountNonce),
     initialAccount,
   )
-import Block (Block (..), broadcastBlock, createBlock, emptyBlock, validateBlock)
+import Block (Block (..), broadcastBlock, createBlock, emptyBlock, validateBlock, txIsUnique)
 import BootstrapNode (BootstrapNode (..))
 import CLI (CLIInfo (..), CLISharedState, shell)
 import Codec.Crypto.RSA (PublicKey (..))
@@ -45,7 +45,7 @@ import Control.Monad.Reader
 import Control.Monad.State (evalState)
 import Data.Binary (decode)
 import qualified Data.ByteString as BS
-import Data.IORef (newIORef, readIORef, writeIORef)
+import Data.IORef (newIORef, readIORef, writeIORef, atomicModifyIORef')
 import qualified Data.Map as Map
 import Data.Maybe (fromMaybe)
 import Data.RVar (sampleStateRVar)
@@ -183,19 +183,17 @@ nodeLogic bootstrap capacity = do
           processTXs' sharedState vTxs qTxs (accmap, fallback) = do
             when (length vTxs /= capacity) $ do
               tx <- atomically $ dequeueTQ qTxs
-              if validateTransaction tx accmap
-                then do
-                  let newaccs = updateAccsByTX tx accmap
-                      newacc = newaccs Map.! mypub
-                  myacc <- readIORef (snd sharedState)
-                  when (myacc /= newacc) $ writeIORef (snd sharedState) newacc
-                  processTXs' sharedState (tx : vTxs) qTxs (newaccs, fallback)
+              blockchain <- (readIORef . fst) sharedState
+              if validateTransaction tx accmap && txIsUnique tx blockchain
+                then
+                  processTXs' sharedState (tx : vTxs) qTxs (updateAccsByTX tx accmap, fallback)
                 else 
                   processTXs' sharedState vTxs qTxs (accmap, fallback)
             blockchain <- (readIORef . fst) sharedState
             (newblock, newaccs) <- mint (head blockchain) vTxs (accmap, fallback)
             writeIORef (fst sharedState) (newblock : blockchain)
-            writeIORef (snd sharedState) (newaccs Map.! mypub)
+            -- the cli is responsible for updating the account nonce
+            atomicModifyIORef' (snd sharedState) (\a -> ((newaccs Map.! mypub) {accountNonce = accountNonce a}, ()))
             processTXs' sharedState [] qTxs (newaccs, newaccs)
 
       getValidatorBlock :: Block -> PublicKey -> IO Block

@@ -11,7 +11,7 @@ import Account (Account (accountBalance, accountNonce))
 import Block (Block (..), Blockchain)
 import Codec.Crypto.RSA (PublicKey)
 import Control.Monad.Reader (MonadIO (liftIO), ReaderT, asks)
-import Data.IORef (IORef, readIORef)
+import Data.IORef (IORef, readIORef, atomicModifyIORef')
 import qualified Data.Map as Map
 import GHC.IO.Handle (hFlush)
 import Network.Simple.TCP (HostName, ServiceName)
@@ -50,6 +50,7 @@ sendTx recvID service myacc = do
       liftIO $ putStrLn $ "Sending " ++ show service ++ " to " ++ show recvID
       liftIO $ broadcastTransaction peers tx -- this handles the correct sending
 
+-- | Send a staking transaction to the network
 stake :: Double -> Account -> ReaderT CLIInfo IO () 
 stake coins myacc = do
   peers <- asks cliPeers
@@ -64,32 +65,45 @@ handle :: String -> CLISharedState -> ReaderT CLIInfo IO ()
 handle input shared = do
   let tokens = words input
       (blockref, accref) = shared
-  acc <- liftIO $ readIORef accref
   case tokens of
     ("t" : numStr : "Coins" : coinsStr : _) ->
       case (reads numStr, reads coinsStr) of
-        ([(num, "")], [(coins, "")]) -> sendTx num (Coins coins) acc
+        ([(num, "")], [(coins, "")]) -> do
+          liftIO $ atomicModifyIORef' accref (\a -> (a {accountNonce = accountNonce a + 1}, ()))
+          acc' <- liftIO $ readIORef accref
+          sendTx num (Coins coins) acc'
         _ -> liftIO $ putStrLn "Invalid command. Try entering 'help' for help."
     ("t" : numStr : "Message" : msgParts) ->
       case reads numStr of
-        [(num, "")] -> sendTx num (Message $ unwords msgParts) acc
+        [(num, "")] -> do
+          liftIO $ atomicModifyIORef' accref (\a -> (a {accountNonce = accountNonce a + 1}, ()))
+          acc' <- liftIO $ readIORef accref
+          sendTx num (Message $ unwords msgParts) acc'
         _ -> liftIO $ putStrLn "Invalid command. Try entering 'help' for help."
     ("t" : numStr : "Both" : coinsStr : "," : msgParts) ->
       case (reads numStr, reads coinsStr) of
-        ([(num, "")], [(coins, "")]) -> sendTx num (Both (coins, unwords msgParts)) acc
+        ([(num, "")], [(coins, "")]) -> do
+          liftIO $ atomicModifyIORef' accref (\a -> (a {accountNonce = accountNonce a + 1}, ()))
+          acc' <- liftIO $ readIORef accref
+          sendTx num (Both (coins, unwords msgParts)) acc'
         _ -> liftIO $ putStrLn "Invalid command. Try entering 'help' for help."
     ("stake" : coinsStr : _) ->
       case reads coinsStr of
-        [(coins, "")] -> stake coins acc
+        [(coins, "")] -> do
+          liftIO $ atomicModifyIORef' accref (\a -> (a {accountNonce = accountNonce a + 1}, ()))
+          acc' <- liftIO $ readIORef accref
+          stake coins acc'
         _ -> liftIO $ putStrLn "Invalid command. Try entering 'help' for help."
     ["view"] -> do
       blockchain <- liftIO $ readIORef blockref
       prettyPrintBlock (head blockchain)
     ["blockchain"] -> do
-      liftIO $ threadDelay 1000000
+      liftIO $ threadDelay 1000000 -- just for testing purposes
       blockchain <- liftIO $ readIORef blockref
       prettyPrintBlockchain $ reverse blockchain
-    ["balance"] -> liftIO $ print (accountBalance acc)
+    ["balance"] -> do
+      acc <- liftIO $ readIORef accref
+      liftIO $ print (accountBalance acc)
     ["peers"] -> do
       keymap <- asks cliIDtoKey
       liftIO $ prettyPrintPeers keymap
@@ -117,8 +131,8 @@ handle input shared = do
 -- | The main shell of the CLI
 shell :: CLISharedState -> ReaderT CLIInfo IO ()
 shell shared = do
-  liftIO $ putStrLn "Welcome to the shell!"
-  liftIO $ putStrLn "Type 'help' to ask for .. help."
+  liftIO $ putStrLn "Welcome to (the s)hell!"
+  liftIO $ putStrLn "Type 'help' to ask for help."
   loop
   where
     loop :: ReaderT CLIInfo IO ()
@@ -129,7 +143,7 @@ shell shared = do
         Nothing -> CLI.handle "exit" shared
         Just line -> CLI.handle line shared >> loop
 
--- Function to safely attempt reading a line, returning Nothing on EOF
+-- | Function to safely attempt reading a line, returning Nothing on EOF
 safeGetLine :: IO (Maybe String)
 safeGetLine = fmap Just getLine `catch` eofHandler
   where
