@@ -8,6 +8,7 @@ module Block
     validateBlock,
     emptyBlock,
     broadcastBlock,
+    txIsUnique,
   )
 where
 
@@ -124,3 +125,8 @@ broadcastBlock peers block = mapM_ sendBlock peers
     msg = BS.append blockMsgHeader $ encodeStrict block
     sendBlock :: (HostName, ServiceName) -> IO ()
     sendBlock (host, port) = connect host port $ \(sock, _) -> send sock msg
+
+-- | This function takes a transaction and a blockchain and returns True if the transaction is unique.
+-- A transaction is unique if it is not present in any of the blocks in the blockchain.
+txIsUnique :: Transaction -> Blockchain -> Bool
+txIsUnique tx = all (notElem tx . blockTransactions) 
