@@ -63,6 +63,7 @@ stake coins myacc = do
 -- | Handle the input from the user
 handle :: String -> CLISharedState -> ReaderT CLIInfo IO ()
 handle input shared = do
+  liftIO $ threadDelay 10000 -- 0.01s just for testing purposes
   let tokens = words input
       (blockref, accref) = shared
   case tokens of
@@ -98,7 +99,7 @@ handle input shared = do
       blockchain <- liftIO $ readIORef blockref
       prettyPrintBlock (head blockchain)
     ["blockchain"] -> do
-      liftIO $ threadDelay 1000000 -- just for testing purposes
+      liftIO $ threadDelay 1000000 -- 1s just for testing purposes
       blockchain <- liftIO $ readIORef blockref
       prettyPrintBlockchain $ reverse blockchain
     ["balance"] -> do
