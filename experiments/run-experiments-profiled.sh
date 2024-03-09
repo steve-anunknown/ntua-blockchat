@@ -3,7 +3,7 @@
 LOCALHOST="127.0.0.1"
 PORT="35900"
 EXEC="BlockChat-exe"
-SUFFIX="profiled_txdelayed_less_morecaps"
+SUFFIX="profiled_outputs/profiled_txdelayed_less_morecaps"
 
 # Compile the program with profiling enabled
 stack clean
@@ -50,15 +50,14 @@ for test in  "scalability"; do
         } 2> "$workdir/time.log"
     done
 done
-exit
 
 # Run the fairness test
 if [ ! -d "fairness_outdir_${SUFFIX}" ]; then
     mkdir fairness_outdir_${SUFFIX}
 fi
 
-nodes="5"
 cap="5"
+nodes="5"
 unfair_stake="stake 100"
 input="input${nodes}"
 
