@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+import sys
 
 
 def find_in(lines, pattern):
@@ -31,18 +32,27 @@ def parse_header(filename):
 
 
 if __name__ == '__main__':
-    DIRECTORIES = ["throughput_outdir_profiled", "scalability_outdir_profiled",
-                   "throughput_outdir_profiled_txdelayed",
-                   "scalability_outdir_profiled_txdelayed",
-                   "throughput_outdir_profiled_txdelayed_less",
-                   "scalability_outdir_profiled_txdelayed_less"]
+    # make sure that pwd is "experiments"
+    BASEDIR = os.getcwd()
+    PROFILED = "profiled_outputs"
+    if os.getcwd().split("/")[-1] != "experiments":
+        print("Please run this script from the experiments directory")
+        sys.exit(1)
+
+    if not PROFILED in os.listdir(os.getcwd()):
+        print("No profiled_outputs directory found in the current directory")
+        sys.exit(1)
+
+    DIRECTORIES = os.listdir(PROFILED)
+
     for direc in DIRECTORIES:
+        os.chdir(PROFILED)
         subdirs = os.listdir(direc)
         for filedir in subdirs:
             if not filedir.startswith("capacity"):
                 continue
-            upper = 6 if direc.startswith("throughput") else 11
-            FILENAMES = [f"{direc}/{filedir}/node{i}.prof.prof" for i in range(1, upper)]
+            upper = 11 if direc.startswith("scalability") else 6
+            FILENAMES = [f'{BASEDIR}/{PROFILED}/{direc}/{filedir}/node{i}.prof.prof' for i in range(1, upper)]
             dicts = [parse_header(filename) for filename in FILENAMES]
             # keep the keys that are common to all dictionaries
             all_keys = [set(d.keys()) for d in dicts]
@@ -74,5 +84,6 @@ if __name__ == '__main__':
             plt.xlabel("Cost center")
             plt.ylabel("Percentage of total execution time")
             plt.grid()
-            plt.savefig(f'{direc}/{filedir}/average-cost-centers-{filedir}.png')
+            plt.savefig(f'{BASEDIR}/{PROFILED}/{direc}/{filedir}/average-cost-centers-{filedir}.png')
             plt.close()
+        os.chdir('..')
