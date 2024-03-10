@@ -44,8 +44,7 @@ for directory in os.listdir():
         pivoted = pivoted.reindex(sorted(pivoted.index, key=lambda x: int(x.split("node")[1])))
 
         # Plot a bar plot for each function
-        for function in funclist:
-            plt.bar(pivoted.index, pivoted[function], label=function)
+        pivoted.plot(kind="bar", rot=30, figsize=(12, 7))
 
         # Add a legend
         plt.legend()
