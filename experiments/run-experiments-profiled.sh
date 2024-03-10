@@ -3,7 +3,8 @@
 LOCALHOST="127.0.0.1"
 PORT="35900"
 EXEC="BlockChat-exe"
-SUFFIX="profiled_outputs/profiled_txdelayed_less_morecaps"
+PREFIX="profiled_outputs"
+SUFFIX="" # <- modify this if you want to add a suffix to the output directory to indicate a different experiment
 
 # Compile the program with profiling enabled
 stack clean
@@ -12,7 +13,7 @@ stack build --profile
 nodes="5"
 capacity=("5" "10" "20" "25" "50")
 initial_stake="stake 10"
-for test in  "scalability"; do
+for test in  "scalability" "throughput"; do
     if [ "$test" = "throughput" ]; then
         nodes="5"
     elif [ "$test" = "scalability" ]; then
@@ -25,7 +26,7 @@ for test in  "scalability"; do
     msg="Running $test test"
     for cap in "${capacity[@]}"; do
 
-        workdir="${test}_outdir_${SUFFIX}/capacity${cap}"
+        workdir="${PREFIX}/${test}${SUFFIX}/capacity${cap}"
         if [ ! -d "$workdir" ]; then
             mkdir -p "$workdir"
         fi
@@ -52,8 +53,8 @@ for test in  "scalability"; do
 done
 
 # Run the fairness test
-if [ ! -d "fairness_outdir_${SUFFIX}" ]; then
-    mkdir fairness_outdir_${SUFFIX}
+if [ ! -d "${PREFIX}/fairness${SUFFIX}" ]; then
+    mkdir "${PREFIX}/fairness${SUFFIX}"
 fi
 
 cap="5"
@@ -67,7 +68,7 @@ echo -e "\t$command"
 $command &
 sleep 1
 
-workdir="fairness_outdir/capacity${cap}"
+workdir="fairness${SUFFIX}/capacity${cap}"
 if [ ! -d "$workdir" ]; then
     mkdir "$workdir"
 fi
