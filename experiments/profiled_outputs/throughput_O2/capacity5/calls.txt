@@ -1,0 +1,15 @@
+throughput_O2/capacity5/node1.prof.prof:, nodeLogic.processTXs.processTXs', OrdinaryNode,  12833, 266, 0.1, 0.0, 8.6, 9.3
+throughput_O2/capacity5/node1.prof.prof:, validateTransaction, Transaction,  13780, 224, 0.0, 0.0, 6.1, 6.7
+throughput_O2/capacity5/node1.prof.prof:, nodeLogic.mint', OrdinaryNode,  14363, 41, 0.0, 0.0, 1.8, 2.6
+throughput_O2/capacity5/node2.prof.prof:, nodeLogic.processTXs.processTXs', OrdinaryNode,  12833, 266, 0.2, 0.0, 8.5, 7.0
+throughput_O2/capacity5/node2.prof.prof:, validateTransaction, Transaction,  13784, 224, 0.0, 0.0, 5.8, 5.2
+throughput_O2/capacity5/node2.prof.prof:, nodeLogic.mint', OrdinaryNode,  14367, 41, 0.0, 0.0, 1.8, 1.8
+throughput_O2/capacity5/node3.prof.prof:, nodeLogic.processTXs.processTXs', OrdinaryNode,  12832, 266, 0.1, 0.0, 8.8, 9.2
+throughput_O2/capacity5/node3.prof.prof:, validateTransaction, Transaction,  13784, 224, 0.0, 0.0, 5.9, 6.2
+throughput_O2/capacity5/node3.prof.prof:, nodeLogic.mint', OrdinaryNode,  14367, 41, 0.0, 0.0, 1.9, 3.0
+throughput_O2/capacity5/node4.prof.prof:, nodeLogic.processTXs.processTXs', OrdinaryNode,  12833, 265, 0.1, 0.0, 10.7, 11.6
+throughput_O2/capacity5/node4.prof.prof:, validateTransaction, Transaction,  13730, 224, 0.0, 0.0, 8.5, 9.3
+throughput_O2/capacity5/node4.prof.prof:, nodeLogic.mint', OrdinaryNode,  14367, 40, 0.0, 0.0, 1.7, 2.3
+throughput_O2/capacity5/node5.prof.prof:, nodeLogic.processTXs.processTXs', OrdinaryNode,  12832, 265, 0.3, 0.0, 12.0, 11.7
+throughput_O2/capacity5/node5.prof.prof:, validateTransaction, Transaction,  13780, 224, 0.1, 0.0, 8.2, 7.7
+throughput_O2/capacity5/node5.prof.prof:, nodeLogic.mint', OrdinaryNode,  14363, 40, 0.0, 0.0, 2.9, 4.0
