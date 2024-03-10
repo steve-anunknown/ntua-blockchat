@@ -63,7 +63,7 @@ stake coins myacc = do
 -- | Handle the input from the user
 handle :: String -> CLISharedState -> ReaderT CLIInfo IO ()
 handle input shared = do
-  liftIO $ threadDelay 10000 -- 0.01s just for testing purposes
+  liftIO $ threadDelay 100000 -- 0.1s just for testing purposes
   let tokens = words input
       (blockref, accref) = shared
   case tokens of
