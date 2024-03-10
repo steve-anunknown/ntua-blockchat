@@ -6,13 +6,13 @@ EXEC="BlockChat-exe"
 PREFIX="profiled_outputs"
 SUFFIX="" # <- modify this if you want to add a suffix to the output directory to indicate a different experiment
 
-# Compile the program with profiling enabled
+# Compile the program with profiling enabled (and optimized)
 stack clean
 stack build --profile
 
-nodes="5"
-capacity=("5" "10" "20" "25" "50")
 initial_stake="stake 10"
+nodes="5"
+capacity=("5" "10" "20")
 for test in  "scalability" "throughput"; do
     if [ "$test" = "throughput" ]; then
         nodes="5"
@@ -49,6 +49,13 @@ for test in  "scalability" "throughput"; do
             done
             wait
         } 2> "$workdir/time.log"
+        # if stderrs are empty delete them
+        for i in $(seq 1 $nodes); do
+            stderr_log="$workdir/node${i}_stderr.log"
+            if [ ! -s "$stderr_log" ]; then
+                rm "$stderr_log"
+            fi
+        done
     done
 done
 
@@ -63,12 +70,12 @@ unfair_stake="stake 100"
 input="input${nodes}"
 
 echo "Running fairness test with capacity $cap"
-command="stack run -- --bootstrap $LOCALHOST $PORT $nodes"
+command="stack exec --profile -- $EXEC --bootstrap $LOCALHOST $PORT $nodes +RTS -p -RTS"
 echo -e "\t$command"
 $command &
 sleep 1
 
-workdir="fairness${SUFFIX}/capacity${cap}"
+workdir="${PREFIX}/fairness${SUFFIX}/capacity${cap}"
 if [ ! -d "$workdir" ]; then
     mkdir "$workdir"
 fi
@@ -76,9 +83,9 @@ stdout_log="$workdir/node1_stdout.log"
 stderr_log="$workdir/node1_stderr.log"
 prof_log="$workdir/node1.prof"  # profiling output file
 
-command="stack run -- +RTS -p -o $prof_log -RTS --node $LOCALHOST $((PORT + 1)) $LOCALHOST $((PORT)) $cap"
+command="stack exec --profile -- $EXEC --node $LOCALHOST $((PORT + 1)) $LOCALHOST $((PORT)) $cap +RTS -p -po${prof_log} -RTS"
 echo -e "\t$command"
-(cat <(echo "$unfair_stake") <(echo "load $input/trans1.txt") <(echo "balance") | $command) > "$stdout_log" 2> "$stderr_log" &
+(cat <(echo "$unfair_stake") <(echo "load $input/trans1.txt") <(echo "blockchain") <(echo "balance") | $command) > "$stdout_log" 2> "$stderr_log" &
 
 {
     time for i in $(seq 2 $nodes); do
@@ -86,12 +93,19 @@ echo -e "\t$command"
         stderr_log="$workdir/node${i}_stderr.log"
         prof_log="$workdir/node${i}.prof"  # profiling output file
 
-        command="stack run -- +RTS -p -o $prof_log -RTS --node $LOCALHOST $((PORT + i)) $LOCALHOST $((PORT)) $cap"
+        command="stack exec --profile -- $EXEC --node $LOCALHOST $((PORT + i)) $LOCALHOST $((PORT)) $cap +RTS -p -po${prof_log} -RTS"
         echo -e "\t$command"
-        (cat <(echo "$initial_stake") <(echo "load input${nodes}/trans${i}.txt") <(echo "blockchain") | $command) > "$stdout_log" 2> "$stderr_log" &
+        (cat <(echo "$initial_stake") <(echo "load input${nodes}/trans${i}.txt") <(echo "blockchain") <(echo "balance")| $command) > "$stdout_log" 2> "$stderr_log" &
         sleep 0.1
     done
     wait
 } 2> "$workdir/time.log"
+# if stderrs are empty delete them
+for i in $(seq 1 $nodes); do
+    stderr_log="$workdir/node${i}_stderr.log"
+    if [ ! -s "$stderr_log" ]; then
+        rm "$stderr_log"
+    fi
+done
 
 
