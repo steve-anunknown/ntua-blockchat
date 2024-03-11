@@ -4,7 +4,7 @@ LOCALHOST="127.0.0.1"
 PORT="35900"
 EXEC="BlockChat-exe"
 PREFIX="profiled_outputs"
-SUFFIX="" # <- modify this if you want to add a suffix to the output directory to indicate a different experiment
+SUFFIX="del100ms" # <- modify this if you want to add a suffix to the output directory to indicate a different experiment
 
 # Compile the program with profiling enabled (and optimized)
 stack clean
@@ -45,7 +45,7 @@ for test in  "scalability" "throughput"; do
                 command="stack exec --profile -- $EXEC --node $LOCALHOST $((PORT + i)) $LOCALHOST $((PORT)) $cap +RTS -p -po${prof_log} -RTS"
                 echo -e "\t$command"
                 (cat <(echo "$initial_stake") <(echo "load input${nodes}/trans${i}.txt") <(echo "blockchain") | $command) > "$stdout_log" 2> "$stderr_log" &
-                sleep 0.1
+                sleep 1
             done
             wait
         } 2> "$workdir/time.log"
@@ -96,7 +96,7 @@ echo -e "\t$command"
         command="stack exec --profile -- $EXEC --node $LOCALHOST $((PORT + i)) $LOCALHOST $((PORT)) $cap +RTS -p -po${prof_log} -RTS"
         echo -e "\t$command"
         (cat <(echo "$initial_stake") <(echo "load input${nodes}/trans${i}.txt") <(echo "blockchain") <(echo "balance")| $command) > "$stdout_log" 2> "$stderr_log" &
-        sleep 0.1
+        sleep 1
     done
     wait
 } 2> "$workdir/time.log"
