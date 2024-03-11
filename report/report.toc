@@ -1,0 +1,37 @@
+\babel@toc {greek}{}\relax 
+\contentsline {part}{{\fontencoding {OT1}\selectfont I}\hspace {1em}Σχεδιασμός Συστήματος}{3}{part.1}%
+\contentsline {section}{\numberline {1}Δεν είμαι σίγουρος}{3}{section.1}%
+\contentsline {part}{{\fontencoding {OT1}\selectfont II}\hspace {1em}Πειράματα}{4}{part.2}%
+\contentsline {section}{\numberline {2}Απόδοση του συστήματος}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Ρυθμαπόδοση}{4}{subsection.2.1}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\contentsline {subsection}{\numberline {2.2}\foreignlanguage {english}{Block Time}}{8}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Κλιμακωσιμότητα του συστήματος}{10}{section.3}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\contentsline {section}{\numberline {4}Δικαιοσύνη}{16}{section.4}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
