@@ -1,0 +1,16 @@
+File, Function, Calls, TimeInh, MemInh
+node1.prof, processTXs', 265, 12.1, 16.5
+node1.prof, validateTransaction, 255, 8.0, 9.5
+node1.prof, mint', 9, 3.1, 6.9
+node2.prof, processTXs', 265, 9.0, 11.4
+node2.prof, validateTransaction, 255, 7.0, 8.3
+node2.prof, mint', 9, 1.3, 3.1
+node3.prof, processTXs', 265, 8.5, 9.3
+node3.prof, validateTransaction, 255, 6.7, 7.8
+node3.prof, mint', 9, 0.9, 1.5
+node4.prof, processTXs', 265, 11.8, 13.9
+node4.prof, validateTransaction, 255, 8.8, 10.1
+node4.prof, mint', 9, 1.8, 3.8
+node5.prof, processTXs', 264, 9.4, 10.7
+node5.prof, validateTransaction, 255, 8.1, 10.6
+node5.prof, mint', 8, 0.0, 0.0

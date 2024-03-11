@@ -1,0 +1,16 @@
+File, Function, Module, Number, Calls, TimeInd, MemInd, TimeInh, MemInh
+node1.prof, processTXs', OrdinaryNode,  12834, 301, 0.0, 0.0, 10.0, 12.6
+node1.prof, validateTransaction, Transaction,  13785, 255, 0.0, 0.0, 6.9, 9.8
+node1.prof, mint', OrdinaryNode,  14370, 45, 0.0, 0.0, 2.0, 2.8
+node2.prof, processTXs', OrdinaryNode,  12833, 301, 0.3, 0.0, 10.0, 12.3
+node2.prof, validateTransaction, Transaction,  13789, 255, 0.0, 0.0, 5.5, 7.7
+node2.prof, mint', OrdinaryNode,  14374, 45, 0.0, 0.0, 2.4, 4.6
+node3.prof, processTXs', OrdinaryNode,  12833, 301, 0.1, 0.0, 10.4, 12.8
+node3.prof, validateTransaction, Transaction,  13781, 255, 0.0, 0.0, 7.0, 9.0
+node3.prof, mint', OrdinaryNode,  14374, 45, 0.0, 0.0, 2.0, 3.8
+node4.prof, processTXs', OrdinaryNode,  12834, 301, 0.0, 0.0, 11.7, 12.8
+node4.prof, validateTransaction, Transaction,  13789, 255, 0.0, 0.0, 8.7, 9.8
+node4.prof, mint', OrdinaryNode,  14374, 45, 0.0, 0.0, 1.5, 3.0
+node5.prof, processTXs', OrdinaryNode,  12829, 301, 0.2, 0.0, 12.8, 12.8
+node5.prof, validateTransaction, Transaction,  13727, 255, 0.0, 0.0, 8.2, 9.8
+node5.prof, mint', OrdinaryNode,  14370, 45, 0.0, 0.0, 2.4, 3.0
