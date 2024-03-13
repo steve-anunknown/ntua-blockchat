@@ -63,7 +63,7 @@ stake coins myacc = do
 -- | Handle the input from the user
 handle :: String -> CLISharedState -> ReaderT CLIInfo IO ()
 handle input shared = do
-  liftIO $ threadDelay 100000 -- 0.1s just for testing purposes
+  liftIO $ threadDelay 100000 -- just for testing
   let tokens = words input
       (blockref, accref) = shared
   case tokens of
@@ -99,9 +99,9 @@ handle input shared = do
       blockchain <- liftIO $ readIORef blockref
       prettyPrintBlock (head blockchain)
     ["blockchain"] -> do
-      liftIO $ threadDelay 1000000 -- 1s just for testing purposes
+      liftIO $ threadDelay 5000000 -- just for testing
       blockchain <- liftIO $ readIORef blockref
-      prettyPrintBlockchain $ reverse blockchain
+      prettyPrintBlockchain blockchain
     ["balance"] -> do
       acc <- liftIO $ readIORef accref
       liftIO $ print (accountBalance acc)
@@ -113,8 +113,7 @@ handle input shared = do
       -- execute each line of the file as a command
       contents <- liftIO $ readFile filename
       mapM_ (`CLI.handle` shared) (lines contents)
-    ["exit"] -> -- wait a bit and then exit
-      liftIO $ putStrLn "Exiting..." >> exitSuccess
+    ["exit"] -> liftIO $ putStrLn "Exiting .." >> exitSuccess
     ["help"] -> do
       liftIO $ putStrLn "t <recipient id> Coins <coins>          - send coins"
       liftIO $ putStrLn "t <recipient id> Message <msg>          - send message"
@@ -154,7 +153,7 @@ safeGetLine = fmap Just getLine `catch` eofHandler
       | otherwise = throwIO e
 
 prettyPrintBlockchain :: Blockchain -> ReaderT CLIInfo IO ()
-prettyPrintBlockchain = mapM_ prettyPrintBlock
+prettyPrintBlockchain = mapM_ prettyPrintBlock . reverse
 
 prettyPrintBlock :: Block -> ReaderT CLIInfo IO ()
 prettyPrintBlock block = do
