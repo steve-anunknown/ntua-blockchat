@@ -6,7 +6,7 @@ import sys
 # Define column names
 column_names = ["node", "function", "module", "number", "calls", "time-individual", "mem-individual", "time-inherited", "mem-inherited"]
 
-funclist = [" nodeLogic.processTXs.processTXs'", " validateTransaction", " nodeLogic.mint'"]
+# funclist = [" nodeLogic.processTXs.processTXs'", " validateTransaction", "txIsUnique", " nodeLogic.mint'"]
 
 # Initialize an empty dataframe
 df = pd.DataFrame(columns=column_names)
@@ -45,14 +45,21 @@ for directory in os.listdir():
 
         # Plot a bar plot for each function
         pivoted.plot(kind="bar", rot=30, figsize=(12, 7))
-
-        # Add a legend
         plt.legend()
+
         # horizontal grid lines
         plt.grid(axis="y")
         plt.xlabel("Node")
         plt.ylabel("Percentage of total execution time")
         plt.title(f"Execution time per function per node ({capacity})")
+        # also calculate the mean time per function
+        # and plot it as a horizontal line
+        for function in pivoted.columns:
+            mean_time = pivoted[function].mean()
+            # plot the mean time as a horizontal line
+            # each function should have the same color as the corresponding bar
+            plt.axhline(y=mean_time, color='black', linestyle="--")
+
         plt.savefig(f"times_of_function_per_node_{capacity}.png")
         # Show the plot
         # plt.show()

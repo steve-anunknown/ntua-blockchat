@@ -1,0 +1,2 @@
+File, Time, Calls to txIsUnique, Throughput
+File,, 0.75, 511, =

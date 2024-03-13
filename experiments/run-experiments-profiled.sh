@@ -4,7 +4,7 @@ LOCALHOST="127.0.0.1"
 PORT="35900"
 EXEC="BlockChat-exe"
 PREFIX="profiled_outputs"
-SUFFIX="del100ms" # <- modify this if you want to add a suffix to the output directory to indicate a different experiment
+SUFFIX="_proper" # <- modify this if you want to add a suffix to the output directory to indicate a different experiment
 
 # Compile the program with profiling enabled (and optimized)
 stack clean
@@ -13,7 +13,7 @@ stack build --profile
 initial_stake="stake 10"
 nodes="5"
 capacity=("5" "10" "20")
-for test in  "scalability" "throughput"; do
+for test in "throughput" "scalability"; do
     if [ "$test" = "throughput" ]; then
         nodes="5"
     elif [ "$test" = "scalability" ]; then
@@ -44,7 +44,9 @@ for test in  "scalability" "throughput"; do
                 prof_log="$workdir/node${i}.prof"  # profiling output file
                 command="stack exec --profile -- $EXEC --node $LOCALHOST $((PORT + i)) $LOCALHOST $((PORT)) $cap +RTS -p -po${prof_log} -RTS"
                 echo -e "\t$command"
-                (cat <(echo "$initial_stake") <(echo "load input${nodes}/trans${i}.txt") <(echo "blockchain") | $command) > "$stdout_log" 2> "$stderr_log" &
+                (cat <(echo "$initial_stake") \
+                     <(echo "load input${nodes}/trans${i}.txt") \
+                     <(echo "blockchain") | $command) > "$stdout_log" 2> "$stderr_log" &
                 sleep 1
             done
             wait
@@ -85,7 +87,7 @@ prof_log="$workdir/node1.prof"  # profiling output file
 
 command="stack exec --profile -- $EXEC --node $LOCALHOST $((PORT + 1)) $LOCALHOST $((PORT)) $cap +RTS -p -po${prof_log} -RTS"
 echo -e "\t$command"
-(cat <(echo "$unfair_stake") <(echo "load $input/trans1.txt") <(echo "blockchain") <(echo "balance") | $command) > "$stdout_log" 2> "$stderr_log" &
+(cat <(echo "$unfair_stake") <(echo "load $input/trans1.txt") <(echo "blockchain") | $command) > "$stdout_log" 2> "$stderr_log" &
 
 {
     time for i in $(seq 2 $nodes); do
@@ -95,7 +97,9 @@ echo -e "\t$command"
 
         command="stack exec --profile -- $EXEC --node $LOCALHOST $((PORT + i)) $LOCALHOST $((PORT)) $cap +RTS -p -po${prof_log} -RTS"
         echo -e "\t$command"
-        (cat <(echo "$initial_stake") <(echo "load input${nodes}/trans${i}.txt") <(echo "blockchain") <(echo "balance")| $command) > "$stdout_log" 2> "$stderr_log" &
+        (cat <(echo "$initial_stake") \
+             <(echo "load input${nodes}/trans${i}.txt") \
+             <(echo "blockchain") | $command) > "$stdout_log" 2> "$stderr_log" &
         sleep 1
     done
     wait

@@ -1,0 +1,5 @@
+profiled_outputs/throughput_del100_morecaps/capacity25/node1.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14353 229 0.0 0.0 0.7 0.0
+profiled_outputs/throughput_del100_morecaps/capacity25/node2.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14349 229 0.1 0.0 0.6 0.0
+profiled_outputs/throughput_del100_morecaps/capacity25/node3.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14295 227 0.0 0.0 0.7 0.0
+profiled_outputs/throughput_del100_morecaps/capacity25/node4.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14349 227 0.2 0.0 1.0 0.0
+profiled_outputs/throughput_del100_morecaps/capacity25/node5.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14349 222 0.1 0.0 0.6 0.0

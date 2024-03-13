@@ -1,0 +1,6 @@
+node1.prof:	total time  = 0.27 secs   (997 ticks @ 1000 us, 8 processors)
+node2.prof:	total time  = 0.37 secs   (1361 ticks @ 1000 us, 8 processors)
+node3.prof:	total time  = 0.24 secs   (894 ticks @ 1000 us, 8 processors)
+node4.prof:	total time  = 0.29 secs   (1063 ticks @ 1000 us, 8 processors)
+node5.prof:	total time  = 0.24 secs   (883 ticks @ 1000 us, 8 processors)
+Total time = 1.41
