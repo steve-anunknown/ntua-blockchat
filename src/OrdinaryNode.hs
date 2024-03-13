@@ -204,7 +204,9 @@ nodeLogic bootstrap capacity = do
 
       mint' :: [Peer] -> Block -> [Transaction] -> (PubKeyToAcc, PubKeyToAcc) -> IO (Block, PubKeyToAcc)
       mint' peers lastBlock vTxs (accountMap, fallback) = do
-        let accs = Map.elems accountMap
+        let -- the stake has to be taken from the fallback state
+            -- because subsequent states are not validated
+            accs = Map.elems fallback
             weights = zip (map accountStake accs) [1 ..]
 
             prevhash = blockPreviousHash lastBlock
