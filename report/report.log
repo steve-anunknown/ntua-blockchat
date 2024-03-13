@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.1)  11 MAR 2024 19:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.1)  13 MAR 2024 13:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -596,6 +596,13 @@ Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
 \verbatim@line=\toks27
 \verbatim@in@stream=\read3
 )
+(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box54
+\sift@deathcycles=\count291
+\@vwid@loff=\dimen170
+\@vwid@roff=\dimen171
+)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
 
@@ -634,9 +641,9 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
-\@linkdim=\dimen170
-\Hy@linkcounter=\count291
-\Hy@pagecounter=\count292
+\@linkdim=\dimen172
+\Hy@linkcounter=\count292
+\Hy@pagecounter=\count293
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
@@ -653,7 +660,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count293
+\Hy@SavedSpaceFactor=\count294
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
@@ -671,14 +678,14 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count294
+\c@Hy@tempcnt=\count295
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4804.
-\XeTeXLinkMargin=\dimen171
+\XeTeXLinkMargin=\dimen173
 
 (/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -687,9 +694,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count295
-\Field@Width=\dimen172
-\Fld@charsize=\dimen173
+\Fld@menulength=\count296
+\Field@Width=\dimen174
+\Fld@charsize=\dimen175
 Package hyperref Info: Hyper figures OFF on input line 6076.
 Package hyperref Info: Link nesting OFF on input line 6081.
 Package hyperref Info: Hyper index ON on input line 6084.
@@ -704,9 +711,9 @@ LaTeX Info: Redefining \pageref on input line 6150.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count296
-\c@Item=\count297
-\c@Hfootnote=\count298
+\Hy@abspage=\count297
+\c@Item=\count298
+\c@Hfootnote=\count299
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -718,8 +725,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count299
-\c@bookmark@seq@number=\count300
+\Fld@listcount=\count300
+\c@bookmark@seq@number=\count301
 
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
@@ -743,7 +750,7 @@ Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
 \XKV@toks=\toks28
 \XKV@tempa@toks=\toks29
 )
-\XKV@depth=\count301
+\XKV@depth=\count302
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
@@ -754,11 +761,11 @@ Package: xfor 2009/02/05 v1.05 (NLCT)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/substr/substr.sty
 Package: substr 2009/10/20 v1.2 Handle substrings
-\c@su@anzahl=\count302
+\c@su@anzahl=\count303
 )
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count303
+\etb@tempcnta=\count304
 )
 (/usr/share/texlive/texmf-dist/tex/latex/datatool/datatool-base.sty
 Package: datatool-base 2019/09/27 v2.32 (NLCT)
@@ -772,19 +779,19 @@ Package: fp 1995/04/02
 `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
 (/usr/share/texlive/texmf-dist/tex/latex/fp/defpattern.sty
 Package: defpattern 1994/10/12
-\actioncount=\count304
+\actioncount=\count305
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-basic.sty
 Package: fp-basic 1996/05/13
-\FP@xs=\count305
-\FP@xia=\count306
-\FP@xib=\count307
-\FP@xfa=\count308
-\FP@xfb=\count309
-\FP@rega=\count310
-\FP@regb=\count311
-\FP@regs=\count312
-\FP@times=\count313
+\FP@xs=\count306
+\FP@xia=\count307
+\FP@xib=\count308
+\FP@xfa=\count309
+\FP@xfb=\count310
+\FP@rega=\count311
+\FP@regb=\count312
+\FP@regs=\count313
+\FP@times=\count314
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-addons.sty
 Package: fp-addons 1995/03/15
@@ -803,7 +810,7 @@ Package: fp-pas 1994/08/29
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-random.sty
 Package: fp-random 1995/02/23
-\FPseed=\count314
+\FPseed=\count315
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eqn.sty
 Package: fp-eqn 1995/04/03
@@ -815,31 +822,31 @@ Package: fp-upn 1996/10/21
 Package: fp-eval 1995/04/03
 )))
 \@dtl@toks=\toks30
-\@dtl@tmpcount=\count315
+\@dtl@tmpcount=\count316
 \dtl@tmplength=\skip53
-\dtl@sortresult=\count316
-\@dtl@numgrpsepcount=\count317
-\@dtl@datatype=\count318
-\dtl@codeA=\count319
-\dtl@codeB=\count320
-\@dtl@foreach@level=\count321
+\dtl@sortresult=\count317
+\@dtl@numgrpsepcount=\count318
+\@dtl@datatype=\count319
+\dtl@codeA=\count320
+\dtl@codeB=\count321
+\@dtl@foreach@level=\count322
 )
-\dtlcolumnnum=\count322
-\dtlrownum=\count323
+\dtlcolumnnum=\count323
+\dtlrownum=\count324
 \@dtl@before=\toks31
 \@dtl@after=\toks32
 \@dtl@colhead=\toks33
 \dtlcurrentrow=\toks34
 \dtlbeforerow=\toks35
 \dtlafterrow=\toks36
-\dtlforeachlevel=\count324
-\c@DTLrowi=\count325
-\c@DTLrowii=\count326
-\c@DTLrowiii=\count327
-\c@DTLrow=\count328
-\dtl@rowi=\count329
-\dtl@rowii=\count330
-\dtl@rowiii=\count331
+\dtlforeachlevel=\count325
+\c@DTLrowi=\count326
+\c@DTLrowii=\count327
+\c@DTLrowiii=\count328
+\c@DTLrow=\count329
+\dtl@rowi=\count330
+\dtl@rowii=\count331
+\dtl@rowiii=\count332
 \@dtl@curi=\toks37
 \@dtl@previ=\toks38
 \@dtl@nexti=\toks39
@@ -849,7 +856,7 @@ Package: fp-eval 1995/04/03
 \@dtl@curiii=\toks43
 \@dtl@previii=\toks44
 \@dtl@nextiii=\toks45
-\@dtl@elements=\count332
+\@dtl@elements=\count333
 \@dtl@list=\toks46
 \@dtl@rowa=\toks47
 \@dtl@rowb=\toks48
@@ -857,15 +864,314 @@ Package: fp-eval 1995/04/03
 \@dtl@toksB=\toks50
 \@dtl@write=\write3
 \@dtl@read=\read4
-\dtl@entrycr=\count333
-\dtl@omitlines=\count334
+\dtl@entrycr=\count334
+\dtl@omitlines=\count335
 )
-Package babel Info: Making ; an active character on input line 23.
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks51
+\pgfutil@tempdima=\dimen176
+\pgfutil@tempdimb=\dimen177
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box55
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2021/05/15 v3.1.9a (3.1.9a)
+))
+Package: pgf 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks52
+\pgfkeys@temptoks=\toks53
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
+\pgfkeys@tmptoks=\toks54
+))
+\pgf@x=\dimen178
+\pgf@y=\dimen179
+\pgf@xa=\dimen180
+\pgf@ya=\dimen181
+\pgf@xb=\dimen182
+\pgf@yb=\dimen183
+\pgf@xc=\dimen184
+\pgf@yc=\dimen185
+\pgf@xd=\dimen186
+\pgf@yd=\dimen187
+\w@pgf@writea=\write4
+\r@pgf@reada=\read5
+\c@pgf@counta=\count336
+\c@pgf@countb=\count337
+\c@pgf@countc=\count338
+\c@pgf@countd=\count339
+\t@pgf@toka=\toks55
+\t@pgf@tokb=\toks56
+\t@pgf@tokc=\toks57
+\pgf@sys@id@count=\count340
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2021/05/15 v3.1.9a (3.1.9a)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f
+File: pgfsys-common-pdf.def 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex
+File: pgfsyssoftpath.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfsyssoftpath@smallbuffer@items=\count341
+\pgfsyssoftpath@bigbuffer@items=\count342
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex
+File: pgfsysprotocol.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen188
+\pgfmath@count=\count343
+\pgfmath@box=\box56
+\pgfmath@toks=\toks58
+\pgfmath@stack@operand=\toks59
+\pgfmath@stack@operation=\toks60
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count344
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x
+File: pgfcorepoints.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@picminx=\dimen189
+\pgf@picmaxx=\dimen190
+\pgf@picminy=\dimen191
+\pgf@picmaxy=\dimen192
+\pgf@pathminx=\dimen193
+\pgf@pathmaxx=\dimen194
+\pgf@pathminy=\dimen195
+\pgf@pathmaxy=\dimen196
+\pgf@xx=\dimen197
+\pgf@xy=\dimen198
+\pgf@yx=\dimen199
+\pgf@yy=\dimen256
+\pgf@zx=\dimen257
+\pgf@zy=\dimen258
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex
+File: pgfcorepathconstruct.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@path@lastx=\dimen259
+\pgf@path@lasty=\dimen260
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex
+File: pgfcorepathusage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@shorten@end@additional=\dimen261
+\pgf@shorten@start@additional=\dimen262
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x
+File: pgfcorescopes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfpic=\box57
+\pgf@hbox=\box58
+\pgf@layerbox@main=\box59
+\pgf@picture@serial@count=\count345
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex
+File: pgfcoregraphicstate.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgflinewidth=\dimen263
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex
+File: pgfcoretransformations.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@pt@x=\dimen264
+\pgf@pt@y=\dimen265
+\pgf@pt@temp=\dimen266
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex
+File: pgfcoreobjects.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex
+File: pgfcorepathprocessing.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x
+File: pgfcorearrows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfarrowsep=\dimen267
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@max=\dimen268
+\pgf@sys@shading@range@num=\count346
+\pgf@shadingcount=\count347
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex
+File: pgfcoreexternal.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfexternal@startupbox=\box60
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x
+File: pgfcorelayers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex
+File: pgfcoretransparency.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex
+File: pgfcorepatterns.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfnodeparttextbox=\box61
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty
+Package: pgfcomp-version-0-65 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@nodesepstart=\dimen269
+\pgf@nodesepend=\dimen270
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty
+Package: pgfcomp-version-1-18 2021/05/15 v3.1.9a (3.1.9a)
+)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen271
+\pgffor@skip=\dimen272
+\pgffor@stack=\toks61
+\pgffor@toks=\toks62
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex
+File: pgflibraryplothandlers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@plot@mark@count=\count348
+\pgfplotmarksize=\dimen273
+)
+\tikz@lastx=\dimen274
+\tikz@lasty=\dimen275
+\tikz@lastxsaved=\dimen276
+\tikz@lastysaved=\dimen277
+\tikz@lastmovetox=\dimen278
+\tikz@lastmovetoy=\dimen279
+\tikzleveldistance=\dimen280
+\tikzsiblingdistance=\dimen281
+\tikz@figbox=\box62
+\tikz@figbox@bg=\box63
+\tikz@tempbox=\box64
+\tikz@tempbox@bg=\box65
+\tikztreelevel=\count349
+\tikznumberofchildren=\count350
+\tikznumberofcurrentchild=\count351
+\tikz@fig@count=\count352
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfmatrixcurrentrow=\count353
+\pgfmatrixcurrentcolumn=\count354
+\pgf@matrix@numberofcolumns=\count355
+)
+\tikz@expandcount=\count356
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/dat
+avisualization/tikzlibrarydatavisualization.code.tex
+File: tikzlibrarydatavisualization.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledatavisualizati
+on.code.tex
+File: pgfmoduledatavisualization.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleoo.code.tex
+\pgfoo@objectcount=\count357
+\pgfoothis@count=\count358
+\pgfoo@toks=\toks63
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+)
+\pgf@lib@dv@cache@count=\count359
+\pgf@lib@dv@cache@count=\count360
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarybackgrounds.code.tex
+File: tikzlibrarybackgrounds.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@layerbox@background=\box66
+\pgf@layerboxsaved@background=\box67
+)
+\tikzdvvisualizercounter=\count361
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarybabel.code.tex
+File: tikzlibrarybabel.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+Package babel Info: Making ; an active character on input line 26.
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count335
-\l__pdf_internal_box=\box54
+\l__color_backend_stack_int=\count362
+\l__pdf_internal_box=\box68
 )
 (./report.aux
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 2
@@ -875,26 +1181,26 @@ File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 ))
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -938,17 +1244,17 @@ File: greek-fontenc.def 2020/10/30 2.0 Common Greek font encoding definitions
 ))
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count336
-\scratchdimen=\dimen174
-\scratchbox=\box55
-\nofMPsegments=\count337
-\nofMParguments=\count338
-\everyMPshowfont=\toks51
-\MPscratchCnt=\count339
-\MPscratchDim=\dimen175
-\MPnumerator=\count340
-\makeMPintoPDFobject=\count341
-\everyMPtoPDFconversion=\toks52
+\scratchcounter=\count363
+\scratchdimen=\dimen282
+\scratchbox=\box69
+\nofMPsegments=\count364
+\nofMParguments=\count365
+\everyMPshowfont=\toks64
+\MPscratchCnt=\count366
+\MPscratchDim=\dimen283
+\MPnumerator=\count367
+\makeMPintoPDFobject=\count368
+\everyMPtoPDFconversion=\toks65
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -962,8 +1268,8 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count342
-Package hyperref Info: Link coloring OFF on input line 37.
+\c@lstlisting=\count369
+Package hyperref Info: Link coloring OFF on input line 40.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -974,264 +1280,302 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count343
+\c@section@level=\count370
 )
-LaTeX Info: Redefining \ref on input line 37.
-LaTeX Info: Redefining \pageref on input line 37.
-LaTeX Info: Redefining \nameref on input line 37.
+LaTeX Info: Redefining \ref on input line 40.
+LaTeX Info: Redefining \pageref on input line 40.
+LaTeX Info: Redefining \nameref on input line 40.
 
 (./report.out) (./report.out)
-\@outlinefile=\write4
-\openout4 = `report.out'.
+\@outlinefile=\write5
+\openout5 = `report.out'.
 
-<~/Pictures/emp.png, id=36, 719.68875pt x 135.50626pt>
+<~/Pictures/emp.png, id=55, 719.68875pt x 135.50626pt>
 File: ~/Pictures/emp.png Graphic file (type png)
 <use ~/Pictures/emp.png>
-Package pdftex.def Info: ~/Pictures/emp.png  used on input line 39.
+Package pdftex.def Info: ~/Pictures/emp.png  used on input line 42.
 (pdftex.def)             Requested size: 483.69684pt x 91.07611pt.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </home/stefanos/Pictures/em
 p.png>] (./report.toc)
-\tf@toc=\write5
-\openout5 = `report.toc'.
+\tf@toc=\write6
+\openout6 = `report.toc'.
 
  [2
 
 ] [3
 
 ]
-<../experiments/profiled_outputs/throughputdel100ms//./capacity5/cost-centers-c
-apacity5.png, id=72, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/throughputdel100ms//./capacity5/cost-cent
-ers-capacity5.png Graphic file (type png)
-<use ../experiments/profiled_outputs/throughputdel100ms//./capacity5/cost-cente
-rs-capacity5.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/throughputdel100ms//./
-capacity5/cost-centers-capacity5.png  used on input line 80.
+<../experiments/profiled_outputs/throughput_proper//./capacity5/cost-centers-ca
+pacity5.png, id=95, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/throughput_proper//./capacity5/cost-cente
+rs-capacity5.png Graphic file (type png)
+<use ../experiments/profiled_outputs/throughput_proper//./capacity5/cost-center
+s-capacity5.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/throughput_proper//./c
+apacity5/cost-centers-capacity5.png  used on input line 85.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
-<../experiments/profiled_outputs/throughputdel100ms//./capacity10/cost-centers-
-capacity10.png, id=73, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/throughputdel100ms//./capacity10/cost-cen
-ters-capacity10.png Graphic file (type png)
-<use ../experiments/profiled_outputs/throughputdel100ms//./capacity10/cost-cent
-ers-capacity10.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/throughputdel100ms//./
-capacity10/cost-centers-capacity10.png  used on input line 87.
+<../experiments/profiled_outputs/throughput_proper//./capacity10/cost-centers-c
+apacity10.png, id=96, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/throughput_proper//./capacity10/cost-cent
+ers-capacity10.png Graphic file (type png)
+<use ../experiments/profiled_outputs/throughput_proper//./capacity10/cost-cente
+rs-capacity10.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/throughput_proper//./c
+apacity10/cost-centers-capacity10.png  used on input line 92.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
-<../experiments/profiled_outputs/throughputdel100ms//./capacity20/cost-centers-
-capacity20.png, id=74, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/throughputdel100ms//./capacity20/cost-cen
-ters-capacity20.png Graphic file (type png)
-<use ../experiments/profiled_outputs/throughputdel100ms//./capacity20/cost-cent
-ers-capacity20.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/throughputdel100ms//./
-capacity20/cost-centers-capacity20.png  used on input line 91.
+<../experiments/profiled_outputs/throughput_proper//./capacity20/cost-centers-c
+apacity20.png, id=97, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/throughput_proper//./capacity20/cost-cent
+ers-capacity20.png Graphic file (type png)
+<use ../experiments/profiled_outputs/throughput_proper//./capacity20/cost-cente
+rs-capacity20.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/throughput_proper//./c
+apacity20/cost-centers-capacity20.png  used on input line 96.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
  [4
 
- <../experiments/profiled_outputs/throughputdel100ms//./capacity5/cost-centers-
-capacity5.png>] [5 <../experiments/profiled_outputs/throughputdel100ms//./capac
-ity10/cost-centers-capacity10.png> <../experiments/profiled_outputs/throughputd
-el100ms//./capacity20/cost-centers-capacity20.png>]
-<../experiments/profiled_outputs/throughputdel100ms//./capacity5/times_of_funct
-ion_per_node_capacity5.png, id=93, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/throughputdel100ms//./capacity5/times_of_
-function_per_node_capacity5.png Graphic file (type png)
-<use ../experiments/profiled_outputs/throughputdel100ms//./capacity5/times_of_f
-unction_per_node_capacity5.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/throughputdel100ms//./
-capacity5/times_of_function_per_node_capacity5.png  used on input line 121.
+ <../experiments/profiled_outputs/throughput_proper//./capacity5/cost-centers-c
+apacity5.png>] [5 <../experiments/profiled_outputs/throughput_proper//./capacit
+y10/cost-centers-capacity10.png> <../experiments/profiled_outputs/throughput_pr
+oper//./capacity20/cost-centers-capacity20.png>]
+<../experiments/profiled_outputs/throughput_proper//./capacity5/times_of_functi
+on_per_node_capacity5.png, id=114, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/throughput_proper//./capacity5/times_of_f
+unction_per_node_capacity5.png Graphic file (type png)
+<use ../experiments/profiled_outputs/throughput_proper//./capacity5/times_of_fu
+nction_per_node_capacity5.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/throughput_proper//./c
+apacity5/times_of_function_per_node_capacity5.png  used on input line 114.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
-<../experiments/profiled_outputs/throughputdel100ms//./capacity10/times_of_func
-tion_per_node_capacity10.png, id=94, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/throughputdel100ms//./capacity10/times_of
-_function_per_node_capacity10.png Graphic file (type png)
-<use ../experiments/profiled_outputs/throughputdel100ms//./capacity10/times_of_
-function_per_node_capacity10.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/throughputdel100ms//./
-capacity10/times_of_function_per_node_capacity10.png  used on input line 128.
+<../experiments/profiled_outputs/throughput_proper//./capacity10/times_of_funct
+ion_per_node_capacity10.png, id=115, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/throughput_proper//./capacity10/times_of_
+function_per_node_capacity10.png Graphic file (type png)
+<use ../experiments/profiled_outputs/throughput_proper//./capacity10/times_of_f
+unction_per_node_capacity10.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/throughput_proper//./c
+apacity10/times_of_function_per_node_capacity10.png  used on input line 121.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
-<../experiments/profiled_outputs/throughputdel100ms//./capacity20/times_of_func
-tion_per_node_capacity20.png, id=95, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/throughputdel100ms//./capacity20/times_of
-_function_per_node_capacity20.png Graphic file (type png)
-<use ../experiments/profiled_outputs/throughputdel100ms//./capacity20/times_of_
-function_per_node_capacity20.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/throughputdel100ms//./
-capacity20/times_of_function_per_node_capacity20.png  used on input line 132.
+<../experiments/profiled_outputs/throughput_proper//./capacity20/times_of_funct
+ion_per_node_capacity20.png, id=116, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/throughput_proper//./capacity20/times_of_
+function_per_node_capacity20.png Graphic file (type png)
+<use ../experiments/profiled_outputs/throughput_proper//./capacity20/times_of_f
+unction_per_node_capacity20.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/throughput_proper//./c
+apacity20/times_of_function_per_node_capacity20.png  used on input line 125.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
  [6
 
- <../experiments/profiled_outputs/throughputdel100ms//./capacity5/times_of_func
-tion_per_node_capacity5.png>] [7 <../experiments/profiled_outputs/throughputdel
-100ms//./capacity10/times_of_function_per_node_capacity10.png> <../experiments/
-profiled_outputs/throughputdel100ms//./capacity20/times_of_function_per_node_ca
-pacity20.png>]
-\dtldb@th-calls1=\toks53
-\dtlkeys@th-calls1=\toks54
-\dtlrows@th-calls1=\count344
-\dtlcols@th-calls1=\count345
-\dtldb@th-calls2=\toks55
-\dtlkeys@th-calls2=\toks56
-\dtlrows@th-calls2=\count346
-\dtlcols@th-calls2=\count347
-\dtldb@th-calls3=\toks57
-\dtlkeys@th-calls3=\toks58
-\dtlrows@th-calls3=\count348
-\dtlcols@th-calls3=\count349
+ <../experiments/profiled_outputs/throughput_proper//./capacity5/times_of_funct
+ion_per_node_capacity5.png>] [7 <../experiments/profiled_outputs/throughput_pro
+per//./capacity10/times_of_function_per_node_capacity10.png> <../experiments/pr
+ofiled_outputs/throughput_proper//./capacity20/times_of_function_per_node_capac
+ity20.png>]
+\dtldb@th-calls1=\toks66
+\dtlkeys@th-calls1=\toks67
+\dtlrows@th-calls1=\count371
+\dtlcols@th-calls1=\count372
+\dtldb@th-calls2=\toks68
+\dtlkeys@th-calls2=\toks69
+\dtlrows@th-calls2=\count373
+\dtlcols@th-calls2=\count374
+\dtldb@th-calls3=\toks70
+\dtlkeys@th-calls3=\toks71
+\dtlrows@th-calls3=\count375
+\dtlcols@th-calls3=\count376
 
-Overfull \hbox (30.12401pt too wide) in paragraph at lines 163--165
+Overfull \hbox (30.12401pt too wide) in paragraph at lines 175--177
  [][] 
  []
 
 [8
 
-] [9]
-<../experiments/profiled_outputs/scalabilitydel100ms//./capacity5/cost-centers-
-capacity5.png, id=178, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/scalabilitydel100ms//./capacity5/cost-cen
-ters-capacity5.png Graphic file (type png)
-<use ../experiments/profiled_outputs/scalabilitydel100ms//./capacity5/cost-cent
-ers-capacity5.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/scalabilitydel100ms//.
-/capacity5/cost-centers-capacity5.png  used on input line 231.
+]
+File: "../experiments/profiled_outputs/throughput_proper/capacity5/final.csv"  
+(verbatim)
+File: "../experiments/profiled_outputs/throughput_proper/capacity10/final.csv" 
+ (verbatim)
+File: "../experiments/profiled_outputs/throughput_proper/capacity20/final.csv" 
+ (verbatim)
+ [9]
+<../experiments/profiled_outputs/scalability_proper//./capacity5/cost-centers-c
+apacity5.png, id=222, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/scalability_proper//./capacity5/cost-cent
+ers-capacity5.png Graphic file (type png)
+<use ../experiments/profiled_outputs/scalability_proper//./capacity5/cost-cente
+rs-capacity5.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/scalability_proper//./
+capacity5/cost-centers-capacity5.png  used on input line 257.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
-<../experiments/profiled_outputs/scalabilitydel100ms//./capacity10/cost-centers
--capacity10.png, id=179, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/scalabilitydel100ms//./capacity10/cost-ce
-nters-capacity10.png Graphic file (type png)
-<use ../experiments/profiled_outputs/scalabilitydel100ms//./capacity10/cost-cen
-ters-capacity10.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/scalabilitydel100ms//.
-/capacity10/cost-centers-capacity10.png  used on input line 238.
+<../experiments/profiled_outputs/scalability_proper//./capacity10/cost-centers-
+capacity10.png, id=223, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/scalability_proper//./capacity10/cost-cen
+ters-capacity10.png Graphic file (type png)
+<use ../experiments/profiled_outputs/scalability_proper//./capacity10/cost-cent
+ers-capacity10.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/scalability_proper//./
+capacity10/cost-centers-capacity10.png  used on input line 264.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
-<../experiments/profiled_outputs/scalabilitydel100ms//./capacity20/cost-centers
--capacity20.png, id=180, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/scalabilitydel100ms//./capacity20/cost-ce
-nters-capacity20.png Graphic file (type png)
-<use ../experiments/profiled_outputs/scalabilitydel100ms//./capacity20/cost-cen
-ters-capacity20.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/scalabilitydel100ms//.
-/capacity20/cost-centers-capacity20.png  used on input line 242.
+<../experiments/profiled_outputs/scalability_proper//./capacity20/cost-centers-
+capacity20.png, id=224, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/scalability_proper//./capacity20/cost-cen
+ters-capacity20.png Graphic file (type png)
+<use ../experiments/profiled_outputs/scalability_proper//./capacity20/cost-cent
+ers-capacity20.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/scalability_proper//./
+capacity20/cost-centers-capacity20.png  used on input line 268.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
  [10
 
- <../experiments/profiled_outputs/scalabilitydel100ms//./capacity5/cost-centers
--capacity5.png>] [11 <../experiments/profiled_outputs/scalabilitydel100ms//./ca
-pacity10/cost-centers-capacity10.png> <../experiments/profiled_outputs/scalabil
-itydel100ms//./capacity20/cost-centers-capacity20.png>]
-\dtldb@sc-calls1=\toks59
-\dtlkeys@sc-calls1=\toks60
-\dtlrows@sc-calls1=\count350
-\dtlcols@sc-calls1=\count351
-\dtldb@sc-calls2=\toks61
-\dtlkeys@sc-calls2=\toks62
-\dtlrows@sc-calls2=\count352
-\dtlcols@sc-calls2=\count353
-\dtldb@sc-calls3=\toks63
-\dtlkeys@sc-calls3=\toks64
-\dtlrows@sc-calls3=\count354
-\dtlcols@sc-calls3=\count355
+ <../experiments/profiled_outputs/scalability_proper//./capacity5/cost-centers-
+capacity5.png>] [11 <../experiments/profiled_outputs/scalability_proper//./capa
+city10/cost-centers-capacity10.png> <../experiments/profiled_outputs/scalabilit
+y_proper//./capacity20/cost-centers-capacity20.png>]
+<../experiments/profiled_outputs/scalability_proper//./capacity5/times_of_funct
+ion_per_node_capacity5.png, id=240, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/scalability_proper//./capacity5/times_of_
+function_per_node_capacity5.png Graphic file (type png)
+<use ../experiments/profiled_outputs/scalability_proper//./capacity5/times_of_f
+unction_per_node_capacity5.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/scalability_proper//./
+capacity5/times_of_function_per_node_capacity5.png  used on input line 295.
+(pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
+<../experiments/profiled_outputs/scalability_proper//./capacity10/times_of_func
+tion_per_node_capacity10.png, id=241, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/scalability_proper//./capacity10/times_of
+_function_per_node_capacity10.png Graphic file (type png)
+<use ../experiments/profiled_outputs/scalability_proper//./capacity10/times_of_
+function_per_node_capacity10.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/scalability_proper//./
+capacity10/times_of_function_per_node_capacity10.png  used on input line 303.
+(pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
+<../experiments/profiled_outputs/scalability_proper//./capacity20/times_of_func
+tion_per_node_capacity20.png, id=242, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/scalability_proper//./capacity20/times_of
+_function_per_node_capacity20.png Graphic file (type png)
+<use ../experiments/profiled_outputs/scalability_proper//./capacity20/times_of_
+function_per_node_capacity20.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/scalability_proper//./
+capacity20/times_of_function_per_node_capacity20.png  used on input line 309.
+(pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
+ [12
 
-Overfull \hbox (35.12402pt too wide) in paragraph at lines 294--296
+ <../experiments/profiled_outputs/scalability_proper//./capacity5/times_of_func
+tion_per_node_capacity5.png>] [13 <../experiments/profiled_outputs/scalability_
+proper//./capacity10/times_of_function_per_node_capacity10.png> <../experiments
+/profiled_outputs/scalability_proper//./capacity20/times_of_function_per_node_c
+apacity20.png>]
+\dtldb@sc-calls1=\toks72
+\dtlkeys@sc-calls1=\toks73
+\dtlrows@sc-calls1=\count377
+\dtlcols@sc-calls1=\count378
+\dtldb@sc-calls2=\toks74
+\dtlkeys@sc-calls2=\toks75
+\dtlrows@sc-calls2=\count379
+\dtlcols@sc-calls2=\count380
+\dtldb@sc-calls3=\toks76
+\dtlkeys@sc-calls3=\toks77
+\dtlrows@sc-calls3=\count381
+\dtlcols@sc-calls3=\count382
+
+Overfull \hbox (35.12402pt too wide) in paragraph at lines 362--364
  [][] 
  []
 
-[12
+[14
 
 ]
-<../experiments/profiled_outputs/scalabilitydel100ms//./capacity5/times_of_func
-tion_per_node_capacity5.png, id=235, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/scalabilitydel100ms//./capacity5/times_of
-_function_per_node_capacity5.png Graphic file (type png)
-<use ../experiments/profiled_outputs/scalabilitydel100ms//./capacity5/times_of_
-function_per_node_capacity5.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/scalabilitydel100ms//.
-/capacity5/times_of_function_per_node_capacity5.png  used on input line 353.
-(pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
-<../experiments/profiled_outputs/scalabilitydel100ms//./capacity10/times_of_fun
-ction_per_node_capacity10.png, id=236, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/scalabilitydel100ms//./capacity10/times_o
-f_function_per_node_capacity10.png Graphic file (type png)
-<use ../experiments/profiled_outputs/scalabilitydel100ms//./capacity10/times_of
-_function_per_node_capacity10.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/scalabilitydel100ms//.
-/capacity10/times_of_function_per_node_capacity10.png  used on input line 360.
-(pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
-<../experiments/profiled_outputs/scalabilitydel100ms//./capacity20/times_of_fun
-ction_per_node_capacity20.png, id=237, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/scalabilitydel100ms//./capacity20/times_o
-f_function_per_node_capacity20.png Graphic file (type png)
-<use ../experiments/profiled_outputs/scalabilitydel100ms//./capacity20/times_of
-_function_per_node_capacity20.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/scalabilitydel100ms//.
-/capacity20/times_of_function_per_node_capacity20.png  used on input line 365.
-(pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
- [13] [14 <../experiments/profiled_outputs/scalabilitydel100ms//./capacity5/tim
-es_of_function_per_node_capacity5.png>] [15 <../experiments/profiled_outputs/sc
-alabilitydel100ms//./capacity10/times_of_function_per_node_capacity10.png> <../
-experiments/profiled_outputs/scalabilitydel100ms//./capacity20/times_of_functio
-n_per_node_capacity20.png>]
-<../experiments/profiled_outputs/fairnessdel100ms//./capacity5/cost-centers-cap
-acity5.png, id=320, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/fairnessdel100ms//./capacity5/cost-center
-s-capacity5.png Graphic file (type png)
-<use ../experiments/profiled_outputs/fairnessdel100ms//./capacity5/cost-centers
--capacity5.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/fairnessdel100ms//./ca
-pacity5/cost-centers-capacity5.png  used on input line 378.
-(pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
-\dtldb@fairness-calls=\toks65
-\dtlkeys@fairness-calls=\toks66
-\dtlrows@fairness-calls=\count356
-\dtlcols@fairness-calls=\count357
-<../experiments/profiled_outputs/fairnessdel100ms//./capacity5/times_of_functio
-n_per_node_capacity5.png, id=323, 867.24pt x 505.89pt>
-File: ../experiments/profiled_outputs/fairnessdel100ms//./capacity5/times_of_fu
-nction_per_node_capacity5.png Graphic file (type png)
-<use ../experiments/profiled_outputs/fairnessdel100ms//./capacity5/times_of_fun
-ction_per_node_capacity5.png>
-Package pdftex.def Info: ../experiments/profiled_outputs/fairnessdel100ms//./ca
-pacity5/times_of_function_per_node_capacity5.png  used on input line 402.
-(pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
- [16
 
- <../experiments/profiled_outputs/fairnessdel100ms//./capacity5/cost-centers-ca
-pacity5.png>] [17 <../experiments/profiled_outputs/fairnessdel100ms//./capacity
-5/times_of_function_per_node_capacity5.png>] (./report.aux)
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[15]
+File: "../experiments/profiled_outputs/scalability_proper/capacity5/final.csv" 
+ (verbatim)
+File: "../experiments/profiled_outputs/scalability_proper/capacity10/final.csv"
+  (verbatim)
+File: "../experiments/profiled_outputs/scalability_proper/capacity20/final.csv"
+  (verbatim)
+ [16] [17]
+<../experiments/profiled_outputs/fairness_proper//./capacity5/cost-centers-capa
+city5.png, id=409, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/fairness_proper//./capacity5/cost-centers
+-capacity5.png Graphic file (type png)
+<use ../experiments/profiled_outputs/fairness_proper//./capacity5/cost-centers-
+capacity5.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/fairness_proper//./cap
+acity5/cost-centers-capacity5.png  used on input line 543.
+(pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
+\dtldb@fairness-calls=\toks78
+\dtlkeys@fairness-calls=\toks79
+\dtlrows@fairness-calls=\count383
+\dtlcols@fairness-calls=\count384
+<../experiments/profiled_outputs/fairness_proper//./capacity5/times_of_function
+_per_node_capacity5.png, id=412, 867.24pt x 505.89pt>
+File: ../experiments/profiled_outputs/fairness_proper//./capacity5/times_of_fun
+ction_per_node_capacity5.png Graphic file (type png)
+<use ../experiments/profiled_outputs/fairness_proper//./capacity5/times_of_func
+tion_per_node_capacity5.png>
+Package pdftex.def Info: ../experiments/profiled_outputs/fairness_proper//./cap
+acity5/times_of_function_per_node_capacity5.png  used on input line 567.
+(pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
+ [18
+
+ <../experiments/profiled_outputs/fairness_proper//./capacity5/cost-centers-cap
+acity5.png>] [19 <../experiments/profiled_outputs/fairness_proper//./capacity5/
+times_of_function_per_node_capacity5.png>]
+No file ../experiments/profiled_outputs/fairness_proper/capacity5/balances.out.
+
+[20
+
+] (./report.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 4BBA78F66BCFE26215B72972A3D6527D;1442.
+(rerunfilecheck)             Checksum: A28F5448F7A8935B8A76A7F331968B00;2630.
  ) 
 Here is how much of TeX's memory you used:
- 18022 strings out of 480171
- 296057 string characters out of 5894490
- 647703 words of memory out of 5000000
- 35491 multiletter control sequences out of 15000+600000
- 482006 words of font info for 57 fonts, out of 8000000 for 9000
+ 30657 strings out of 480171
+ 606080 string characters out of 5894490
+ 1016555 words of memory out of 5000000
+ 47826 multiletter control sequences out of 15000+600000
+ 483556 words of font info for 60 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 91i,13n,91p,481b,822s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grmn090
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grmn1000.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grmn1200.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/cbfonts/grmn1728.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/cbfonts/grxn1000.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/cbfonts/grxn1200.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/cbfonts/grxn1440.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/cbfonts/grxn2074.pfb>
-Output written on report.pdf (17 pages, 788756 bytes).
+ 91i,16n,91p,481b,1835s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{figure.caption.19} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.caption.18} has been referenced but does not 
+exist, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grmn0600.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/cbfonts/grmn0700.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/cbfonts/grmn0800.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/cbfonts/grmn0900.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/cbfonts/grmn1000.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/cbfonts/grmn1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+cbfonts/grmn1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/
+grxn1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grxn1200
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grxn1440.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grxn2074.pfb>
+Output written on report.pdf (20 pages, 911281 bytes).
 PDF statistics:
- 473 PDF objects out of 1000 (max. 8388607)
- 384 compressed objects within 4 object streams
- 203 named destinations out of 1000 (max. 500000)
- 140 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 612 PDF objects out of 1000 (max. 8388607)
+ 508 compressed objects within 6 object streams
+ 267 named destinations out of 1000 (max. 500000)
+ 184 words of extra memory for PDF output out of 10000 (max. 10000000)
 
