@@ -24,6 +24,7 @@ dependencies:
 - containers
 - bytestring
 - unix-time
+- old-time
 - random
 - random-fu
 - rvar
