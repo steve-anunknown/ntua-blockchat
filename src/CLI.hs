@@ -8,7 +8,7 @@ module CLI
 where
 
 import Account (Account (accountBalance, accountNonce))
-import Block (Block (..), Blockchain)
+import Block (Block (..), Blockchain, meanBlockTime)
 import Codec.Crypto.RSA (PublicKey)
 import Control.Monad.Reader (MonadIO (liftIO), ReaderT, asks)
 import Data.IORef (IORef, readIORef, atomicModifyIORef')
@@ -23,6 +23,8 @@ import Control.Exception (IOException, catch, throwIO)
 import System.IO.Error (isEOFError)
 import System.Exit (exitSuccess)
 import Control.Concurrent (threadDelay)
+import qualified Data.ByteString as B
+import Utils (encodeStrict)
 
 data CLIInfo = CLIInfo
   { cliWallet :: Wallet, -- Wallet of the user
@@ -47,7 +49,8 @@ sendTx recvID service myacc = do
     Nothing -> liftIO $ putStrLn "Invalid recipient. Check whether the ID was yours or if it does not exist."
     Just somekey -> do
       let tx = createTransaction pub somekey service mynonce priv
-      liftIO $ putStrLn $ "Sending " ++ show service ++ " to " ++ show recvID
+          bytes = B.length $ encodeStrict tx
+      liftIO $ putStrLn $ "Sending " ++ show service ++ " to " ++ show recvID ++ " with " ++ show bytes ++ " bytes"
       liftIO $ broadcastTransaction peers tx -- this handles the correct sending
 
 -- | Send a staking transaction to the network
@@ -63,7 +66,7 @@ stake coins myacc = do
 -- | Handle the input from the user
 handle :: String -> CLISharedState -> ReaderT CLIInfo IO ()
 handle input shared = do
-  liftIO $ threadDelay 100000 -- just for testing
+  liftIO $ threadDelay 500000
   let tokens = words input
       (blockref, accref) = shared
   case tokens of
@@ -102,6 +105,9 @@ handle input shared = do
       liftIO $ threadDelay 5000000 -- just for testing
       blockchain <- liftIO $ readIORef blockref
       prettyPrintBlockchain blockchain
+      -- show the mean time between blocks but disregard the genesis block
+      -- that is the last one in the list
+      liftIO $ putStrLn $ "Mean time between blocks: " ++ show (meanBlockTime $ init blockchain)
     ["balance"] -> do
       acc <- liftIO $ readIORef accref
       liftIO $ print (accountBalance acc)
@@ -131,6 +137,8 @@ handle input shared = do
 -- | The main shell of the CLI
 shell :: CLISharedState -> ReaderT CLIInfo IO ()
 shell shared = do
+  liftIO $ putStrLn "Loading .."
+  liftIO $ threadDelay 2000000
   liftIO $ putStrLn "Welcome to (the s)hell!"
   liftIO $ putStrLn "Type 'help' to ask for help."
   loop
