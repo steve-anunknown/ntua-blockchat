@@ -1,0 +1,18 @@
+capacity5/node1.log:Mean time between blocks: 625.0
+capacity5/node2.log:Mean time between blocks: 658.5853658536586
+capacity5/node3.log:Mean time between blocks: 641.025641025641
+capacity5/node4.log:Mean time between blocks: 641.025641025641
+capacity5/node5.log:Mean time between blocks: 658.5853658536586
+
+capacity10/node1.log:Mean time between blocks: 1045.5
+capacity10/node2.log:Mean time between blocks: 1045.5
+capacity10/node3.log:Mean time between blocks: 1045.5
+capacity10/node4.log:Mean time between blocks: 1045.5
+capacity10/node5.log:Mean time between blocks: 1045.5
+
+capacity20/node1.log:Mean time between blocks: 2000.3636363636363
+capacity20/node2.log:Mean time between blocks: 2000.3636363636363
+capacity20/node3.log:Mean time between blocks: 2000.3636363636363
+capacity20/node4.log:Mean time between blocks: 2000.3636363636363
+capacity20/node5.log:Mean time between blocks: 2000.3636363636363
+

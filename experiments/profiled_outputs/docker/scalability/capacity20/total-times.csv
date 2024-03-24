@@ -1,0 +1,11 @@
+Node,TotalTime,Unit,Ticks
+node10.prof,	1.14,secs,(4224,ticks,@,1000,us,,8,processors)
+node1.prof,	1.21,secs,(4468,ticks,@,1000,us,,8,processors)
+node2.prof,	1.23,secs,(4548,ticks,@,1000,us,,8,processors)
+node3.prof,	1.11,secs,(4123,ticks,@,1000,us,,8,processors)
+node4.prof,	1.20,secs,(4442,ticks,@,1000,us,,8,processors)
+node5.prof,	1.20,secs,(4447,ticks,@,1000,us,,8,processors)
+node6.prof,	1.21,secs,(4474,ticks,@,1000,us,,8,processors)
+node7.prof,	1.21,secs,(4498,ticks,@,1000,us,,8,processors)
+node8.prof,	1.26,secs,(4668,ticks,@,1000,us,,8,processors)
+node9.prof,	1.18,secs,(4360,ticks,@,1000,us,,8,processors)

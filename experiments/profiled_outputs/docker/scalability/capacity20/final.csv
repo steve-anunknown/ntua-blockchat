@@ -1,0 +1,11 @@
+node10.prof:	total time = 1.14 secs 	txIsUnique = 501	nodeLogic.mint' = 25
+node1.prof:	total time = 1.21 secs 	txIsUnique = 500	nodeLogic.mint' = 25
+node2.prof:	total time = 1.23 secs 	txIsUnique = 500	nodeLogic.mint' = 25
+node3.prof:	total time = 1.11 secs 	txIsUnique = 500	nodeLogic.mint' = 25
+node4.prof:	total time = 1.20 secs 	txIsUnique = 454	nodeLogic.mint' = 22
+node5.prof:	total time = 1.20 secs 	txIsUnique = 500	nodeLogic.mint' = 25
+node6.prof:	total time = 1.21 secs 	txIsUnique = 497	nodeLogic.mint' = 24
+node7.prof:	total time = 1.21 secs 	txIsUnique = 500	nodeLogic.mint' = 25
+node8.prof:	total time = 1.26 secs 	txIsUnique = 498	nodeLogic.mint' = 24
+node9.prof:	total time = 1.18 secs 	txIsUnique = 501	nodeLogic.mint' = 25
+Time = 11.95, TXs = 4951, Blocks = 25  => Throughput = 414.30, Blocktime = .47
