@@ -1,0 +1,10 @@
+profiled_outputs/scalability_proper/capacity10/node10.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14294 504 0.2 0.0 2.6 0.0
+profiled_outputs/scalability_proper/capacity10/node1.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14349 506 0.3 0.0 1.8 0.0
+profiled_outputs/scalability_proper/capacity10/node2.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14357 507 0.5 0.0 2.1 0.0
+profiled_outputs/scalability_proper/capacity10/node3.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14349 508 0.6 0.0 2.4 0.0
+profiled_outputs/scalability_proper/capacity10/node4.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14349 509 0.5 0.0 2.6 0.0
+profiled_outputs/scalability_proper/capacity10/node5.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14349 507 0.3 0.0 2.8 0.0
+profiled_outputs/scalability_proper/capacity10/node6.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14299 507 0.5 0.0 3.3 0.0
+profiled_outputs/scalability_proper/capacity10/node7.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14357 507 0.1 0.0 2.7 0.0
+profiled_outputs/scalability_proper/capacity10/node8.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14349 509 0.5 0.0 3.2 0.0
+profiled_outputs/scalability_proper/capacity10/node9.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14357 508 0.4 0.0 2.4 0.0

@@ -1,0 +1,6 @@
+node1.prof:	total time  = 0.56 secs   	Validated txs 228
+node2.prof:	total time  = 0.57 secs   	Validated txs 230
+node3.prof:	total time  = 0.56 secs   	Validated txs 227
+node4.prof:	total time  = 0.80 secs   	Validated txs 227
+node5.prof:	total time  = 0.61 secs   	Validated txs 229
+Total time = 3.1	Total validated txs = 1141 => Throughput = 368.06

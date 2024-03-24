@@ -1,0 +1,2 @@
+BlockChat-exe: Network.Socket.bind: resource busy (Address already in use)
+BlockChat-exe: thread blocked indefinitely in an MVar operation
