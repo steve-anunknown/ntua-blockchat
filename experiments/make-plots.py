@@ -4,7 +4,7 @@ import glob
 import os
 import sys
 # Define column names
-column_names = ["node", "function", "module", "number", "calls", "time-individual", "mem-individual", "time-inherited", "mem-inherited"]
+column_names = ["node", "function", "module", "source", "number", "calls", "time-individual", "mem-individual", "time-inherited", "mem-inherited"]
 
 # funclist = [" nodeLogic.processTXs.processTXs'", " validateTransaction", "txIsUnique", " nodeLogic.mint'"]
 
@@ -17,7 +17,7 @@ if os.getcwd().split("/")[-1] != "experiments":
     sys.exit(1)
 
 # cd to the "profiled_outputs" directory
-os.chdir("profiled_outputs")
+os.chdir("profiled_outputs/docker")
 
 for directory in os.listdir():
     # cd to the directory
@@ -26,13 +26,13 @@ for directory in os.listdir():
         # cd to the capacity directory
         os.chdir(capacity)
         df = pd.DataFrame(columns=column_names)
-        for file_name in glob.glob("calls.txt"):
+        for file_name in glob.glob("rawinfo.csv"):
             # Read the file into a dataframe
-            file_df = pd.read_csv(file_name, names=column_names, skiprows=0)
+            file_df = pd.read_csv(file_name, names=column_names, skiprows=1)
             # keep only the last /<string> for the "node" column
             file_df["node"] = file_df["node"].str.split("/").str[-1]
             # and remove the .prof.prof suffix
-            file_df["node"] = file_df["node"].str.replace(".prof.prof:", "", regex=True)
+            file_df["node"] = file_df["node"].str.replace(".prof:", "", regex=True)
             # Append the file dataframe to the main dataframe
             # use pandas.concat to append the dataframe to the main dataframe
             df = pd.concat([df, file_df], ignore_index=True)

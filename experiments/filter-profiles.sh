@@ -4,7 +4,7 @@
 export GREP_OPTIONS='--color=never'
 pattern="processTXs' \|validateTransaction \|        nodeLogic.mint' \|txIsUnique"
 
-directory="profiled_outputs"
+directory="profiled_outputs/docker"
 
 NODE="1"
 FUNCTION="2"
@@ -38,12 +38,11 @@ do
     for folder in "$experiment"/*;
     do
         # search the file from the second "COST CENTRE" to the end
-        grep "$pattern" "$folder"/*.prof.prof > "$folder"/rawinfo.txt
+        grep "$pattern" "$folder"/*.prof > "$folder"/rawinfo.txt
         profile_to_csv "$folder"/rawinfo.txt "$folder"/rawinfo.csv
 
-        grep "total time" "$folder"/*.prof.prof > "$folder"/total-times.txt
+        grep "total time" "$folder"/*.prof > "$folder"/total-times.txt
         sed -i 's/.*\///' "$folder"/total-times.txt
-        sed -i 's/.prof.prof/.prof/' "$folder"/total-times.txt
         sed -i 's/ \+/ /g' "$folder"/total-times.txt
 
         cp "$folder"/total-times.txt "$folder"/total-times.csv
@@ -55,7 +54,6 @@ do
         grep "txIsUnique" "$folder"/rawinfo.csv | cut -d',' -f${FUNCTION},${ENTRIES} > "$folder"/txIsUnique.csv
 
         sed -i 's/.*\///' "$folder"/txIsUnique.csv
-        sed -i 's/.prof.prof/.prof/' "$folder"/txIsUnique.csv
         sed -i 's/ \+/ /g' "$folder"/txIsUnique.csv
         # append a line that sums the elements of the second column
         # awk "{s+=${FUNCTION}} END {print \"Total validated txs = \" s}" "$folder"/txIsUnique.csv >> "$folder"/txIsUnique.csv

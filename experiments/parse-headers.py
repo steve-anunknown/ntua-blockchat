@@ -34,17 +34,16 @@ def parse_header(filename):
 if __name__ == '__main__':
     # make sure that pwd is "experiments"
     BASEDIR = os.getcwd()
-    PROFILED = "profiled_outputs"
+    PROFILED = "profiled_outputs/docker"
     if os.getcwd().split("/")[-1] != "experiments":
         print("Please run this script from the experiments directory")
         sys.exit(1)
 
-    if not PROFILED in os.listdir(os.getcwd()):
+    if not "profiled_outputs" in os.listdir(os.getcwd()):
         print("No profiled_outputs directory found in the current directory")
         sys.exit(1)
 
     DIRECTORIES = os.listdir(PROFILED)
-
     for direc in DIRECTORIES:
         os.chdir(PROFILED)
         subdirs = os.listdir(direc)
@@ -52,7 +51,7 @@ if __name__ == '__main__':
             if not filedir.startswith("capacity"):
                 continue
             upper = 11 if direc.startswith("scalability") else 6
-            FILENAMES = [f'{BASEDIR}/{PROFILED}/{direc}/{filedir}/node{i}.prof.prof' for i in range(1, upper)]
+            FILENAMES = [f'{BASEDIR}/{PROFILED}/{direc}/{filedir}/node{i}.prof' for i in range(1, upper)]
             dicts = [parse_header(filename) for filename in FILENAMES]
             # keep the keys that are common to all dictionaries
             all_keys = [set(d.keys()) for d in dicts]
@@ -86,4 +85,4 @@ if __name__ == '__main__':
             plt.grid()
             plt.savefig(f'{BASEDIR}/{PROFILED}/{direc}/{filedir}/average-cost-centers-{filedir}.png')
             plt.close()
-        os.chdir('..')
+        os.chdir('../..')

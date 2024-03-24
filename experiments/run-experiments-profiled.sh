@@ -4,16 +4,16 @@ LOCALHOST="127.0.0.1"
 PORT="35900"
 EXEC="BlockChat-exe"
 PREFIX="profiled_outputs"
-SUFFIX="_proper" # <- modify this if you want to add a suffix to the output directory to indicate a different experiment
+SUFFIX="_bytes" # <- modify this if you want to add a suffix to the output directory to indicate a different experiment
 
 # Compile the program with profiling enabled (and optimized)
-stack clean
-stack build --profile
+stack clean &&
+stack build --profile || exit 1
 
 initial_stake="stake 10"
 nodes="5"
 capacity=("5" "10" "20")
-for test in "throughput" "scalability"; do
+for test in "throughput"; do
     if [ "$test" = "throughput" ]; then
         nodes="5"
     elif [ "$test" = "scalability" ]; then
@@ -30,7 +30,6 @@ for test in "throughput" "scalability"; do
         if [ ! -d "$workdir" ]; then
             mkdir -p "$workdir"
         fi
-
         echo "$msg with capacity $cap"
 
         command="stack exec --profile -- $EXEC --bootstrap $LOCALHOST $PORT $nodes +RTS -p -RTS"
@@ -52,12 +51,12 @@ for test in "throughput" "scalability"; do
             wait
         } 2> "$workdir/time.log"
         # if stderrs are empty delete them
-        for i in $(seq 1 $nodes); do
-            stderr_log="$workdir/node${i}_stderr.log"
-            if [ ! -s "$stderr_log" ]; then
-                rm "$stderr_log"
-            fi
-        done
+        # for i in $(seq 1 $nodes); do
+        #     stderr_log="$workdir/node${i}_stderr.log"
+        #     if [ ! -s "$stderr_log" ]; then
+        #         rm "$stderr_log"
+        #     fi
+        # done
     done
 done
 
