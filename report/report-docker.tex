@@ -1,0 +1,716 @@
+\documentclass{article}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage[english,greek, main=greek]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx} % for graphics and plots
+\usepackage{subcaption} % for subfigures and subcaptions and \ContinuedFloat
+\usepackage{placeins} % for \FloatBarrier
+\usepackage{xcolor} % for colour definitions
+\usepackage{listings} % for code highlighting
+\usepackage{verbatim} % for file input
+\usepackage{varwidth} % for centering verbatim 
+\usepackage{hyperref} % clickable links
+\usepackage{datatool} % for csv reading
+\usepackage{tikz} % for tikz plot
+\usepackage{adjustbox} % for table scaling
+\usetikzlibrary{datavisualization, babel} % for tikz plots
+
+\newcommand{\eng}[1]{\foreignlanguage{english}{#1}} % shortcut for inserting english into greek text
+
+\useshorthands{;}
+\defineshorthand{;}{?} % greek question mark instead of english semicolon
+
+
+\title{
+    \includegraphics[width=\textwidth]{~/Pictures/emp.png} \\
+    \vskip 5cm
+    Κατανεμημένα Συστήματα \\
+    \large Εξαμηνιαία Εργασία - \eng{BlockChat} 
+    \vskip 5cm
+}
+
+\author{ Αναστάσιος Στέφανος Αναγνώστου \\ \large 03119051 }
+
+\begin{document}
+
+\maketitle \clearpage \tableofcontents \clearpage
+
+\part{Σχεδιασμός Συστήματος}
+
+\section{Δεν είμαι σίγουρος}
+
+\clearpage
+\part{Πειράματα}
+
+Ανά πείραμα αξιολογούνται, αφενός τα πιο χρονοβόρα κομμάτια του κώδικα, όπως
+υποδεικνύει το \eng{profiling} καθενός κόμβου κατά την εκτέλεση του πειράματος,
+αφετέρου οι συναρτήσεις \eng{mint}, \eng{validateTransaction} και
+\eng{processTXs}, οι οποίες συνιστούν την λογική λειτουργίας των κόμβων του
+συστήματος. Επίσης, εκτιμάται η ρυθμαπόδοση του συστήματος και το μέσο
+\eng{block time}.
+
+\section{Απόδοση του συστήματος}
+
+Σημειώνεται ότι το ποσοστό του χρόνου εκτέλεσης των σημείων που υποδεικνύει το
+\eng{profiling} δεν είναι κληρονομημένο, δηλαδή δεν εμπεριέχονται στο ποσοστό
+οι χρόνοι εκτέλεσης των συναρτήσεων που καλούνται από τις συναρτήσεις που
+εμφανίζονται στο \eng{profiling}.
+
+\subsection{Χρονοβόρα τμήματα του κώδικα}
+
+Στο πείραμα για την αξιολόγηση της ρυθμαπόδοσης του συστήματος, στήνεται ένα
+δίκτυο 5 κόμβων, καθένας εκ των οποίων εκτελεί 1 \eng{staking}, με \eng{stake
+10 BCC} συναλλαγή και 50 συναλλαγές (συγκεκριμένα αποστολές μηνυμάτων) προς
+τους άλλους κόμβους. Η ταχύτητα αποστολής συναλλαγών είναι ίδια μεταξύ των
+κόμβων, ίση με $2\frac{txs}{s}$ και παραμένει σταθερή μεταξύ όλων των
+πειραμάτων.
+
+Το πρώτο πράγμα που φαίνεται στο σχήμα \ref{fig:throughput-cost-centers} είναι
+ότι το μακράν πιο χρονοβόρο μέρος του κώδικα είναι η συνάρτηση
+\eng{modular\_exponentiation} που χρησιμοποιείται γενικά για την κρυπτογράφηση
+/ αποκρυπτογράφηση και υπογραφή / επαλήθευση μηνυμάτων. Συγκεκριμένα, φαίνεται
+να λαμβάνει περίπου το 45\% του συνολικού χρόνου υπολογισμού\footnote{Ο
+\eng{profiler} της \eng{Haskell} μετράει \emph{\eng{CPU time}} όχι
+\emph{\eng{blocking time}}} του προγράμματος.
+
+\graphicspath{{../experiments/profiled\_outputs/docker/throughput/}}
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity5/cost-centers-capacity5.png}
+        \caption{\eng{capacity=5}}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[ht]
+    \ContinuedFloat
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity10/cost-centers-capacity10.png}
+        \caption{\eng{capacity=10}}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity20/cost-centers-capacity20.png}
+        \caption{\eng{capacity=20}}
+    \end{subfigure}
+    \caption{Τα πιο χρονοβόρα κομμάτια του κώδικα}
+    \label{fig:throughput-cost-centers}
+\end{figure}
+\FloatBarrier
+
+\subsection{Συναρτήσεις του συστήματος}
+
+Σχετικά με τις \eng{top level} συναρτήσεις του συστήματος, παρατηρείται ότι, με
+κάποιες μικρές διακυμάνσεις, η \eng{processTXs} καταναλώνει 9-10\% του
+συνολικού \eng{CPU time}, η \eng{mint} 1-3\% και η \eng{validateTransaction}
+5-9\%, με μέσο όρο περίπου 6.5\%. 
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity5/times_of_function_per_node_capacity5.png}
+        \caption{Ρυθμαπόδοση \eng{capacity=5}}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[ht]
+    \ContinuedFloat
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity10/times_of_function_per_node_capacity10.png}
+        \caption{Ρυθμαπόδοση \eng{capacity=10}}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity20/times_of_function_per_node_capacity20.png}
+        \caption{Ρυθμαπόδοση \eng{capacity=20}}
+    \end{subfigure}
+    \caption{Ποσοστό χρόνου επί του συνολικού χρόνου εκτέλεσης που λαμβάνει η κάθε συνάρτηση}
+\end{figure}
+\FloatBarrier
+
+Στον πίνακα \ref{tab:throughput-funcs} παρουσιάζονται ορισμένα στατιστικά
+σχετικά με τις συναρτήσεις \eng{processTXs}, \eng{validateTransaction},
+\eng{txIsUnique} και \eng{mint}. Το πιο σημαντικό να παρατηρηθεί είναι ότι, για
+κάθε κόμβο, οι κλήσεις στην συνάρτηση \eng{validateTransaction} είναι ακριβώς
+τόσες όσες και οι συναλλαγές που αποστέλλονται από όλους τους κόμβους $\left(5
++ 5 \times 50 = 255 \right)$. Επίσης, $\#mint + \#validateTransaction =
+\#processTXs$ \footnote{Η -1 διαφορά είναι επειδή έγινε η τελευταία κλήση και τα
+προγράμματα έλαβαν σήμα τερματισμού}. Παρ'ότι φαίνεται σαν να επικυρώθηκαν όλες
+οι συναλλαγές, αυτό δεν ισχύει. Στην πραγματικότητα, επειδή οι κόμβοι δεν 
+παραλαμβάνουν κατ' ανάγκην τις συναλλαγές με την σειρά αποστολή τους, είναι πιθανό
+κάποιος \eng{validator} να ακυρώσει κάποια συναλλαγή η οποία με διαφορετική σειρά
+θα είχε επιβεβαιωθεί. Για αυτόν τον λόγο φαίνεται ότι ένα υποσύνολο των
+συναλλαγών εξετάζεται για την μοναδικότητά τους από την συνάρτηση
+\eng{txIsUnique}. Έτσι αιτιολογείται και το γεγονός ότι το \eng{blockchain}
+έχει μήκος μικρότερο από το μέγιστο δυνατό του δεδομένων των συναλλαγών.
+Παραδείγματος χάριν, για \eng{capacity 5} έχει μήκος $41 = \frac{207}{5} <
+\frac{255}{5} = 51$.
+
+\DTLloaddb{th-calls1}{../experiments/profiled_outputs/docker/throughput/capacity5/rawinfo.csv}
+\DTLloaddb{th-calls2}{../experiments/profiled_outputs/docker/throughput/capacity10/rawinfo.csv}
+\DTLloaddb{th-calls3}{../experiments/profiled_outputs/docker/throughput/capacity20/rawinfo.csv}
+
+\begin{table}[ht]
+    \caption{Στατιστικά συναρτήσεων ανά κόμβο} 
+    \label{tab:throughput-funcs}
+    \begin{subtable}{\textwidth}
+        \centering
+        \caption{\eng{capacity=5}}
+        \label{tab:throughput-funcs-1}
+        \selectlanguage{english}
+        \DTLdisplaydb[Module,Source,Number,TimeInd,MemInd,MemInh]{th-calls1}
+        \selectlanguage{greek}
+    \end{subtable}
+\end{table}
+
+Όπως φαίνεται από τον πίνακα, λοιπόν, για τον υπολογισμό του \eng{block time} και
+της ρυθμαπόδοσης λαμβάνονται υπόψιν τόσα μπλοκς όσα και οι κλήσεις στην συνάρτηση
+\eng{mint} και τόσες συναλλαγές όσες τα μπλοκς επί την εκάστοτε χωρητικότητα.
+
+\begin{equation}
+    \begin{gathered}
+        \text{Χωρητικότητα = 5} \Rightarrow \text{Μπλοκς} = 41 \text{ και } \text{Συναλλαγές} = 205 \\
+        \text{Χωρητικότητα = 10} \Rightarrow \text{Μπλοκς} = 22 \text{ και } \text{Συναλλαγές} = 220 \\
+        \text{Χωρητικότητα = 20} \Rightarrow \text{Μπλοκς} = 11 \text{ και } \text{Συναλλαγές} = 220 \\
+    \end{gathered}
+\end{equation}
+
+\begin{table}[ht]
+    \ContinuedFloat
+    \begin{subtable}{0.45\textwidth}
+        \centering
+        \caption{\eng{capacity=10}}
+        \label{tab:throughput-funcs-2}
+        \selectlanguage{english}
+        \DTLdisplaydb[Module,Source,Number,TimeInd,MemInd,MemInh]{th-calls2}
+        \selectlanguage{greek}
+    \end{subtable}
+    \hfill
+    \begin{subtable}{0.45\textwidth}
+        \centering
+        \caption{\eng{capacity=20}}
+        \label{tab:throughput-funcs-3}
+        \selectlanguage{english}
+        \DTLdisplaydb[Module,Source,Number,TimeInd,MemInd,MemInh,Node,Function]{th-calls3}
+        \selectlanguage{greek}
+    \end{subtable}
+\end{table}
+\FloatBarrier
+
+\subsection{Ρυθμαπόδοση και \eng{Block time}}
+
+Το \eng{block time} μπορεί να υπολογιστεί λαμβάνοντας τον μέσο όρο των
+διαφορών των \eng{time stamps} διαδοχικών \eng{blocks}. Στο σχήμα
+\ref{fig:throughput-blocktimes} φαίνονται οι χρόνοι δημιουργίας \eng{block} όπως
+υπολογίστηκαν από κάθε κόμβο. Παρατηρείται ότι δεν είναι πάντοτε ίσοι μεταξύ
+των κόμβων. Αυτό συμβαίνει γιατί, κατά τον τερματισμό του πειράματος, δεν έχουν
+φτάσει κατ'ανάγκην όλοι οι κόμβοι στο ίδιο σημείο της αλυσίδας και για αυτόν τον
+λόγο διαφοροποιείται η μέτρησή τους. Εδώ λαμβάνεται υπόψιν το μέγιστο μήκος της
+αλυσίδας μεταξύ των κόμβων.
+
+\begin{figure}[ht]
+    \centering
+    \selectlanguage{english}
+    \begin{varwidth}{\linewidth}
+        \verbatiminput{../experiments/profiled_outputs/docker/throughput/blocktimes.txt}
+    \end{varwidth}
+    \selectlanguage{greek}
+    \caption{Μέσος χρόνος δημιουργίας \eng{block} (\eng{ms})}
+    \label{fig:throughput-blocktimes}
+\end{figure}
+
+Από τον χρόνο αυτόν μπορούν να μετρηθούν και οι εξυπηρετούμενες συναλλαγές ανά δευτερόλεπτο.
+Συγκεκριμένα, μία συναλλαγή εξυπηρετείται όταν επικυρωθεί, δηλαδή όταν καταγραφεί στην αλυσίδα.
+Άρα, για κάθε \eng{capacity} έχουμε:
+
+\begin{equation}
+    \begin{gathered}
+        \text{Ρυθμαπόδοση} = \frac{\text{Συναλλαγές}}{\text{Χρόνος}} = \frac{\text{Συναλλαγές}}{\text{Μπλοκ}}\cdot \frac{\text{Μπλοκ}}{\text{Χρόνος}} \Leftrightarrow \\
+        \text{Ρυθμαπόδοση} = \frac{\frac{\text{Συναλλαγές}}{\text{Μπλοκ}} }{\text{Μέσος χρόνος δημιουργίας μπλοκ}} = \frac{\text{Χωρητικότητα}}{\text{Μέσος χρόνος δημιουργίας μπλοκ}} \Rightarrow \\
+    \boxed{
+        \begin{gathered}
+            \text{Ρυθμαπόδοση}_{capacity=5} = \frac{5}{0,658} = 7,598 \text{} \frac{txs}{s}\\
+            \text{Ρυθμαπόδοση}_{capacity=10} = \frac{10}{1,045} = 9,569 \text{} \frac{txs}{s}\\
+            \text{Ρυθμαπόδοση}_{capacity=20} = \frac{20}{2} = 10 \text{} \frac{txs}{s}\\
+        \end{gathered}
+    }
+    \end{gathered}
+\end{equation}
+
+% Χρησιμοποιώντας τα στατιστικά από το \eng{profiling} καθενός κόμβου
+% μπορούν να εκτιμηθούν η ρυθμαπόδοση και το μέσο \eng{block time}.
+% 
+% \begin{figure}[ht]
+%     \begin{subfigure}{\textwidth}
+%         \centering
+%         \caption{\eng{capacity=5}}
+%         \label{fig:throughput-times-5}
+%         \selectlanguage{english}
+%         \begin{varwidth}{\linewidth}
+%             \verbatiminput{../experiments/profiled_outputs/docker/throughput/capacity5/final.csv}
+%         \end{varwidth}
+%         \selectlanguage{greek}
+%     \end{subfigure}
+%     \begin{subfigure}{\textwidth}
+%         \centering
+%         \caption{\eng{capacity=10}}
+%         \label{fig:throughput-times-10}
+%         \selectlanguage{english}
+%         \begin{varwidth}{\linewidth}
+%             \verbatiminput{../experiments/profiled_outputs/docker/throughput/capacity10/final.csv}
+%         \end{varwidth}
+%         \selectlanguage{greek}
+%     \end{subfigure}
+%     \begin{subfigure}{\textwidth}
+%         \centering
+%         \caption{\eng{capacity=20}}
+%         \label{fig:throughput-times-20}
+%         \selectlanguage{english}
+%         \begin{varwidth}{\linewidth}
+%             \verbatiminput{../experiments/profiled_outputs/docker/throughput/capacity20/final.csv}
+%         \end{varwidth}
+%         \selectlanguage{greek}
+%     \end{subfigure}
+%     \caption{Χρόνοι εκτέλεσης κόμβων}
+%     \label{fig:throughput-times}
+% \end{figure}
+% \FloatBarrier
+
+\clearpage
+\section{Κλιμακωσιμότητα του συστήματος}
+
+Στο πείραμα κλιμακωσιμότητας, το δίκτυο εκκινείται με 10 κόμβους, καθένας εκ
+των οποίων εκτελεί 1 \eng{staking} συναλλαγή, με \eng{stake 10 BCC} και 100
+συναλλαγές (συγκεκριμένα αποστολές μηνυμάτων) προς τους άλλους κόμβους. Σκοπός
+είναι να εξεταστεί η κλιμάκωση του συστήματος ως προς το πλήθος των
+συμμετεχόντων κόμβων.
+
+\subsection{Χρονοβόρα τμήματα του κώδικα}
+
+Στα γραφήματα \ref{fig:scalability-cost-centers} φαίνονται τα πιο χρονοβόρα
+κομμάτια του κώδικα για κάθε πείραμα κλιμακωσιμότητας. Φαίνεται ότι αυτά είναι
+τα ίδια με τα πιο χρονοβόρα κομμάτια του κώδικα για το πείραμα ρυθμαπόδοσης, με
+την συνάρτηση \eng{modular\_exponentiation} να καταλαμβάνει πάλι περίπου το
+45\% του συνολικού \eng{CPU time} του προγράμματος.
+
+\graphicspath{{../experiments/profiled\_outputs/docker/scalability/}}
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity5/cost-centers-capacity5.png}
+        \caption{\eng{capacity=5}}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[ht]
+    \ContinuedFloat
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity10/cost-centers-capacity10.png}
+        \caption{\eng{capacity=10}}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity20/cost-centers-capacity20.png}
+        \caption{\eng{capacity=20}}
+    \end{subfigure}
+    \caption{Τα πιο χρονοβόρα κομμάτια του κώδικα}
+    \label{fig:scalability-cost-centers}
+\end{figure}
+\FloatBarrier
+
+\subsection{Συναρτήσεις του συστήματος}
+
+% Στα γραφήματα \ref{fig:scalability-funcs} παρατηρείται ότι η
+% \eng{validateTransaction} καταλαμβάνει περίπου 15\% του συνολικού χρόνου
+% εκτέλεσης, ενώ προηγουμένως κατελάμβανε περίπου 8\%. Δεδομένου ότι οι
+% συναλλαγές έχουν τετραπλασιαστεί, ο πολλαπλασιασμός του ποσοστού επί 2 φαίνεται
+% προβληματικός εκ πρώτης όψεως. Ωστόσο, ο χρόνος του τρέχοντος πειράματος είναι
+% διπλάσιος από τον χρόνο του προηγούμενου πειράματος, οπότε στην πραγματικότητα
+% ο χρόνος είναι ο τετραπλάσιος. Επομένως, ο χρόνος που ξοδεύει συνολικά ένας
+% κόμβος στην επικύρωση συναλλαγών αυξάνεται γραμμικά με το πλήθος των συμμετέχοντων
+% κόμβων, σε μία διάταξη όπως η παρούσα, όπου κάθε κόμβος στέλνει ένα σταθερό πλήθος
+% συναλλαγών ανά κόμβο.
+
+Στα γραφήματα \ref{fig:scalability-funcs} παρατηρείται ότι οι συναρτήσεις
+καταλαμβάνουν περίπου το ίδιο ποσοστό χρόνου εκτέλεσης με το προηγούμενο
+πείραμα.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity5/times_of_function_per_node_capacity5.png}
+        \caption{\eng{capacity=5}}
+        \label{fig:scalability-funcs-5}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[ht]
+    \ContinuedFloat
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity10/times_of_function_per_node_capacity10.png}
+        \caption{\eng{capacity=10}}
+        \label{fig:scalability-funcs-10}
+    \end{subfigure}
+    \centering
+    \begin{subfigure}{\textwidth}
+        \includegraphics[width=\textwidth]{./capacity20/times_of_function_per_node_capacity20.png}
+        \caption{\eng{capacity=20}}
+        \label{fig:scalability-funcs-20}
+    \end{subfigure}
+    \caption{Ποσοστό χρόνου επί του συνολικού χρόνου εκτέλεσης που λαμβάνει η κάθε συνάρτηση}
+    \label{fig:scalability-funcs}
+\end{figure}
+\FloatBarrier
+
+\DTLloaddb{sc-calls1}{../experiments/profiled_outputs/docker/scalability/capacity5/rawinfo.csv}
+\DTLloaddb{sc-calls2}{../experiments/profiled_outputs/docker/scalability/capacity10/rawinfo.csv}
+\DTLloaddb{sc-calls3}{../experiments/profiled_outputs/docker/scalability/capacity20/rawinfo.csv}
+
+Στον πίνακα \ref{tab:scalability-funcs-1} φαίνονται οι κλήσεις ενδιαφέροντος
+των κόμβων. Παρατηρώντας το πλήθος των κλήσεων ανά συνάρτηση, διαπιστώνεται ότι
+οι κόμβοι δεν προλαβαίνουν να επικυρώσουν όλες τις συναλλαγές που λαμβάνουν.
+Αυτό οφείλεται, αφενός στον μεγαλύτερο όγκο συναλλαγών $10 + 10 \times 100 =
+1010$ ο οποίος είναι $\approx 4$ φορές μεγαλύτερος από προηγουμένως, και
+αφετέρου στην μικρή χωρητικότητα του \eng{block}, το οποίο σημαίνει ότι οι
+κόμβοι πρέπει συχνά να καλούν την χρονοβόρα συνάρτηση \eng{mint} και να
+διακόπτουν την διαδικασία επικύρωσης.
+
+Επίσης, παρατηρείται ότι οι κόμβοι 7-8 έχουν μείνει πολύ πίσω σε σχέση
+με τους υπόλοιπους κόμβους. Αυτό είναι μάλλον συνέπεια της πειραματικής
+διάταξης, αφού όλοι οι κόμβοι τρέχουν στο ίδιο μηχάνημα.
+
+\begin{table}[ht]
+    \caption{Στατιστικά συναρτήσεων ανά κόμβο}
+    \label{tab:scalability-funcs}
+    \begin{subtable}{\textwidth}
+        \centering
+        \caption{\eng{capacity=5}}
+        \label{tab:scalability-funcs-1}
+        \selectlanguage{english}
+        \DTLdisplaydb[Module,Source,Number,TimeInd,MemInd,MemInh]{sc-calls1}
+        \selectlanguage{greek}
+    \end{subtable}
+\end{table}
+
+Αντιθέτως, στους πίνακες \ref{tab:scalability-funcs-2} και \ref{tab:scalability-funcs-3}
+φαίνεται από τις κλήσεις των συναρτήσεων ότι έχουν επικυρωθεί όλες οι συναλλαγές
+και έχουν παραχθεί τα αντίστοιχα \eng{blocks}. Η μεγαλύτερη χωρητικότητα των
+\eng{blocks} επιτρέπει στους κόμβους μεγαλύτερα χρονικά παράθυρα για την
+επικύρωση των συναλλαγών και η διακοπή για την παραγωγή των \eng{blocks} δεν
+καθυστερεί την εξέλιξη του δικτύου.
+
+\begin{table}[ht]
+    \ContinuedFloat
+    \begin{subtable}{0.45\textwidth}
+        \centering
+        \caption{\eng{capacity=10}}
+        \label{tab:scalability-funcs-2}
+        \selectlanguage{english}
+        \DTLdisplaydb[Module,Source,Number,TimeInd,MemInd,MemInh]{sc-calls2}
+        \selectlanguage{greek}
+    \end{subtable}
+    \hfill
+    \begin{subtable}{0.45\textwidth}
+        \centering
+        \caption{\eng{capacity=20}}
+        \label{tab:scalability-funcs-3}
+        \selectlanguage{english}
+        \DTLdisplaydb[Module,Source,Number,TimeInd,MemInd,MemInh,Node,Function]{sc-calls3}
+        \selectlanguage{greek}
+    \end{subtable}
+\end{table}
+\FloatBarrier
+
+Για την μέτρηση του \eng{block time} και της ρυθμαπόδοσης του συστήματος, λαμβάνονται
+υπόψιν τόσα μπλοκ όσα και οι κλήσεις στην συνάρτηση \eng{mint} και τόσες συναλλαγές
+όσα τα μπλοκς επί την εκάστοτε χωρητικότητα.
+
+\begin{equation}
+    \begin{gathered}
+        \text{Χωρητικότητα = 5} \Rightarrow \text{Μπλοκς} = 100 \text{ και } \text{Συναλλαγές} = 500 \\
+        \text{Χωρητικότητα = 10} \Rightarrow \text{Μπλοκς} = 50 \text{ και } \text{Συναλλαγές} = 500 \\
+        \text{Χωρητικότητα = 20} \Rightarrow \text{Μπλοκς} = 25 \text{ και } \text{Συναλλαγές} = 500 \\
+    \end{gathered}
+\end{equation}
+
+\clearpage
+\subsection{Ρυθμαπόδοση και \eng{Block time}}
+
+Στο σχήμα \ref{fig:scalability-blocktimes} φαίνονται οι μέσοι χρόνοι δημιουργίας
+\eng{block} όπως υπολογίστηκαν από κάθε κόμβο.
+
+\begin{figure}[ht]
+    \centering
+    \selectlanguage{english}
+    \begin{varwidth}{\linewidth}
+        \verbatiminput{../experiments/profiled_outputs/docker/scalability/blocktimes.txt}
+    \end{varwidth}
+    \selectlanguage{greek}
+    \caption{Μέσος χρόνος δημιουργίας \eng{block} (\eng{ms})}
+    \label{fig:scalability-blocktimes}
+\end{figure}
+
+Πάλι, από τους χρόνους αυτούς μπορούν να μετρηθούν και οι εξυπηρετούμενες
+συναλλαγές ανά δευτερόλεπτο. Για κάθε \eng{capacity} έχουμε:
+
+\begin{equation}
+    \begin{gathered}
+        \text{Ρυθμαπόδοση} = \frac{\text{Συναλλαγές}}{\text{Χρόνος}} = \frac{\text{Συναλλαγές}}{\text{Μπλοκ}}\cdot \frac{\text{Μπλοκ}}{\text{Χρόνος}} \Leftrightarrow \\
+        \\
+        \text{Ρυθμαπόδοση} = \frac{\frac{\text{Συναλλαγές}}{\text{Μπλοκ}} }{\text{Μέσος χρόνος δημιουργίας μπλοκ}} = \frac{\text{Χωρητικότητα}}{\text{Μέσος χρόνος δημιουργίας μπλοκ}} \Rightarrow \\
+    \\
+    \boxed{
+        \begin{gathered}
+            \text{Ρυθμαπόδοση}_{capacity=5} = \frac{5}{0,550} = 9,090 \text{} \frac{txs}{s}\\
+            \text{Ρυθμαπόδοση}_{capacity=10} = \frac{10}{1,060} = 9,4323 \text{} \frac{txs}{s}\\
+            \text{Ρυθμαπόδοση}_{capacity=20} = \frac{20}{1.708} = 11,709 \text{} \frac{txs}{s}\\
+        \end{gathered}
+    }
+    \end{gathered}
+\end{equation}
+
+Οι μετρήσεις από τα πειράματα συνοψίζονται στα γραφήματα \ref{fig:throughput-block-time}.
+
+% Η ρυθμαπόδοση του συστήματος μπορεί να υπολογιστεί όπως προηγουμένως:
+% 
+% \begin{equation}
+%     \begin{gathered}
+%         \text{Ρυθμαπόδοση} = \frac{\text{Συνολικές συναλλαγές}}{\text{Συνολικός χρόνος}} \Rightarrow
+%         \left\{
+%             \begin{gathered}
+%                 th_{capacity=5} = \frac{0.8 \times 62 + 0.2 \times 5}{10} \\
+%                 th_{capacity=10} = \frac{1010}{10} \\
+%                 th_{capacity=20} = \frac{1010}{10}
+%             \end{gathered}
+%         \right\} \Rightarrow \\
+%         \boxed{
+%             \begin{gathered}
+%                 th_{capacity=5}  = 5.6\text{ }\frac{txs}{s} \\
+%                 th_{capacity=10} = 101\text{ }\frac{txs}{s} \\
+%                 th_{capacity=20} = 101\text{ }\frac{txs}{s}
+%             \end{gathered}
+%         }
+%     \end{gathered}
+% \end{equation}
+
+
+\begin{figure}
+    \begin{subfigure}{\textwidth}
+        \centering
+        \caption{\eng{Throughput} του συστήματος}
+        \label{fig:throughput-per-node}
+        \selectlanguage{english}
+        \adjustbox{width=0.7\textwidth}{
+            \begin{tikzpicture}
+                \datavisualization [scientific axes, all axes={grid},
+                                    visualize as line/.list={capacity5, capacity10, capacity20},
+                                    x axis={label={number of nodes}, 
+                                            min value=4, max value=11},
+                                    y axis={label={throughput (txs/s)},
+                                            min value=7, max value=12},
+                                    capacity5={label in legend={text=Capacity 5}},
+                                    capacity10={label in legend={text=Capacity 10}},
+                                    capacity20={label in legend={text=Capacity 20}},
+                                    legend=east outside, style sheet=strong colors,
+                                    ]
+                    data [set=capacity5] {
+                        x, y
+                        5, 7.598
+                        10, 9.090
+                    }
+                    data [set=capacity10] {
+                        x, y
+                        5, 9.569
+                        10, 9.432
+                    }
+                    data [set=capacity20]{
+                        x, y
+                        5, 10.0
+                        10, 11.709
+                    };
+            \end{tikzpicture}
+        }
+        \selectlanguage{greek}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+        \centering
+        \caption{Μέσο \eng{block time} του συστήματος}
+        \label{fig:block-time-per-node}
+        \selectlanguage{english}
+        \adjustbox{width=0.7\textwidth}{
+            \begin{tikzpicture}
+                \datavisualization [
+                    scientific axes, all axes={grid},
+                    visualize as line/.list={capacity5, capacity10, capacity20},
+                    x axis={label={number of nodes}, 
+                            min value=4, max value=11},
+                    y axis={label={average block time(blocks/s)},
+                            min value=0.5, max value=2.2},
+                    capacity5={label in legend={text=Capacity 5}},
+                    capacity10={label in legend={text=Capacity 10}},
+                    capacity20={label in legend={text=Capacity 20}},
+                    legend=east outside, style sheet=strong colors,
+                ]
+                    data [set=capacity5] {
+                        x, y
+                        5, 0.658
+                        10, 0.550
+                    }
+                    data [set=capacity10] {
+                        x, y
+                        5, 1.045
+                        10, 1.060
+                    }
+                    data [set=capacity20]{
+                        x, y
+                        5, 2.000
+                        10, 1.708
+                    };
+            \end{tikzpicture}
+        }
+        \selectlanguage{greek}
+    \end{subfigure}
+    \caption{Ρυθμαπόδοση και μέσος \eng{block time} του συστήματος}
+    \label{fig:throughput-block-time}
+\end{figure}
+\FloatBarrier
+
+Στα γραφήματα \ref{fig:throughput-per-node} και \ref{fig:block-time-per-node} φαίνεται η
+ρυθμαπόδοση και το μέσο \eng{block time} του συστήματος μεταξύ των πειραμάτων, από 5 
+έως 10 κόμβους, για κάθε χωρητικότητα. Φαίνεται, ότι το πλήθος των εξυπηρετούμενων
+συναλλαγών ανά μονάδα χρόνου αυξάνεται με τον αριθμό των κόμβων για τις χωρητικότητες
+5 και 20, αλλά για την 10 μένει οριακά σταθερός, με ελαφρώς φθίνουσα τάση. Ο δε
+μέσος χρόνος δημιουργίας \eng{block} μειώνεται με τον αριθμό των κόμβων για τις χωρητικότητες
+5 και 20, αλλά για την 10 μένει οριακά σταθερός, με ελαφρώς αύξουσα τάση. Αυτό δείχνει
+ότι το δίκτυο μπορεί να κλιμακώνει με τον αριθμό των κόμβων.
+
+% \subsection{\eng{Block Time}}
+% 
+% Το μέσο \eng{block time} του συστήματος υπολογίζεται πάλι όπως προηγουμένως:
+% 
+% \begin{equation}
+%     \begin{gathered}
+%         \text{\eng{Block Time}} = \frac{\text{Συνολικός χρόνος}}{\text{Συνολικά \eng{blocks}}} \Rightarrow
+%         \left\{
+%             \begin{gathered}
+%                 bt_{capacity=5} = \frac{0.8 \times 12 + 0.2 \times 1}{10} \\ 
+%                 bt_{capacity=10} = \frac{50}{10} \\ 
+%                 bt_{capacity=20} = \frac{0.1 \times 22 + 0.1 \times 23 + 0.8 \times 25}{10} \\
+%             \end{gathered} \right\}\Rightarrow \\ 
+%         \boxed{
+%             \begin{gathered}
+%                 bt_{capacity=5} = 0.962\frac{blocks}{s} \\
+%                 bt_{capacity=10} = 5\frac{blocks}{s} \\
+%                 bt_{capacity=20} = 2.25\frac{blocks}{s}
+%             \end{gathered}
+%         }
+%     \end{gathered}
+% \end{equation}
+% 
+% 
+% \begin{figure}[ht]
+%     \begin{subfigure}{\textwidth}
+%         \centering
+%         \caption{\eng{capacity=5}}
+%         \label{fig:scalability-times-5}
+%         \selectlanguage{english}
+%         \begin{varwidth}{\linewidth}
+%             \verbatiminput{../experiments/profiled_outputs/docker/scalability/capacity5/final.csv}
+%         \end{varwidth}
+%         \selectlanguage{greek}
+%     \end{subfigure}
+%     \begin{subfigure}{\textwidth}
+%         \centering
+%         \caption{\eng{capacity=10}}
+%         \label{fig:scalability-times-10}
+%         \selectlanguage{english}
+%         \begin{varwidth}{\linewidth}
+%             \verbatiminput{../experiments/profiled_outputs/docker/scalability/capacity10/final.csv}
+%         \end{varwidth}
+%         \selectlanguage{greek}
+%     \end{subfigure}
+%     \begin{subfigure}{\textwidth}
+%         \centering
+%         \caption{\eng{capacity=20}}
+%         \label{fig:scalability-times-20}
+%         \selectlanguage{english}
+%         \begin{varwidth}{\linewidth}
+%             \verbatiminput{../experiments/profiled_outputs/docker/scalability/capacity20/final.csv}
+%         \end{varwidth}
+%         \selectlanguage{greek}
+%     \end{subfigure}
+%     \caption{Χρόνοι εκτέλεσης κόμβων}
+%     \label{fig:scalability-times}
+% \end{figure}
+% \FloatBarrier
+
+
+\clearpage
+\section{Δικαιοσύνη}
+
+Στο πείραμα δικαιοσύνης, το δίκτυο εκκινείται με 5 κόμβους και ο υπ'αριθμόν 1
+από αυτούς κάνει \eng{stake 100 BCC}, ενώ οι υπόλοιποι κάνουν \eng{stake 10 BCC}.
+
+\graphicspath{{../experiments/profiled\_outputs/docker/fairness/}}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{./capacity5/cost-centers-capacity5.png}
+    \caption{Τα πιο χρονοβόρα κομμάτια του κώδικα \eng{capacity=5}}
+    \label{fig:fairness-cost-centers}
+\end{figure}
+
+Στον πίνακα \ref{tab:fairness-funcs} φαίνονται οι κλήσεις μερικών συναρτήσεων
+ενδιαφέροντος. Φαίνεται ότι τα πλήθη όλων των κλήσεων είναι ίδια ανά κόμβο,
+πράγμα που σημαίνει ότι οι κόμβοι εκτελούν τις ίδιες λειτουργίες με την ίδια
+συχνότητα. Παρ'όλα αυτά, ο κόμβος με το μεγαλύτερο \eng{stake} καταναλώνει πολύ
+περισσότερο χρόνο στην συνάρτηση \eng{mint'} σε σχέση με τους υπόλοιπους
+κόμβους, όπως φαίνεται και στο σχήμα \ref{fig:fairness-funcs}.
+
+\DTLloaddb{fairness-calls}{../experiments/profiled_outputs/docker/fairness/capacity5/rawinfo.csv}
+\begin{table}[ht]
+    \centering
+    \caption{Στατιστικά συναρτήσεων ανά κόμβο \eng{capacity=5}}
+    \label{tab:fairness-funcs}
+    \selectlanguage{english}
+    \DTLdisplaydb[Module,Source,Number,TimeInd,MemInd,MemInh]{fairness-calls}
+    \selectlanguage{greek}
+\end{table}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{./capacity5/times_of_function_per_node_capacity5.png}
+    \caption{Ποσοστό χρόνου επί του συνολικού χρόνου εκτέλεσης που λαμβάνει η κάθε συνάρτηση \eng{capacity=5}}
+    \label{fig:fairness-funcs}
+\end{figure}
+\FloatBarrier
+
+Στο σχήμα \ref{fig:fairness-funcs} φαίνεται, πράγματι, ότι ο κόμβος με το
+μεγαλύτερο \eng{stake} καταναλώνει πολύ περισσότερο χρόνο στην συνάρτηση
+\eng{mint'} σε σχέση με τους υπόλοιπους κόμβους, ενδεικτικό του γεγονός ότι
+πράγματι αυτός αναλαμβάνει συχνότερα την δημιουργία των νέων \eng{blocks}.
+Μάλιστα, επισκοπώντας τα υπόλοιπα των λογαριασμών των κόμβων στο σχήμα
+\ref{fig:fairness-balances}, παρατηρεί κανείς ότι όντως τα περισσότερα
+νομίσματα συσσωρεύονται στον κόμβο με το μεγαλύτερο \eng{stake}. Συμπεραίνεται,
+λοιπόν, ότι σε βάθος χρόνου συσσωρεύονται νομίσματα στον κόμβο με το μεγαλύτερο
+\eng{stake}. Θεωρητικά, αυτό σημαίνει ότι ένας κακόβουλος κόμβος θα μπορούσε
+να εκμεταλλευτεί το φαινόμενο αυτό και να χειραγωγεί το δίκτυο κατά την
+θέλησή του. Επομένως, υπάρχει ανάγκη για έναν μηχανισμό που θα εξασφαλίζει
+ότι, παρά την ανισότητα των \eng{stakes}, οι κόμβοι θα έχουν ίσες ευκαιρίες
+στην επικύρωση των συναλλαγών και δεν θα επαφίεται η ασφάλεια του δικτύου
+σε έναν μόνο κόμβο.
+
+\begin{figure}[h]
+    \centering    
+    \selectlanguage{english}
+    \begin{varwidth}{\linewidth}
+        \verbatiminput{../experiments/profiled_outputs/docker/fairness/capacity5/balances.out}
+    \end{varwidth}
+    \selectlanguage{greek}
+    \caption{Υπόλοιπα λογαριασμών κόμβων \eng{capacity=5}}
+    \label{fig:fairness-balances}
+\end{figure}
+
+\end{document}
+
