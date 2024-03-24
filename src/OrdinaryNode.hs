@@ -43,11 +43,12 @@ import Control.Monad.Reader
     asks,
   )
 import Control.Monad.State (evalState)
-import Data.Binary (decode)
+import Data.Binary (decode, decodeOrFail)
 import qualified Data.ByteString as BS
+import qualified Data.ByteString.Lazy as LBS
 import Data.IORef (newIORef, readIORef, writeIORef, atomicModifyIORef')
 import qualified Data.Map as Map
-import Data.Maybe (fromMaybe)
+--import Data.Maybe (fromMaybe)
 import Data.RVar (sampleStateRVar)
 import Data.Random.Distribution.Categorical (weightedCategorical)
 import Data.UnixTime (getUnixTime)
@@ -98,21 +99,72 @@ data ServerEnv = ServerEnv (TVar StartupState) (MVar Int) TXQueue BLQueue
 
 -- | This will be used by the nodeLogic function. It is a server that receives
 -- requests and discriminates using their header.
+-- server :: ServerEnv -> (Socket, SockAddr) -> IO ()
+-- server (ServerEnv startupState trigger queuedTxs queuedBlocks) (socket, _) = do
+--   -- the server is a producer of transactions and blocks
+--   resp <- recv socket $ 16 * 4096 -- 4KB
+--   let (msgtype, msg) = BS.splitAt 1 $ Data.Maybe.fromMaybe BS.empty resp
+--   case msgtype of
+--     "0" -> do
+--       -- receive broadcast from bootstrap
+--       atomically $ writeTVar startupState (decode $ BS.fromStrict msg)
+--       putMVar trigger (1 :: Int) -- set the trigger that will allow the node to start
+--     "1" -> atomically $ enqueueTQ queuedTxs (decode $ BS.fromStrict msg) -- receive transaction
+--     "2" -> atomically $ enqueueTQ queuedBlocks (decode $ BS.fromStrict msg) -- receive block
+--     _ -> liftIO $ putStrLn "What the fuck" -- do nothing if header is not recognized
+
+receiveChunks :: Socket -> Int -> IO BS.ByteString
+receiveChunks socket limit = receiveChunks' ""
+  where
+    receiveChunks' acc | BS.length acc < limit = do
+      raw <- recv socket 1024 -- have a byte
+      case raw of
+        Nothing -> return acc -- can't get no more bytes
+        Just msg -> receiveChunks' $ BS.append acc msg -- keep eating
+    receiveChunks' acc | BS.length acc == limit = return acc
+    receiveChunks' acc = return $ fst $ BS.splitAt limit acc
+
 server :: ServerEnv -> (Socket, SockAddr) -> IO ()
 server (ServerEnv startupState trigger queuedTxs queuedBlocks) (socket, _) = do
-  -- the server is a producer of transactions and blocks
-  resp <- recv socket $ 8 * 4096 -- 32KB ~ 100 nodes
-  let (msgtype, msg) = BS.splitAt 1 $ Data.Maybe.fromMaybe BS.empty resp
+  resp <- receiveChunks socket $ 16 * 4096
+  let (msgtype, msg) = BS.splitAt 1 resp
   case msgtype of
-    "0" -> do
-      -- receive broadcast from bootstrap
-      atomically $ writeTVar startupState (decode $ BS.fromStrict msg)
-      putMVar trigger (1 :: Int) -- set the trigger that will allow the node to start
-    "1" -> atomically $ enqueueTQ queuedTxs (decode $ BS.fromStrict msg) -- receive transaction
-    "2" -> atomically $ enqueueTQ queuedBlocks (decode $ BS.fromStrict msg) -- receive block
+    "0" -> handleDecodeStartup startupState trigger msg
+    "1" -> handleDecodeTx queuedTxs msg
+    "2" -> handleDecodeBlock queuedBlocks msg
     _ -> liftIO $ putStrLn "What the fuck" -- do nothing if header is not recognized
 
--- | This function simulate the lottery for the validator.
+-- server :: ServerEnv -> (Socket, SockAddr) -> IO ()
+-- server (ServerEnv startupState trigger queuedTxs queuedBlocks) (socket, _) = do
+--   resp <- recv socket $ 16 * 4096 -- 64 KB
+--   let (msgtype, msg) = BS.splitAt 1 $ Data.Maybe.fromMaybe BS.empty resp
+--   case msgtype of
+--     "0" -> handleDecodeStartup startupState trigger msg
+--     "1" -> handleDecodeTx queuedTxs msg
+--     "2" -> handleDecodeBlock queuedBlocks msg
+--     _ -> liftIO $ putStrLn "What the fuck" -- do nothing if header is not recognized
+
+handleDecodeStartup :: TVar StartupState -> MVar Int -> BS.ByteString -> IO ()
+handleDecodeStartup startupState trigger msg =
+  case decodeOrFail (LBS.fromStrict msg) of
+    Left (_, _, errmsg) -> putStrLn $ "From startup: " ++ errmsg
+    Right (_, _, result) -> do
+      atomically $ writeTVar startupState result
+      putMVar trigger 1
+
+handleDecodeTx :: TXQueue -> BS.ByteString -> IO ()
+handleDecodeTx queue msg = 
+  case decodeOrFail (LBS.fromStrict msg) of
+    Left (_, _, errmsg) -> putStrLn $ "From tx: " ++ errmsg
+    Right (_, _, tx) -> atomically $ enqueueTQ queue tx
+
+handleDecodeBlock :: BLQueue -> BS.ByteString -> IO ()
+handleDecodeBlock queue msg =
+  case decodeOrFail (LBS.fromStrict msg) of
+    Left (_, _, errmsg) -> putStrLn $ "From block: " ++ errmsg
+    Right (_, _, block) -> atomically $ enqueueTQ queue block
+
+-- | This function simulates the lottery for the validator.
 sampleValidator :: (RandomGen g) => g -> [(Double, Int)] -> Int
 sampleValidator g probs = evalState (sampleStateRVar (weightedCategorical epsProbs)) g
   where
