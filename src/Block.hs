@@ -9,6 +9,7 @@ module Block
     emptyBlock,
     broadcastBlock,
     txIsUnique,
+    meanBlockTime,
   )
 where
 
@@ -19,11 +20,12 @@ import Data.ByteArray (convert)
 import Data.ByteString (ByteString)
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as B
-import Data.UnixTime (UnixTime (..))
+import Data.UnixTime (UnixTime (..), toClockTime)
 import Network.Simple.TCP (HostName, ServiceName, connect, send)
 import Transaction (Transaction)
 import Types (Peer)
 import Utils (encodeStrict)
+import System.Time
 
 data BlockInit = BlockInit
   { initIndex :: Int, -- index number of block
@@ -120,9 +122,10 @@ validateBlock newblock prevblock validator = validatorOK && hashOK
 
 -- | Helper function to broadcast a block to all peers.
 broadcastBlock :: [Peer] -> Block -> IO ()
-broadcastBlock peers block = mapM_ sendBlock peers
+broadcastBlock peers block = putStrLn ("broadcasting block msg " ++ show len ++ " bytes") >> mapM_ sendBlock peers
   where
     msg = BS.append blockMsgHeader $ encodeStrict block
+    len = BS.length msg
     sendBlock :: (HostName, ServiceName) -> IO ()
     sendBlock (host, port) = connect host port $ \(sock, _) -> send sock msg
 
@@ -130,3 +133,15 @@ broadcastBlock peers block = mapM_ sendBlock peers
 -- A transaction is unique if it is not present in any of the blocks in the blockchain.
 txIsUnique :: Transaction -> Blockchain -> Bool
 txIsUnique tx = all (notElem tx . blockTransactions) 
+
+-- | This function takes a ClockTime and returns the number of milliseconds since 1st Jan 1970.
+milliseconds :: ClockTime -> Integer
+milliseconds (TOD sec pico) = sec * 1000 + pico `div` 1000000000
+
+-- | This function takes a blockchain and returns the mean time between blocks.
+meanBlockTime :: Blockchain -> Double
+meanBlockTime chain = fromIntegral (sum times'') / fromIntegral (length times)
+  where
+    times = map (Data.UnixTime.toClockTime . blockTimestamp) (reverse chain)
+    times' = zip times (tail times)
+    times'' = map (\(a, b) -> milliseconds b - milliseconds a) times'
