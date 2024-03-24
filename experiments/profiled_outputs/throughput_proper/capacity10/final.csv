@@ -1,6 +1,0 @@
-node1.prof:	total time = 0.71 secs 	txIsUnique = 228	nodeLogic.mint' = 22
-node2.prof:	total time = 0.65 secs 	txIsUnique = 229	nodeLogic.mint' = 22
-node3.prof:	total time = 0.65 secs 	txIsUnique = 227	nodeLogic.mint' = 22
-node4.prof:	total time = 0.66 secs 	txIsUnique = 227	nodeLogic.mint' = 22
-node5.prof:	total time = 0.69 secs 	txIsUnique = 229	nodeLogic.mint' = 22
-Time = 3.36, TXs = 1140, Blocks = 22  => Throughput = 339.28, Blocktime = .15
