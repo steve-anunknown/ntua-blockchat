@@ -35,11 +35,6 @@ data BlockInit = BlockInit
     initPreviousHash :: ByteString -- the hash of the previous block
   }
 
-type Blockchain = [Block]
-
-blockMsgHeader :: ByteString
-blockMsgHeader = "2"
-
 instance Binary BlockInit where
   put :: BlockInit -> Put
   put (BlockInit index time trans val prev) = do
@@ -106,26 +101,22 @@ emptyBlock = Block 0 (UnixTime 0 0) [] (PublicKey 0 0 65537) BS.empty BS.empty
 createBlock :: Int -> UnixTime -> [Transaction] -> PublicKey -> ByteString -> Block
 createBlock ind time list pub prev = finalizeBlock $ BlockInit ind time list pub prev
 
+type Blockchain = [Block]
+
+blockMsgHeader :: ByteString
+blockMsgHeader = "2"
+
 validateBlock :: Block -> Block -> PublicKey -> Bool
 validateBlock newblock prevblock validator = validatorOK && hashOK
   where
     validatorOK = blockValidator newblock == validator
     hashOK = blockPreviousHash newblock == blockCurrentHash prevblock
 
--- validateChain :: Blockchain -> Bool
--- validateChain chain = foldr validateChain' True $ zip chain (tail chain)
---     where validateChain' :: (Block, Block) -> Bool -> Bool
---           validateChain' (new, prev) acc = acc && validateBlock new prev (blockValidator new)
-
--- I don't think this is ever going to be used, because for the time being the network is
--- static. A fixed number of nodes enter and that's it.
-
 -- | Helper function to broadcast a block to all peers.
 broadcastBlock :: [Peer] -> Block -> IO ()
-broadcastBlock peers block = putStrLn ("broadcasting block msg " ++ show len ++ " bytes") >> mapM_ sendBlock peers
+broadcastBlock peers block = mapM_ sendBlock peers
   where
     msg = BS.append blockMsgHeader $ encodeStrict block
-    len = BS.length msg
     sendBlock :: (HostName, ServiceName) -> IO ()
     sendBlock (host, port) = connect host port $ \(sock, _) -> send sock msg
 
