@@ -20,13 +20,40 @@
 \usepackage{datatool} % for csv reading
 \usepackage{tikz} % for tikz plot
 \usepackage{adjustbox} % for table scaling
+\usepackage{pmboxdraw} % for box drawing characters
 \usetikzlibrary{datavisualization, babel} % for tikz plots
-
+\usepackage{fancyvrb} % for haskell code
+\DefineVerbatimEnvironment{code}{Verbatim}{fontsize=\small}
+\DefineVerbatimEnvironment{example}{Verbatim}{fontsize=\small}
+\newcommand{\ignore}[1]{}
 \newcommand{\eng}[1]{\foreignlanguage{english}{#1}} % shortcut for inserting english into greek text
 
 \useshorthands{;}
 \defineshorthand{;}{?} % greek question mark instead of english semicolon
 
+\lstset{
+  frame=none,
+  xleftmargin=2pt,
+  stepnumber=1,
+  numbers=left,
+  numbersep=5pt,
+  numberstyle=\ttfamily\tiny\color[gray]{0.3},
+  belowcaptionskip=\bigskipamount,
+  captionpos=b,
+  escapeinside={*'}{'*},
+  language=haskell,
+  tabsize=2,
+  emphstyle={\bf},
+  commentstyle=\it,
+  stringstyle=\mdseries\rmfamily,
+  showspaces=false,
+  keywordstyle=\bfseries\rmfamily,
+  columns=flexible,
+  basicstyle=\small\sffamily,
+  showstringspaces=false,
+  morecomment=[l]\%,
+  xleftmargin=.2\textwidth, xrightmargin=.2\textwidth
+}
 
 \title{
     \includegraphics[width=\textwidth]{~/Pictures/emp.png} \\
@@ -44,7 +71,336 @@
 
 \part{Σχεδιασμός Συστήματος}
 
-\section{Δεν είμαι σίγουρος}
+Αρχικά, ο κώδικας αποτελείται από τα παρακάτω αρχεία με την δομή που φαίνεται:
+
+\begin{figure}[ht]
+    \centering
+    \selectlanguage{english}
+    \begin{varwidth}{\linewidth}
+        \verbatiminput{project-structure.txt}
+    \end{varwidth}
+    \selectlanguage{greek}
+    \caption{Δομή του κώδικα}
+\end{figure}
+
+Το αρχείο \texttt{\eng{Main.hs}} είναι ο οδηγός της εφαρμογής, δηλαδή αυτό που
+εκτελείται για την εκκίνηση του προγράμματος. Στο αρχείο \texttt{\eng{CLI.hs}}
+υλοποιείται το \eng{front-end} της εφαρμογής, δηλαδή η διεπαφή με τον χρήστη.
+Τα υπόλοιπα αρχεία είναι το \texttt{\eng{back-end}} της εφαρμογής, δηλαδή οι απαραίτητες
+συναρτήσεις και η λογική για την λειτουργία του \eng{blockchain} δικτύου. Εξαίρεση
+αποτελούν τα αρχεία \texttt{\eng{Utils.hs}} και \texttt{\eng{Types.hs}} τα οποία
+περιέχουν βοηθητικές συναρτήσεις και δηλώσεις τύπους δεδομένων αντίστοιχα.
+
+\section{\eng{Back-end}}
+
+\subsection{Βασικές Δομές Δεδομένων}
+
+Αρχικά θα αναλυθούν οι βασικές δομές δεδομένων που χρησιμοποιούνται στο
+σύστημα. Αυτές είναι:
+
+\selectlanguage{english}
+\begin{itemize}
+    \item Wallet
+    \item Account
+    \item Block
+    \item Transaction
+\end{itemize}
+\selectlanguage{greek}
+
+\subsubsection{\eng{Wallet}}
+
+Το αρχείο \texttt{\eng{Wallet.hs}} περιέχει την υλοποίηση της δομής \eng{Wallet}.
+Ορίζει για τα υπόλοιπα αρχεία τον τύπο \texttt{\eng{Wallet}}, ως ένα συνώνυμο
+για ένα ζευγάρι από \texttt{\eng{PublicKey, PrivateKey}} και την συνάρτηση
+\texttt{\eng{generateWallet}}, η οποία δημιουργεί ένα τέτοιο ζευγάρι κλειδιών.
+
+\begin{figure}[ht]
+\selectlanguage{english}
+    \lstinputlisting[label={walleths}, caption={Wallet.hs}, language={haskell}]{../src/Wallet.hs}
+\selectlanguage{greek}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{\eng{Account}}
+
+Το αρχείο \texttt{\eng{Account.hs}} περιέχει την υλοποίηση της δομής \eng{Account}.
+Ορίζει για τα υπόλοιπα αρχεία των τύπο, καθώς και πρόσβαση σε όλα τα πεδία του,
+μία μεταβλητή (βασικά, σταθερή συνάρτηση) \texttt{\eng{initialAccount}} και κάποιες
+βοηθητικές συναρτήσεις για την ενημέρωση του λογαριασμού και γρήγορη πρόσβαση στο
+υπόλοιπό του, λαμβάνοντας υπόψιν το \eng{staking}. Δύο πράγματα είναι αξιοσημείωτα
+σε αυτό το σημείο:
+
+\begin{enumerate}
+    \item Η σταθερή συνάρτηση / μεταβλητή \texttt{\eng{initialAccount}} χρησιμοποιείται
+        από τους κόμβους για την αρχικοποίηση του λογαριασμού τους. Αυτό σημαίνει ότι
+        ο \eng{bootstrap} κόμβος δεν χρειάζεται να τους στείλει κάποια αρχική πληροφορία
+        σχετική με τον λογαριασμό τους.
+    \item Η συνάρτηση \texttt{\eng{updateStake}} πανωγράφει το προηγούμενο ποσό
+        \eng{stake}. Αυτό επιτρέπει στον χρήστη της εφαρμογής να ενημερώνει το
+        \eng{stake} του.
+\end{enumerate}
+
+\selectlanguage{english}
+    \lstinputlisting[firstline=11, label={accounths}, caption={Account.hs}, language={haskell}]{../src/Account.hs}
+\selectlanguage{greek}
+
+\subsubsection{\eng{Block}}
+
+Το αρχείο για τον ορισμό της δομής \texttt{\eng{Block}} θα αναλυθεί σε τμήματα, καθώς
+εμπεριέχει διάφορα μέρη τα οποία εξυπηρετούν ανεξάρτητους μεταξύ τους σκοπούς.
+
+Αρχικά, στο \ref{lst:blockhs1} φαίνεται, εκτός από κάποιες απαραίτητες εισαγωγές βιβλιοθηκών,
+η δήλωση της δομής \texttt{\eng{BlockInit}}. Αυτή η δομή χρησιμοποιείται ως βοηθητική δομή
+για την κανονική δομή \texttt{\eng{Block}}. Εμπεριέχει όλα τα πεδία του \eng{block} εκτός
+από το \eng{hash}, το οποίο υπολογίζεται και συμπεριλαμβάνεται κατά την δημιουργία ενός
+στιγμιοτύπου της δομής \texttt{\eng{Block}}. 
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=31, lastline=37,label={lst:blockhs1}, caption={Block.hs}, language={haskell}]{../src/Block.hs}
+    \selectlanguage{greek}
+
+Στην συνέχεια, το \texttt{\eng{BlockInit}} ορίζεται ως στιγμιότυπο της κατηγορίας κλάσεων
+\texttt{\eng{Binary}}, ώστε να μπορεί να κωδικοποιηθεί σε \eng{bytes} προς αποστολή και προς
+\eng{hash}άρισμα.
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=38, lastline=53,label={lst:blockhs2}, caption=Block.hs, language=haskell]{../src/Block.hs}
+    \selectlanguage{greek}
+
+Στην συνέχεια \ref{lst:blockhs3}, ορίζεται η δομή \texttt{\eng{Block}}, η οποία
+περιέχει ακόμα το πεδίο \texttt{\eng{blockCurrentHash}}. Ορίζεται και αυτή ως
+στιγμιότυπο της κατηγορίας κλάσεων \texttt{\eng{Binary}} για τους ίδιους λόγους
+με το \texttt{\eng{BlockInit}}.
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=54, lastline=81,label={lst:blockhs3}, caption=Block.hs, language=haskell]{../src/Block.hs}
+    \selectlanguage{greek}
+
+Ακόμα, στο \ref{lst:blockhs4} ορίζεται η συνάρτηση \texttt{\eng{computeHash}} η οποία
+συμπληρώνει το πεδίο \texttt{\eng{blockCurrentHash}} του \texttt{\eng{Block}} δεδομένου
+ενός \texttt{\eng{BlockInit}}, ορίζεται η \texttt{\eng{finalizeBlock}}, η οποία 
+επιστρέφει ένα ολοκληρωμένο \texttt{\eng{Block}} από ένα \texttt{\eng{BlockInit}} και
+τέλος η \texttt{\eng{createBlock}} η οποία είναι ένα \eng{wrapper} για την
+\texttt{\eng{finalizeBlock}} και προσφέρεται στον υπόλοιπο κώδικα ως η μέθοδος
+για την δημιουργία ενός \texttt{\eng{Block}}.
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=82, lastline=103,label={lst:blockhs4}, caption=Block.hs, language=haskell]{../src/Block.hs}
+    \selectlanguage{greek}
+
+Εδώ ορίζεται ένα συνώνυμο τύπου και μία βοηθητική σταθερά.
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=105, lastline=107,label={lst:blockhs5}, caption=Block.hs, language=haskell]{../src/Block.hs}
+    \selectlanguage{greek}
+
+Τέλος, ορίζονται συναρτήσεις για την αποστολή ενός \eng{Block} στο δίκτυο και την
+επικύρωση ενός \eng{Block}. Ακόμα, ορίζονται κάποιες βοηθητικές συναρτήσεις για τον
+υπολογισμό του μέσου \eng{block time} από τα \eng{time stamps} των \eng{Block} στην
+αλυσίδα.
+% consider a figure environment
+    \selectlanguage{english}
+    \lstinputlisting[firstline=109, lastline=139,label={lst:blockhs6}, caption=Block.hs, language=haskell]{../src/Block.hs}
+    \selectlanguage{greek}
+\FloatBarrier
+
+\subsubsection{\eng{Transaction}}
+
+Ο κώδικας για την υλοποίηση της δομής \eng{Transaction} ακολουθεί τις ίδιες αρχές με
+τον κώδικα για την υλοποίηση της δομής \eng{Block}. Για αυτόν τον λόγο δεν θα παρουσιαστεί
+ολόκληρος αλλά τα πιο σημαντικά μέρη.
+
+Αρχικά, και αυτός ο τύπος ορίζεται ως στιγμιότυπο της κατηγορίας κλάσεων \eng{Binary}, επειδή
+πρέπει και αυτός να μπορεί να κωδικοποιηθεί σε \eng{bytes} για την αποστολή του στο δίκτυο.
+
+Οι πιο σημαντικές συναρτήσεις είναι οι ακόλουθες:
+
+\begin{figure}[ht]
+    \selectlanguage{english}
+    \lstinputlisting[firstline=169, label={lst:transactionhs1}, caption=Transaction.hs, language=haskell]{../src/Transaction.hs}
+    \selectlanguage{greek}
+\end{figure}
+\FloatBarrier
+
+όπου \texttt{\eng{PubKeyToAcc}} και \texttt{\eng{Peer}} είναι τύποι που ορίζονται στο
+αρχείο \texttt{\eng{Types.hs}}:
+
+\begin{figure}[ht]
+    \selectlanguage{english}
+    \lstinputlisting[firstline=11, label={lst:typeshs}, caption=Types.hs, language=haskell]{../src/Types.hs}
+    \selectlanguage{greek}
+\end{figure}
+\FloatBarrier
+
+ενώ η συνάρτηση \texttt{\eng{encodeStrict}} ορίζεται στο αρχείο \texttt{\eng{Utils.hs}}:
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=14, label={lst:utilshs}, caption=Utils.hs, language=haskell]{../src/Utils.hs}
+    \selectlanguage{greek}
+
+Σημαντική επίσης είναι η ακόλουθη συνάρτηση, που χρησιμοποιείται για την ενημέρωση των
+λογαριασμών βάσει μίας συναλλαγής, και η επέκτασή της σε λίστα συναλλαγών. Αυτές θα
+χρησιμοποιηθούν από τους κόμβους για την ενημέρωση του \eng{soft state} τους.
+Παρατηρείται ότι δεν ενημερώνουν το \eng{nonce} του λογαριασμού. Για πρακτικούς
+λόγους, που μπορούν να εξηγηθούν αναλυτικά αργότερα, στον κώδικα των κόμβων,
+η ενημέρωση γίνεται από το \eng{front-end}.
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=112, lastline=141, label={lst:transactionhs2}, caption=Transaction.hs, language=haskell]{../src/Transaction.hs}
+    \selectlanguage{greek}
+
+Τέλος, φαίνεται η συνάρτηση \texttt{\eng{createTransaction}} που θα χρησιμοποιείται
+για την δημιουργία συναλλαγών και κάποιες βοηθητικές συναρτήσεις, ίδιες στην λογική
+και στην δομή με τις αντίστοιχες του \texttt{\eng{Block.hs}}.
+
+% consider a figure environment
+\selectlanguage{english}
+\lstinputlisting[firstline=143, lastline=167, label={lst:transactionhs3}, caption=Transaction.hs, language=haskell]{../src/Transaction.hs}
+\selectlanguage{greek}
+
+\subsection{Κόμβοι}
+
+Η λογική των κόμβων διατυπώνεται στα αρχεία \texttt{\eng{OrdinaryNode.hs}} και
+\texttt{\eng{BootstrapNode.hs}}. Στο πρώτο αρχείο ορίζεται η λογική των κόμβων
+που συμμετέχουν στο δίκτυο, ενώ στο δεύτερο ορίζεται η λογική του κόμβου που
+είναι υπεύθυνος για την αρχικοποίηση του δικτύου.
+
+\subsubsection{\eng{BootstrapNode}}
+
+Κατ'αρχάς, ορίζονται κάποιοι βοηθητικοί τύποι:
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=51, lastline=79, label={lst:bootstrapnodehs1}, caption=BootstrapNode.hs, language=haskell]{../src/BootstrapNode.hs}
+    \selectlanguage{greek}
+
+Στην συνέχεια ορίζονται κάποιες βοηθητικές συναρτήσεις καθώς και η συνάρτηση
+\texttt{\eng{server}}, η οποία εκφράζει την λογική του κόμβου.
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=80, lastline=104, label={lst:bootstrapnodehs2}, caption=BootstrapNode.hs, language=haskell]{../src/BootstrapNode.hs}
+    \selectlanguage{greek}
+
+\texttt{\eng{MVar}} είναι μεταβλητές οι οποίες χρησιμοποιούνται για συγχρονισμό. Εν προκειμένω,
+παιρνώνται στην συνάρτηση \texttt{\eng{server}} ώστε να μην συνεχίσει η εκτέλεση του κυρίου
+νήματος εκτέλεσης του κόμβου, προτού έχει αποστείλει όλα τα \eng{ids} στους κόμβους του δικτύου.
+Το \texttt{\eng{BootState}} είναι \texttt{\eng{IORef}} γιατί η συνάρτηση \texttt{\eng{server}}
+δεν μπορεί να επιστρέψει τιμή: το επιβάλλει ο τύπος της.
+
+Τέλος, ολόκληρη η συνάρτηση εκτέλεσης του κόμβου, καθώς και κάποιες βοηθητικές συναρτήσεις,
+φαίνονται παρακάτω:
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=105, lastline=142, label={lst:bootstrapnodehs3}, caption=BootstrapNode.hs, language=haskell]{../src/BootstrapNode.hs}
+    \selectlanguage{greek}
+
+Φαίνεται πως ουσιαστικά το μόνο που κάνει η συνάρτηση είναι να γεννάει ένα νήμα
+το οποίο τρέχει την συνάρτηση \texttt{\eng{server}}, περιμένει χρησιμοποιώντας
+τις μεταβλητές \texttt{\eng{MVar}} ώστε να συνδεθούν όλοι οι κόμβοι στο δίκτυο και
+, τέλος, χρησιμοποιεί το \eng{state} που χτίστηκε σταδιακά για να αποστείλει όλες
+τις απαραίτητες πληροφορίες στους κόμβους.
+
+\subsubsection{\eng{OrdinaryNode}}
+
+Τα σημαντικά σημεία για την λογική των κόμβων που συμμετέχουν στο δίκτυο είναι 2:
+
+\begin{itemize}
+    \item Η συνάρτηση \texttt{\eng{server}} που εκφράζει την λογική αρχικοποίησης
+        καθενός κόμβου επικοινωνώντας με τον \eng{bootstrap} κόμβο καθώς και την
+        επικοινωνία του με τους υπόλοιπους κόμβους.
+    \item Οι συναρτήσεις \texttt{\eng{processTXs}} και \texttt{\eng{mint}} που
+        εκφράζουν τον τρόπο με τον οποίο οι κόμβοι διαχειρίζονται τις συναλλαγές
+        και την υλοποίηση του \eng{Proof of Stake} πρωτοκόλλου.
+\end{itemize}
+
+Αρχικά, ορίζονται κάποιοι βοηθητικοί τύποι:
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=77, lastline=88, label={lst:ordinarynodehs1}, caption=OrdinaryNode.hs, language=haskell]{../src/OrdinaryNode.hs}
+    \selectlanguage{greek}
+
+Ορίζονται απλά συνώνυμα τύπων. Το σημαντικό είναι ο τύπος \texttt{\eng{TQueue}}
+(\eng{Transactional Queue}), ο οποίος επιδέχεται επεξεργασίας από πολλαπλά νήματα.
+
+Στην συνέχεια η συνάρτηση \texttt{\eng{server}}:
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=90, lastline=129, label={lst:ordinarynodehs2}, caption=OrdinaryNode.hs, language=haskell]{../src/OrdinaryNode.hs}
+    \selectlanguage{greek}
+
+Ουσιαστικά, η συνάρτηση \texttt{\eng{server}} λαμβάνει ένα μήνυμα, ελέγχει την κεφαλίδα
+του μηνύματος για να διακρίνει αν πρόκειται για συναλλαγή, \eng{block} ή μήνυμα
+αρχικοποίησης και τέλος το αποκωδικοποιεί καταλλήλως.
+
+Ορίζονται επίσης δύο βοηθητικές συναρτήσεις για το στάδιο \eng{minting} του
+πρωτοκόλλου:
+
+    \selectlanguage{english}
+    \lstinputlisting[firstline=131, lastline=145, label={lst:ordinarynodehs3}, caption=OrdinaryNode.hs, language=haskell]{../src/OrdinaryNode.hs}
+    \selectlanguage{greek}
+
+Σημειώνεται ότι η συνάρτηση \texttt{\eng{getValidatorBlockFrom}} ουσιαστικά μπλοκάρει
+αν ο κόμβος δεν λαμβάνει το \eng{block} που περιμένει. Αυτό εξασφαλίζει ότι ο κόμβος
+δεν συνεχίζει το πρωτόκολλο μόνος του.
+
+Μόλις ο κόμβος αρχικοποιηθεί (δεν παρουσίαζεται ο κώδικας γιατί δεν έχει κάποιο ενδιαφέρον)
+γεννάει ένα νήμα εκτέλεσης το οποίο τρέχει την συνάρτηση \texttt{\eng{processTXs}} και
+ένα άλλο νήμα εκτέλεσης το οποίο τρέχει το \eng{front-end}. Ήδη είναι εκκινημένο ένα
+νήμα εκτέλεσης που τρέχει την συνάρτηση \texttt{\eng{server}}.
+
+\selectlanguage{english}
+\lstinputlisting[firstline=194, lastline=218, label={lst:ordinarynodehs4}, caption=OrdinaryNode.hs, language=haskell]{../src/OrdinaryNode.hs}
+\selectlanguage{greek}
+
+Η λογική της συνάρτησης \texttt{\eng{processTXs}} είναι απλή: αν οι επικυρωμένες
+συναλλαγές είναι λιγότερες από την χωρητικότητα του \eng{block}, τότε συνέχισε
+να επικυρώνεις. Μόλις αυτό δεν ισχύει, κάλεσε την \texttt{\eng{mint}}, ενημέρωσε
+το \eng{state} με το καινούργιο \eng{block} και ξεκίνα πάλι την διαδικασία.
+
+Η δε συνάρτηση \texttt{\eng{mint}} είναι επίσης απλή:
+
+\selectlanguage{english}
+\lstinputlisting[firstline=223, lastline=252, label={lst:ordinarynodehs5}, caption=OrdinaryNode.hs, language=haskell, xleftmargin=.1\textwidth]{../src/OrdinaryNode.hs}
+\selectlanguage{greek}
+
+Ουσιαστικά, εκτελεί την λοταρία βάσει του τελευταίου \eng{block} και του \eng{stake}
+καθενός κόμβου και ελέγχει το \eng{public key} που κληρώθηκε. Αν είναι το ίδιο
+του κόμβου, τότε δημιουργεί ένα νέο \eng{block} και το αποστέλλει στο δίκτυο.
+Ειδάλλως, περιμένει μέχρι να παραλάβει το \eng{block} από τον \eng{validator}.
+Σε αυτήν την περίπτωση, ενημερώνει κατάλληλα το \eng{state} χρησιμοποιώντας
+το τελευταίο έγκυρο \eng{state} που έχει.
+
+\section{\eng{Front-end}}
+
+Το \eng{front-end} της εφαρμογής είναι υλοποιημένο στο αρχείο \texttt{\eng{CLI.hs}}.
+
+\selectlanguage{english}
+\lstinputlisting[firstline=27, lastline=61, label={lst:clihs}, caption=CLI.hs, language=haskell,
+xleftmargin=.1\textwidth]{../src/CLI.hs}
+\selectlanguage{greek}
+
+Οι συναρτήσεις \ref{lst:clihs} καλούνται όταν \eng{parse}αριστεί επιτυχώς η είσοδος
+του χρήστη και στέλνουν την αντίστοιχη συναλλαγή στο δίκτυο. Η συνάρτηση για το
+\eng{parse} είναι η \texttt{\eng{handle}}.
+
+\selectlanguage{english}
+\lstinputlisting[firstline=63, lastline=132, label={lst:clihs}, caption=CLI.hs, language=haskell,
+xleftmargin=.1\textwidth]{../src/CLI.hs}
+\selectlanguage{greek}
+
+Ο οδηγός όλου του \eng{front-end} είναι η συνάρτηση \texttt{\eng{shell}}, την οποία
+καλεί ο κώδικας του \eng{OrdinaryNode.hs}.
+
+\selectlanguage{english}
+\lstinputlisting[firstline=135, lastline=149, label={lst:clihs}, caption=CLI.hs, language=haskell,
+xleftmargin=.1\textwidth]{../src/CLI.hs}
+\selectlanguage{greek}
+
+Ολόκληρη η εφαρμογή οδηγείται από την \eng{main}.
+
+\selectlanguage{english}
+\lstinputlisting[firstline=16, label={lst:mainhs}, caption=Main.hs, language=haskell,
+xleftmargin=.1\textwidth]{../app/Main.hs}
+\selectlanguage{greek}
 
 \clearpage
 \part{Πειράματα}
@@ -55,6 +411,25 @@
 \eng{processTXs}, οι οποίες συνιστούν την λογική λειτουργίας των κόμβων του
 συστήματος. Επίσης, εκτιμάται η ρυθμαπόδοση του συστήματος και το μέσο
 \eng{block time}.
+
+\section{Πειραματική Διάταξη}
+
+Απουσία ικανοποιητικής υποδομής κατανεμημένων υπολογιστών, τα πειράματα εκτελέστηκαν
+χρησιμοποιώντας \eng{Docker Containers}, τα οποία οδηγήθηκαν καταλλήλως από 
+\eng{Bash Scripts}. Τα \eng{containers} χτίστηκαν ως εξής:
+
+\selectlanguage{english}
+\lstinputlisting[label={lst:dockerfile}, caption=Dockerfile, language=bash]{../Dockerfile}
+\selectlanguage{greek}
+
+και το \eng{script} που οδηγεί τα \eng{containers}:
+
+\selectlanguage{english}
+\lstinputlisting[label={lst:docker-driver}, caption=run-docker-experiments.sh, language=bash,
+xleftmargin=.1\textwidth]{../run-docker-experiments.sh}
+\selectlanguage{greek}
+
+
 
 \section{Απόδοση του συστήματος}
 

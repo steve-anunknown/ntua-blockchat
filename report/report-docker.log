@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.20)  24 MAR 2024 12:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.20)  29 MAR 2024 10:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1172,6 +1172,156 @@ File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
 \c@checkoddpage=\count357
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/pmboxdraw/pmboxdraw.sty
+Package: pmboxdraw 2019/12/05 v1.4 Poor man's box drawing characters (HO)
+Now handling font encoding pmboxdraw ...
+... processing UTF-8 mapping file for font encoding pmboxdraw
+
+(/usr/share/texlive/texmf-dist/tex/latex/pmboxdraw/pmboxdrawenc.dfu
+File: pmboxdrawenc.dfu 2019/12/05 v1.4 UTF-8 support for box drawing characters
+
+   defining Unicode char U+2500 (decimal 9472)
+   defining Unicode char U+2501 (decimal 9473)
+   defining Unicode char U+2502 (decimal 9474)
+   defining Unicode char U+2503 (decimal 9475)
+   defining Unicode char U+250C (decimal 9484)
+   defining Unicode char U+250D (decimal 9485)
+   defining Unicode char U+250E (decimal 9486)
+   defining Unicode char U+250F (decimal 9487)
+   defining Unicode char U+2510 (decimal 9488)
+   defining Unicode char U+2511 (decimal 9489)
+   defining Unicode char U+2512 (decimal 9490)
+   defining Unicode char U+2513 (decimal 9491)
+   defining Unicode char U+2514 (decimal 9492)
+   defining Unicode char U+2515 (decimal 9493)
+   defining Unicode char U+2516 (decimal 9494)
+   defining Unicode char U+2517 (decimal 9495)
+   defining Unicode char U+2518 (decimal 9496)
+   defining Unicode char U+2519 (decimal 9497)
+   defining Unicode char U+251A (decimal 9498)
+   defining Unicode char U+251B (decimal 9499)
+   defining Unicode char U+251C (decimal 9500)
+   defining Unicode char U+251D (decimal 9501)
+   defining Unicode char U+251E (decimal 9502)
+   defining Unicode char U+251F (decimal 9503)
+   defining Unicode char U+2520 (decimal 9504)
+   defining Unicode char U+2521 (decimal 9505)
+   defining Unicode char U+2522 (decimal 9506)
+   defining Unicode char U+2523 (decimal 9507)
+   defining Unicode char U+2524 (decimal 9508)
+   defining Unicode char U+252C (decimal 9516)
+   defining Unicode char U+252D (decimal 9517)
+   defining Unicode char U+252E (decimal 9518)
+   defining Unicode char U+252F (decimal 9519)
+   defining Unicode char U+2530 (decimal 9520)
+   defining Unicode char U+2531 (decimal 9521)
+   defining Unicode char U+2532 (decimal 9522)
+   defining Unicode char U+2533 (decimal 9523)
+   defining Unicode char U+2534 (decimal 9524)
+   defining Unicode char U+2535 (decimal 9525)
+   defining Unicode char U+2536 (decimal 9526)
+   defining Unicode char U+2537 (decimal 9527)
+   defining Unicode char U+2538 (decimal 9528)
+   defining Unicode char U+2539 (decimal 9529)
+   defining Unicode char U+253A (decimal 9530)
+   defining Unicode char U+253B (decimal 9531)
+   defining Unicode char U+253C (decimal 9532)
+   defining Unicode char U+253D (decimal 9533)
+   defining Unicode char U+253E (decimal 9534)
+   defining Unicode char U+253F (decimal 9535)
+   defining Unicode char U+2540 (decimal 9536)
+   defining Unicode char U+2541 (decimal 9537)
+   defining Unicode char U+2542 (decimal 9538)
+   defining Unicode char U+2543 (decimal 9539)
+   defining Unicode char U+2544 (decimal 9540)
+   defining Unicode char U+2545 (decimal 9541)
+   defining Unicode char U+2546 (decimal 9542)
+   defining Unicode char U+2547 (decimal 9543)
+   defining Unicode char U+2548 (decimal 9544)
+   defining Unicode char U+2549 (decimal 9545)
+   defining Unicode char U+254A (decimal 9546)
+   defining Unicode char U+254B (decimal 9547)
+   defining Unicode char U+2550 (decimal 9552)
+   defining Unicode char U+2551 (decimal 9553)
+   defining Unicode char U+2552 (decimal 9554)
+   defining Unicode char U+2553 (decimal 9555)
+   defining Unicode char U+2554 (decimal 9556)
+   defining Unicode char U+2555 (decimal 9557)
+   defining Unicode char U+2556 (decimal 9558)
+   defining Unicode char U+2557 (decimal 9559)
+   defining Unicode char U+2558 (decimal 9560)
+   defining Unicode char U+2559 (decimal 9561)
+   defining Unicode char U+255A (decimal 9562)
+   defining Unicode char U+255B (decimal 9563)
+   defining Unicode char U+255C (decimal 9564)
+   defining Unicode char U+255D (decimal 9565)
+   defining Unicode char U+255E (decimal 9566)
+   defining Unicode char U+255F (decimal 9567)
+   defining Unicode char U+2560 (decimal 9568)
+   defining Unicode char U+2561 (decimal 9569)
+   defining Unicode char U+2562 (decimal 9570)
+   defining Unicode char U+2563 (decimal 9571)
+   defining Unicode char U+2564 (decimal 9572)
+   defining Unicode char U+2565 (decimal 9573)
+   defining Unicode char U+2566 (decimal 9574)
+   defining Unicode char U+2567 (decimal 9575)
+   defining Unicode char U+2568 (decimal 9576)
+   defining Unicode char U+2569 (decimal 9577)
+   defining Unicode char U+256A (decimal 9578)
+   defining Unicode char U+256B (decimal 9579)
+   defining Unicode char U+256C (decimal 9580)
+   defining Unicode char U+2574 (decimal 9588)
+   defining Unicode char U+2575 (decimal 9589)
+   defining Unicode char U+2576 (decimal 9590)
+   defining Unicode char U+2577 (decimal 9591)
+   defining Unicode char U+2578 (decimal 9592)
+   defining Unicode char U+2579 (decimal 9593)
+   defining Unicode char U+257A (decimal 9594)
+   defining Unicode char U+257B (decimal 9595)
+   defining Unicode char U+257C (decimal 9596)
+   defining Unicode char U+257D (decimal 9597)
+   defining Unicode char U+257E (decimal 9598)
+   defining Unicode char U+257F (decimal 9599)
+   defining Unicode char U+2580 (decimal 9600)
+   defining Unicode char U+2581 (decimal 9601)
+   defining Unicode char U+2582 (decimal 9602)
+   defining Unicode char U+2583 (decimal 9603)
+   defining Unicode char U+2584 (decimal 9604)
+   defining Unicode char U+2585 (decimal 9605)
+   defining Unicode char U+2586 (decimal 9606)
+   defining Unicode char U+2587 (decimal 9607)
+   defining Unicode char U+2588 (decimal 9608)
+   defining Unicode char U+2589 (decimal 9609)
+   defining Unicode char U+258A (decimal 9610)
+   defining Unicode char U+258B (decimal 9611)
+   defining Unicode char U+258C (decimal 9612)
+   defining Unicode char U+258D (decimal 9613)
+   defining Unicode char U+258E (decimal 9614)
+   defining Unicode char U+258F (decimal 9615)
+   defining Unicode char U+2590 (decimal 9616)
+   defining Unicode char U+2591 (decimal 9617)
+   defining Unicode char U+2592 (decimal 9618)
+   defining Unicode char U+2593 (decimal 9619)
+   defining Unicode char U+2594 (decimal 9620)
+   defining Unicode char U+2595 (decimal 9621)
+   defining Unicode char U+2596 (decimal 9622)
+   defining Unicode char U+2597 (decimal 9623)
+   defining Unicode char U+2598 (decimal 9624)
+   defining Unicode char U+2599 (decimal 9625)
+   defining Unicode char U+259A (decimal 9626)
+   defining Unicode char U+259B (decimal 9627)
+   defining Unicode char U+259C (decimal 9628)
+   defining Unicode char U+259D (decimal 9629)
+   defining Unicode char U+259E (decimal 9630)
+   defining Unicode char U+259F (decimal 9631)
+)
+\pmbd@W=\dimen294
+\pmbd@H=\dimen295
+\pmbd@L=\dimen296
+\pmbd@Thin=\dimen297
+\pmbd@Thick=\dimen298
+\pmbd@Sep=\dimen299
+)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/dat
 avisualization/tikzlibrarydatavisualization.code.tex
 File: tikzlibrarydatavisualization.code.tex 2021/05/15 v3.1.9a (3.1.9a)
@@ -1202,12 +1352,27 @@ File: tikzlibrarybackgrounds.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 zlibrarybabel.code.tex
 File: tikzlibrarybabel.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
-Package babel Info: Making ; an active character on input line 27.
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2021/12/21 4.1b verbatim text (tvz,hv)
+\FV@CodeLineNo=\count363
+\FV@InFile=\read6
+\FV@TabBox=\box69
+\c@FancyVerbLine=\count364
+\FV@StepNumber=\count365
+\FV@OutFile=\write5
+)
+Package babel Info: Making ; an active character on input line 31.
 
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2020/03/24 1.8d listings language file
+)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count363
-\l__pdf_internal_box=\box69
+\l__color_backend_stack_int=\count366
+\l__pdf_internal_box=\box70
 )
 (./report-docker.aux
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 2
@@ -1215,29 +1380,39 @@ LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 2
 
 (/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
-))
+)
+
+LaTeX Warning: Label `lst:clihs' multiply defined.
+
+
+LaTeX Warning: Label `lst:clihs' multiply defined.
+
+)
 \openout1 = `report-docker.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for pmboxdraw/pmboxdraw/m/n on input line
+ 68.
+LaTeX Font Info:    ... okay on input line 68.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1281,16 +1456,16 @@ File: greek-fontenc.def 2020/10/30 2.0 Common Greek font encoding definitions
 ))
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count364
-\scratchdimen=\dimen294
-\scratchbox=\box70
-\nofMPsegments=\count365
-\nofMParguments=\count366
+\scratchcounter=\count367
+\scratchdimen=\dimen300
+\scratchbox=\box71
+\nofMPsegments=\count368
+\nofMParguments=\count369
 \everyMPshowfont=\toks64
-\MPscratchCnt=\count367
-\MPscratchDim=\dimen295
-\MPnumerator=\count368
-\makeMPintoPDFobject=\count369
+\MPscratchCnt=\count370
+\MPscratchDim=\dimen301
+\MPnumerator=\count371
+\makeMPintoPDFobject=\count372
 \everyMPtoPDFconversion=\toks65
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1305,8 +1480,8 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count370
-Package hyperref Info: Link coloring OFF on input line 41.
+\c@lstlisting=\count373
+Package hyperref Info: Link coloring OFF on input line 68.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -1317,286 +1492,922 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count371
+\c@section@level=\count374
 )
-LaTeX Info: Redefining \ref on input line 41.
-LaTeX Info: Redefining \pageref on input line 41.
-LaTeX Info: Redefining \nameref on input line 41.
+LaTeX Info: Redefining \ref on input line 68.
+LaTeX Info: Redefining \pageref on input line 68.
+LaTeX Info: Redefining \nameref on input line 68.
 
 (./report-docker.out) (./report-docker.out)
-\@outlinefile=\write5
-\openout5 = `report-docker.out'.
+\@outlinefile=\write6
+\openout6 = `report-docker.out'.
 
-<~/Pictures/emp.png, id=55, 719.68875pt x 135.50626pt>
+<~/Pictures/emp.png, id=95, 719.68875pt x 135.50626pt>
 File: ~/Pictures/emp.png Graphic file (type png)
 <use ~/Pictures/emp.png>
-Package pdftex.def Info: ~/Pictures/emp.png  used on input line 43.
+Package pdftex.def Info: ~/Pictures/emp.png  used on input line 70.
 (pdftex.def)             Requested size: 483.69684pt x 91.07611pt.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </home/stefanos/Pictures/em
 p.png>] (./report-docker.toc)
-\tf@toc=\write6
-\openout6 = `report-docker.toc'.
+\tf@toc=\write7
+\openout7 = `report-docker.toc'.
 
 
 [2
 
-] [3
+]
+File: "project-structure.txt"  (verbatim)
+LaTeX Font Info:    Trying to load font information for LGR+cmtt on input line 
+86.
+ (/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrcmtt.fd
+File: lgrcmtt.fd 2017/07/29 v1.2 Greek European Computer Typewriter
+)
+(../src/Wallet.hs
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
+.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <9> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1.
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
+21.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
+File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Trying to load font information for OML+cmss on input line 
+21.
+LaTeX Font Info:    No file OMLcmss.fd. on input line 21.
+
+
+LaTeX Font Warning: Font shape `OML/cmss/m/n' undefined
+(Font)              using `OML/cmm/m/it' instead
+(Font)              for symbol `textgreater' on input line 21.
+
+) [3
+
+] (../src/Account.hs
+consecutive:
+LaTeX Font Info:    Trying to load font information for OMS+cmss on input line 
+12.
+LaTeX Font Info:    No file OMScmss.fd. on input line 12.
+
+LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 12.
+
+
+Overfull \hbox (42.77321pt too wide) in paragraph at lines 23--24
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][] 
+ []
+
+
+Overfull \hbox (9.47377pt too wide) in paragraph at lines 27--28
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (32.4685pt too wide) in paragraph at lines 29--31
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (88.8288pt too wide) in paragraph at lines 31--32
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[4]
+Overfull \hbox (56.17902pt too wide) in paragraph at lines 34--36
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (95.43999pt too wide) in paragraph at lines 36--37
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+] 
+ []
+
+
+Overfull \hbox (88.8288pt too wide) in paragraph at lines 41--42
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (15.24272pt too wide) in paragraph at lines 47--48
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/Block.hs
+consecutive:
+
+Overfull \hbox (38.61073pt too wide) in paragraph at lines 35--36
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/Block.hs
+consecutive:
+) (../src/Block.hs
+consecutive:
+
+Overfull \hbox (42.77316pt too wide) in paragraph at lines 59--60
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[5]
+Overfull \hbox (1.14893pt too wide) in paragraph at lines 60--61
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/Block.hs
+consecutive:
+
+Overfull \hbox (42.36877pt too wide) in paragraph at lines 98--100
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (78.56398pt too wide) in paragraph at lines 102--103
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+)
+Overfull \hbox (63.75774pt too wide) in paragraph at lines 103--188
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+(../src/Block.hs
+consecutive:
+) (../src/Block.hs
+consecutive:
+[6]
+Overfull \hbox (11.05403pt too wide) in paragraph at lines 114--116
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (32.95146pt too wide) in paragraph at lines 122--124
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+
+Overfull \hbox (134.48781pt too wide) in paragraph at lines 124--125
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (71.91006pt too wide) in paragraph at lines 125--126
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (107.5429pt too wide) in paragraph at lines 129--130
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+
+Overfull \hbox (39.857pt too wide) in paragraph at lines 133--134
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (57.73114pt too wide) in paragraph at lines 135--136
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (42.49168pt too wide) in paragraph at lines 137--138
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/Transaction.hs
+consecutive:
+
+Overfull \hbox (24.62665pt too wide) in paragraph at lines 175--177
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+
+Overfull \hbox (72.63802pt too wide) in paragraph at lines 186--187
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (67.55133pt too wide) in paragraph at lines 189--190
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) [7] (../src/Types.hs
+consecutive:
+) (../src/Utils.hs
+consecutive:
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1
+4.
+(/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/bx/n' in size <9> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 14.
+
+Overfull \hbox (10.59686pt too wide) in paragraph at lines 27--28
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/Transaction.hs
+consecutive:
+
+Overfull \hbox (75.52124pt too wide) in paragraph at lines 112--113
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (78.39963pt too wide) in paragraph at lines 113--114
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][] 
+ []
+
+[8]
+Overfull \hbox (59.42285pt too wide) in paragraph at lines 117--118
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (54.2828pt too wide) in paragraph at lines 120--121
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (112.98306pt too wide) in paragraph at lines 138--139
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+] 
+ []
+
+) (../src/Transaction.hs
+consecutive:
+
+Overfull \hbox (67.74777pt too wide) in paragraph at lines 143--144
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (126.02174pt too wide) in paragraph at lines 147--148
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (80.23505pt too wide) in paragraph at lines 149--151
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (101.04715pt too wide) in paragraph at lines 164--165
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (124.66342pt too wide) in paragraph at lines 166--167
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+)
+Overfull \hbox (30.33594pt too wide) in paragraph at lines 167--258
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[9] (../src/BootstrapNode.hs
+consecutive:
+
+Overfull \hbox (22.20296pt too wide) in paragraph at lines 54--55
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (6.42116pt too wide) in paragraph at lines 60--61
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/BootstrapNode.hs
+consecutive:
+
+Overfull \hbox (2.91602pt too wide) in paragraph at lines 81--82
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (89.97148pt too wide) in paragraph at lines 82--83
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (23.3299pt too wide) in paragraph at lines 83--84
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (38.61075pt too wide) in paragraph at lines 89--90
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (21.49316pt too wide) in paragraph at lines 96--97
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (42.66626pt too wide) in paragraph at lines 100--101
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (67.14458pt too wide) in paragraph at lines 101--102
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) [10] (../src/BootstrapNode.hs
+consecutive:
+
+Overfull \hbox (42.77322pt too wide) in paragraph at lines 108--109
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (90.65907pt too wide) in paragraph at lines 114--115
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (1.05064pt too wide) in paragraph at lines 127--128
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (13.63615pt too wide) in paragraph at lines 128--129
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (81.78185pt too wide) in paragraph at lines 138--139
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (80.23506pt too wide) in paragraph at lines 139--140
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+] 
+ []
+
+
+Overfull \hbox (67.74776pt too wide) in paragraph at lines 140--141
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (96.0588pt too wide) in paragraph at lines 141--142
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][] 
+ []
+
+) (../src/OrdinaryNode.hs
+consecutive:
+[11]
+Overfull \hbox (75.95197pt too wide) in paragraph at lines 82--83
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/OrdinaryNode.hs
+consecutive:
+
+Overfull \hbox (33.1068pt too wide) in paragraph at lines 96--98
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (43.48027pt too wide) in paragraph at lines 99--100
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (14.54665pt too wide) in paragraph at lines 108--109
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (54.54727pt too wide) in paragraph at lines 111--112
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/OrdinaryNode.hs
+consecutive:
+
+Overfull \hbox (10.1044pt too wide) in paragraph at lines 132--133
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (68.21033pt too wide) in paragraph at lines 133--134
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[12]
+Overfull \hbox (9.03017pt too wide) in paragraph at lines 140--141
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/OrdinaryNode.hs
+consecutive:
+
+Overfull \hbox (15.07341pt too wide) in paragraph at lines 194--195
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (5.31139pt too wide) in paragraph at lines 197--198
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.6615pt too wide) in paragraph at lines 198--199
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (76.07263pt too wide) in paragraph at lines 201--202
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (188.19104pt too wide) in paragraph at lines 203--204
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (20.78589pt too wide) in paragraph at lines 208--209
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (109.4057pt too wide) in paragraph at lines 210--211
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (1.14896pt too wide) in paragraph at lines 212--213
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (50.50671pt too wide) in paragraph at lines 214--215
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (207.23763pt too wide) in paragraph at lines 217--218
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+] 
+ []
+
+) (../src/OrdinaryNode.hs
+consecutive:
+
+Overfull \hbox (80.87411pt too wide) in paragraph at lines 223--224
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (131.6439pt too wide) in paragraph at lines 226--227
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][] 
+ []
+
+[13]
+Overfull \hbox (98.46873pt too wide) in paragraph at lines 242--243
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/CLI.hs
+consecutive:
+
+Overfull \hbox (116.2528pt too wide) in paragraph at lines 47--48
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][] 
+ []
+
+
+Overfull \hbox (9.15297pt too wide) in paragraph at lines 50--51
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) [14] (../src/CLI.hs
+consecutive:
+
+Overfull \hbox (70.84172pt too wide) in paragraph at lines 73--74
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.84172pt too wide) in paragraph at lines 80--81
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.84172pt too wide) in paragraph at lines 87--88
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.84172pt too wide) in paragraph at lines 94--95
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (86.1392pt too wide) in paragraph at lines 107--108
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+
+ []
+
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <9> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 121.
+
+Overfull \hbox (0.48122pt too wide) in paragraph at lines 122--123
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (2.51775pt too wide) in paragraph at lines 123--124
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (7.87196pt too wide) in paragraph at lines 125--126
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (53.91583pt too wide) in paragraph at lines 126--127
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (32.69836pt too wide) in paragraph at lines 127--128
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[15]
+Overfull \hbox (19.92447pt too wide) in paragraph at lines 128--129
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (65.63187pt too wide) in paragraph at lines 129--130
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (3.1954pt too wide) in paragraph at lines 130--131
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (20.31374pt too wide) in paragraph at lines 131--132
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../src/CLI.hs
+consecutive:
+) (../app/Main.hs
+consecutive:
+
+Overfull \hbox (15.93698pt too wide) in paragraph at lines 23--24
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (66.27106pt too wide) in paragraph at lines 43--44
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+) [16] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) (../Dockerfile
+Overfull \hbox (0.7704pt too wide) in paragraph at lines 11--12
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) (../run-docker-experiments.sh
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 22.
+ [17
 
 ]
+Overfull \hbox (91.04233pt too wide) in paragraph at lines 37--39
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (97.37428pt too wide) in paragraph at lines 51--52
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][] 
+ []
+
+
+Overfull \hbox (110.53552pt too wide) in paragraph at lines 57--58
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (93.7633pt too wide) in paragraph at lines 65--66
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][] 
+ []
+
+
+Overfull \hbox (122.04639pt too wide) in paragraph at lines 71--72
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) [18]
 <../experiments/profiled_outputs/docker/throughput//./capacity5/cost-centers-ca
-pacity5.png, id=96, 867.24pt x 505.89pt>
+pacity5.png, id=1003, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/throughput//./capacity5/cost-cente
 rs-capacity5.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/throughput//./capacity5/cost-center
 s-capacity5.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/throughput//./c
-apacity5/cost-centers-capacity5.png  used on input line 88.
+apacity5/cost-centers-capacity5.png  used on input line 463.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
 <../experiments/profiled_outputs/docker/throughput//./capacity10/cost-centers-c
-apacity10.png, id=97, 867.24pt x 505.89pt>
+apacity10.png, id=1004, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/throughput//./capacity10/cost-cent
 ers-capacity10.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/throughput//./capacity10/cost-cente
 rs-capacity10.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/throughput//./c
-apacity10/cost-centers-capacity10.png  used on input line 95.
+apacity10/cost-centers-capacity10.png  used on input line 470.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
 <../experiments/profiled_outputs/docker/throughput//./capacity20/cost-centers-c
-apacity20.png, id=98, 867.24pt x 505.89pt>
+apacity20.png, id=1005, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/throughput//./capacity20/cost-cent
 ers-capacity20.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/throughput//./capacity20/cost-cente
 rs-capacity20.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/throughput//./c
-apacity20/cost-centers-capacity20.png  used on input line 99.
+apacity20/cost-centers-capacity20.png  used on input line 474.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
- [4
-
- <../experiments/profiled_outputs/docker/throughput//./capacity5/cost-centers-c
-apacity5.png>] [5 <../experiments/profiled_outputs/docker/throughput//./capacit
-y10/cost-centers-capacity10.png> <../experiments/profiled_outputs/docker/throug
-hput//./capacity20/cost-centers-capacity20.png>]
+ [19 <../experiments/profiled_outputs/docker/throughput//./capacity5/cost-cente
+rs-capacity5.png>] [20 <../experiments/profiled_outputs/docker/throughput//./ca
+pacity10/cost-centers-capacity10.png> <../experiments/profiled_outputs/docker/t
+hroughput//./capacity20/cost-centers-capacity20.png>]
 <../experiments/profiled_outputs/docker/throughput//./capacity5/times_of_functi
-on_per_node_capacity5.png, id=121, 867.24pt x 505.89pt>
+on_per_node_capacity5.png, id=1028, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/throughput//./capacity5/times_of_f
 unction_per_node_capacity5.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/throughput//./capacity5/times_of_fu
 nction_per_node_capacity5.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/throughput//./c
-apacity5/times_of_function_per_node_capacity5.png  used on input line 117.
+apacity5/times_of_function_per_node_capacity5.png  used on input line 492.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
 <../experiments/profiled_outputs/docker/throughput//./capacity10/times_of_funct
-ion_per_node_capacity10.png, id=122, 867.24pt x 505.89pt>
+ion_per_node_capacity10.png, id=1029, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/throughput//./capacity10/times_of_
 function_per_node_capacity10.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/throughput//./capacity10/times_of_f
 unction_per_node_capacity10.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/throughput//./c
-apacity10/times_of_function_per_node_capacity10.png  used on input line 124.
+apacity10/times_of_function_per_node_capacity10.png  used on input line 499.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
 <../experiments/profiled_outputs/docker/throughput//./capacity20/times_of_funct
-ion_per_node_capacity20.png, id=123, 867.24pt x 505.89pt>
+ion_per_node_capacity20.png, id=1030, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/throughput//./capacity20/times_of_
 function_per_node_capacity20.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/throughput//./capacity20/times_of_f
 unction_per_node_capacity20.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/throughput//./c
-apacity20/times_of_function_per_node_capacity20.png  used on input line 128.
+apacity20/times_of_function_per_node_capacity20.png  used on input line 503.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
- [6
+ [21
 
  <../experiments/profiled_outputs/docker/throughput//./capacity5/times_of_funct
-ion_per_node_capacity5.png>] [7 <../experiments/profiled_outputs/docker/through
-put//./capacity10/times_of_function_per_node_capacity10.png> <../experiments/pr
-ofiled_outputs/docker/throughput//./capacity20/times_of_function_per_node_capac
-ity20.png>]
+ion_per_node_capacity5.png>] [22 <../experiments/profiled_outputs/docker/throug
+hput//./capacity10/times_of_function_per_node_capacity10.png> <../experiments/p
+rofiled_outputs/docker/throughput//./capacity20/times_of_function_per_node_capa
+city20.png>]
 \dtldb@th-calls1=\toks66
 \dtlkeys@th-calls1=\toks67
-\dtlrows@th-calls1=\count372
-\dtlcols@th-calls1=\count373
+\dtlrows@th-calls1=\count375
+\dtlcols@th-calls1=\count376
 \dtldb@th-calls2=\toks68
 \dtlkeys@th-calls2=\toks69
-\dtlrows@th-calls2=\count374
-\dtlcols@th-calls2=\count375
+\dtlrows@th-calls2=\count377
+\dtlcols@th-calls2=\count378
 \dtldb@th-calls3=\toks70
 \dtlkeys@th-calls3=\toks71
-\dtlrows@th-calls3=\count376
-\dtlcols@th-calls3=\count377
+\dtlrows@th-calls3=\count379
+\dtlcols@th-calls3=\count380
 
-Overfull \hbox (111.30461pt too wide) in paragraph at lines 189--191
+Overfull \hbox (111.30461pt too wide) in paragraph at lines 564--566
  [][] 
  []
 
-[8
+[23
 
 ]
 File: "../experiments/profiled_outputs/docker/throughput/blocktimes.txt"  (verb
 atim)
- [9] [10]
+ [24] [25]
 <../experiments/profiled_outputs/docker/scalability//./capacity5/cost-centers-c
-apacity5.png, id=229, 867.24pt x 505.89pt>
+apacity5.png, id=1134, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/scalability//./capacity5/cost-cent
 ers-capacity5.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/scalability//./capacity5/cost-cente
 rs-capacity5.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/scalability//./
-capacity5/cost-centers-capacity5.png  used on input line 305.
+capacity5/cost-centers-capacity5.png  used on input line 680.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
 <../experiments/profiled_outputs/docker/scalability//./capacity10/cost-centers-
-capacity10.png, id=230, 867.24pt x 505.89pt>
+capacity10.png, id=1135, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/scalability//./capacity10/cost-cen
 ters-capacity10.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/scalability//./capacity10/cost-cent
 ers-capacity10.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/scalability//./
-capacity10/cost-centers-capacity10.png  used on input line 312.
+capacity10/cost-centers-capacity10.png  used on input line 687.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
 <../experiments/profiled_outputs/docker/scalability//./capacity20/cost-centers-
-capacity20.png, id=231, 867.24pt x 505.89pt>
+capacity20.png, id=1136, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/scalability//./capacity20/cost-cen
 ters-capacity20.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/scalability//./capacity20/cost-cent
 ers-capacity20.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/scalability//./
-capacity20/cost-centers-capacity20.png  used on input line 316.
+capacity20/cost-centers-capacity20.png  used on input line 691.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
- [11
+ [26
 
  <../experiments/profiled_outputs/docker/scalability//./capacity5/cost-centers-
-capacity5.png>] [12 <../experiments/profiled_outputs/docker/scalability//./capa
+capacity5.png>] [27 <../experiments/profiled_outputs/docker/scalability//./capa
 city10/cost-centers-capacity10.png> <../experiments/profiled_outputs/docker/sca
 lability//./capacity20/cost-centers-capacity20.png>]
 <../experiments/profiled_outputs/docker/scalability//./capacity5/times_of_funct
-ion_per_node_capacity5.png, id=246, 867.24pt x 505.89pt>
+ion_per_node_capacity5.png, id=1151, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/scalability//./capacity5/times_of_
 function_per_node_capacity5.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/scalability//./capacity5/times_of_f
 unction_per_node_capacity5.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/scalability//./
-capacity5/times_of_function_per_node_capacity5.png  used on input line 344.
+capacity5/times_of_function_per_node_capacity5.png  used on input line 719.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
 <../experiments/profiled_outputs/docker/scalability//./capacity10/times_of_func
-tion_per_node_capacity10.png, id=247, 867.24pt x 505.89pt>
+tion_per_node_capacity10.png, id=1152, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/scalability//./capacity10/times_of
 _function_per_node_capacity10.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/scalability//./capacity10/times_of_
 function_per_node_capacity10.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/scalability//./
-capacity10/times_of_function_per_node_capacity10.png  used on input line 352.
+capacity10/times_of_function_per_node_capacity10.png  used on input line 727.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
 <../experiments/profiled_outputs/docker/scalability//./capacity20/times_of_func
-tion_per_node_capacity20.png, id=248, 867.24pt x 505.89pt>
+tion_per_node_capacity20.png, id=1153, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/scalability//./capacity20/times_of
 _function_per_node_capacity20.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/scalability//./capacity20/times_of_
 function_per_node_capacity20.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/scalability//./
-capacity20/times_of_function_per_node_capacity20.png  used on input line 358.
+capacity20/times_of_function_per_node_capacity20.png  used on input line 733.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
- [13
+ [28
 
  <../experiments/profiled_outputs/docker/scalability//./capacity5/times_of_func
-tion_per_node_capacity5.png>] [14 <../experiments/profiled_outputs/docker/scala
+tion_per_node_capacity5.png>] [29 <../experiments/profiled_outputs/docker/scala
 bility//./capacity10/times_of_function_per_node_capacity10.png> <../experiments
 /profiled_outputs/docker/scalability//./capacity20/times_of_function_per_node_c
 apacity20.png>]
 \dtldb@sc-calls1=\toks72
 \dtlkeys@sc-calls1=\toks73
-\dtlrows@sc-calls1=\count378
-\dtlcols@sc-calls1=\count379
+\dtlrows@sc-calls1=\count381
+\dtlcols@sc-calls1=\count382
 \dtldb@sc-calls2=\toks74
 \dtlkeys@sc-calls2=\toks75
-\dtlrows@sc-calls2=\count380
-\dtlcols@sc-calls2=\count381
+\dtlrows@sc-calls2=\count383
+\dtlcols@sc-calls2=\count384
 \dtldb@sc-calls3=\toks76
 \dtlkeys@sc-calls3=\toks77
-\dtlrows@sc-calls3=\count382
-\dtlcols@sc-calls3=\count383
+\dtlrows@sc-calls3=\count385
+\dtlcols@sc-calls3=\count386
 
-Overfull \hbox (116.30463pt too wide) in paragraph at lines 411--413
+Overfull \hbox (116.30463pt too wide) in paragraph at lines 786--788
  [][] 
  []
 
-[15
+[30
 
-] [16]
+] [31]
 File: "../experiments/profiled_outputs/docker/scalability/blocktimes.txt"  (ver
 batim)
- [17
+ [32
 
-] [18]
+] [33]
 <../experiments/profiled_outputs/docker/fairness//./capacity5/cost-centers-capa
-city5.png, id=418, 867.24pt x 505.89pt>
+city5.png, id=1322, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/fairness//./capacity5/cost-centers
 -capacity5.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/fairness//./capacity5/cost-centers-
 capacity5.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/fairness//./cap
-acity5/cost-centers-capacity5.png  used on input line 659.
+acity5/cost-centers-capacity5.png  used on input line 1034.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
 \dtldb@fairness-calls=\toks78
 \dtlkeys@fairness-calls=\toks79
-\dtlrows@fairness-calls=\count384
-\dtlcols@fairness-calls=\count385
+\dtlrows@fairness-calls=\count387
+\dtlcols@fairness-calls=\count388
 <../experiments/profiled_outputs/docker/fairness//./capacity5/times_of_function
-_per_node_capacity5.png, id=421, 867.24pt x 505.89pt>
+_per_node_capacity5.png, id=1325, 867.24pt x 505.89pt>
 File: ../experiments/profiled_outputs/docker/fairness//./capacity5/times_of_fun
 ction_per_node_capacity5.png Graphic file (type png)
 <use ../experiments/profiled_outputs/docker/fairness//./capacity5/times_of_func
 tion_per_node_capacity5.png>
 Package pdftex.def Info: ../experiments/profiled_outputs/docker/fairness//./cap
-acity5/times_of_function_per_node_capacity5.png  used on input line 683.
+acity5/times_of_function_per_node_capacity5.png  used on input line 1058.
 (pdftex.def)             Requested size: 483.69684pt x 282.16173pt.
- [19
+ [34
 
  <../experiments/profiled_outputs/docker/fairness//./capacity5/cost-centers-cap
-acity5.png>] [20 <../experiments/profiled_outputs/docker/fairness//./capacity5/
+acity5.png>] [35 <../experiments/profiled_outputs/docker/fairness//./capacity5/
 times_of_function_per_node_capacity5.png>]
 File: "../experiments/profiled_outputs/docker/fairness/capacity5/balances.out" 
  (verbatim)
- [21
+ [36
 
 ]
 (./report-docker.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `report-docker.out' has not changed.
-(rerunfilecheck)             Checksum: 84DA7ECDBB7AD977CF5CF04CC7E80F6A;2758.
+(rerunfilecheck)             Checksum: AD8124C03069B5B3694CF75948E32ED4;3977.
  ) 
 Here is how much of TeX's memory you used:
- 31528 strings out of 480171
- 622104 string characters out of 5894489
- 1053171 words of memory out of 5000000
- 48673 multiletter control sequences out of 15000+600000
- 485334 words of font info for 62 fonts, out of 8000000 for 9000
+ 34735 strings out of 480171
+ 665452 string characters out of 5894489
+ 1206921 words of memory out of 5000000
+ 50962 multiletter control sequences out of 15000+600000
+ 490068 words of font info for 77 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 91i,19n,91p,488b,2103s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/cbfonts/grmn0600.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/cbfonts/grmn0700.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/cbfonts/grmn0800.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/cbfonts/grmn0900.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/cbfonts/grmn1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/cbfonts/grmn1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfont
-s/grmn1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grxn10
-00.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grxn1200.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grxn1440.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/cbfonts/grxn2074.pfb>
-Output written on report-docker.pdf (21 pages, 915811 bytes).
+ 91i,19n,94p,575b,2319s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/stefanos/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcss0900.
+600pk> </home/stefanos/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0
+900.600pk> </home/stefanos/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/t
+cti0900.600pk> </home/stefanos/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/
+ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
+2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/cbfonts/grmn0600.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/cbfonts/grmn0700.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/c
+bfonts/grmn0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/g
+rmn0900.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grmn1000.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grmn1200.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/cbfonts/grmn1728.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/cbfonts/grxn1000.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/cbfonts/grxn1200.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/cbfonts/grxn1440.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/cbfonts/grxn2074.pfb>
+Output written on report-docker.pdf (36 pages, 1093736 bytes).
 PDF statistics:
- 623 PDF objects out of 1000 (max. 8388607)
- 516 compressed objects within 6 object streams
- 267 named destinations out of 1000 (max. 500000)
- 184 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1733 PDF objects out of 2073 (max. 8388607)
+ 1579 compressed objects within 16 object streams
+ 1060 named destinations out of 1200 (max. 500000)
+ 264 words of extra memory for PDF output out of 10000 (max. 10000000)
 
