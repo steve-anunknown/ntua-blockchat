@@ -23,8 +23,6 @@ import Control.Exception (IOException, catch, throwIO)
 import System.IO.Error (isEOFError)
 import System.Exit (exitSuccess)
 import Control.Concurrent (threadDelay)
-import qualified Data.ByteString as B
-import Utils (encodeStrict)
 
 data CLIInfo = CLIInfo
   { cliWallet :: Wallet, -- Wallet of the user
@@ -49,8 +47,7 @@ sendTx recvID service myacc = do
     Nothing -> liftIO $ putStrLn "Invalid recipient. Check whether the ID was yours or if it does not exist."
     Just somekey -> do
       let tx = createTransaction pub somekey service mynonce priv
-          bytes = B.length $ encodeStrict tx
-      liftIO $ putStrLn $ "Sending " ++ show service ++ " to " ++ show recvID ++ " with " ++ show bytes ++ " bytes"
+      liftIO $ putStrLn $ "Sending " ++ show service ++ " to " ++ show recvID
       liftIO $ broadcastTransaction peers tx -- this handles the correct sending
 
 -- | Send a staking transaction to the network

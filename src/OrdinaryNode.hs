@@ -48,7 +48,6 @@ import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as LBS
 import Data.IORef (newIORef, readIORef, writeIORef, atomicModifyIORef')
 import qualified Data.Map as Map
---import Data.Maybe (fromMaybe)
 import Data.RVar (sampleStateRVar)
 import Data.Random.Distribution.Categorical (weightedCategorical)
 import Data.UnixTime (getUnixTime)
@@ -72,16 +71,15 @@ import Transaction
     validateTransaction,
   )
 import Types (Peer, PubKeyToAcc)
-import Utils (decodeMaybe, encodeStrict)
+import Utils (decodeMaybe, encodeStrict, receiveChunks)
 import Wallet (Wallet)
 
 type TXQueue = TQueue Transaction
-
 type BLQueue = TQueue Block
-
 type StartupState = ([(Int, PublicKey)], [Peer], Block)
 
--- NodeInfo does not change. It is set once, using the arguments passed to the program and then remains constant.
+-- NodeInfo does not change.
+-- It is set once, using the arguments passed to the program and then remains constant.
 data NodeInfo = NodeInfo
   { nodeIP :: HostName,
     nodePort :: ServiceName,
@@ -97,33 +95,6 @@ dequeueTQ = readTQueue
 
 data ServerEnv = ServerEnv (TVar StartupState) (MVar Int) TXQueue BLQueue
 
--- | This will be used by the nodeLogic function. It is a server that receives
--- requests and discriminates using their header.
--- server :: ServerEnv -> (Socket, SockAddr) -> IO ()
--- server (ServerEnv startupState trigger queuedTxs queuedBlocks) (socket, _) = do
---   -- the server is a producer of transactions and blocks
---   resp <- recv socket $ 16 * 4096 -- 4KB
---   let (msgtype, msg) = BS.splitAt 1 $ Data.Maybe.fromMaybe BS.empty resp
---   case msgtype of
---     "0" -> do
---       -- receive broadcast from bootstrap
---       atomically $ writeTVar startupState (decode $ BS.fromStrict msg)
---       putMVar trigger (1 :: Int) -- set the trigger that will allow the node to start
---     "1" -> atomically $ enqueueTQ queuedTxs (decode $ BS.fromStrict msg) -- receive transaction
---     "2" -> atomically $ enqueueTQ queuedBlocks (decode $ BS.fromStrict msg) -- receive block
---     _ -> liftIO $ putStrLn "What the fuck" -- do nothing if header is not recognized
-
-receiveChunks :: Socket -> Int -> IO BS.ByteString
-receiveChunks socket limit = receiveChunks' ""
-  where
-    receiveChunks' acc | BS.length acc < limit = do
-      raw <- recv socket 1024 -- have a byte
-      case raw of
-        Nothing -> return acc -- can't get no more bytes
-        Just msg -> receiveChunks' $ BS.append acc msg -- keep eating
-    receiveChunks' acc | BS.length acc == limit = return acc
-    receiveChunks' acc = return $ fst $ BS.splitAt limit acc
-
 server :: ServerEnv -> (Socket, SockAddr) -> IO ()
 server (ServerEnv startupState trigger queuedTxs queuedBlocks) (socket, _) = do
   resp <- receiveChunks socket $ 16 * 4096
@@ -132,18 +103,11 @@ server (ServerEnv startupState trigger queuedTxs queuedBlocks) (socket, _) = do
     "0" -> handleDecodeStartup startupState trigger msg
     "1" -> handleDecodeTx queuedTxs msg
     "2" -> handleDecodeBlock queuedBlocks msg
-    _ -> liftIO $ putStrLn "What the fuck" -- do nothing if header is not recognized
+    _ -> liftIO $ putStrLn "This should not be seen"
 
--- server :: ServerEnv -> (Socket, SockAddr) -> IO ()
--- server (ServerEnv startupState trigger queuedTxs queuedBlocks) (socket, _) = do
---   resp <- recv socket $ 16 * 4096 -- 64 KB
---   let (msgtype, msg) = BS.splitAt 1 $ Data.Maybe.fromMaybe BS.empty resp
---   case msgtype of
---     "0" -> handleDecodeStartup startupState trigger msg
---     "1" -> handleDecodeTx queuedTxs msg
---     "2" -> handleDecodeBlock queuedBlocks msg
---     _ -> liftIO $ putStrLn "What the fuck" -- do nothing if header is not recognized
-
+-- The following are debugging wrappers. The logic could be inlined above
+-- in the server, but the wrappers are helpful for debugging, in case
+-- something goes wrong.
 handleDecodeStartup :: TVar StartupState -> MVar Int -> BS.ByteString -> IO ()
 handleDecodeStartup startupState trigger msg =
   case decodeOrFail (LBS.fromStrict msg) of
@@ -180,9 +144,11 @@ getValidatorBlockFrom qBlocks lastBlock valKey = do
     then return block
     else getValidatorBlockFrom qBlocks lastBlock valKey
 
+-- | This function is called from the driver to start the node.
 node :: BootstrapNode -> Int -> NodeInfo -> IO ()
 node bootstrap capacity = runReaderT $ nodeLogic bootstrap capacity
 
+-- | This function connects to the bootstrap node and gets the id of the node.
 nodeGetID :: BootstrapNode -> ReaderT NodeInfo IO Int
 nodeGetID (BootstrapNode bip bport) = do
   ip <- asks nodeIP
@@ -196,6 +162,9 @@ nodeGetID (BootstrapNode bip bport) = do
         return $ decodeMaybe resp
   liftIO $ connect bip bport getIDfromBoot
 
+-- | This function is the main logic of the node.
+-- It sets up the node and then starts the server that
+-- also implements the PoS protocol.
 nodeLogic :: BootstrapNode -> Int -> ReaderT NodeInfo IO ()
 nodeLogic bootstrap capacity = do
   -- start by setting up the startup state.

@@ -24,6 +24,8 @@ import Control.Monad.Reader
     asks,
   )
 import qualified Data.ByteString as BS
+import qualified Data.ByteString.Lazy as LBS
+import Data.Binary (decode)
 import Data.IORef
   ( IORef,
     atomicModifyIORef',
@@ -38,17 +40,19 @@ import Network.Simple.TCP
     SockAddr,
     Socket,
     connect,
-    recv,
     send,
     serve,
   )
 import ServiceType (ServiceType (Coins))
 import Transaction (Transaction, createTransaction, zeropub)
-import Utils (decodeMaybe, encodeStrict)
+import Utils (encodeStrict, receiveChunks)
 import Wallet (Wallet, generateWallet)
 
 data BootstrapNode = BootstrapNode HostName ServiceName
 
+-- BootInfo does not change. It is set once, using the arguments
+-- passed to the program and then remains constant. The IP and the PORT
+-- of the Boot node are known to the other nodes beforehand.
 data BootInfo = BootInfo
   { bootNodeID :: Int,
     bootNodeIP :: HostName,
@@ -56,10 +60,6 @@ data BootInfo = BootInfo
     bootNodeNumb :: Int -- number of nodes to insert into the network
   }
   deriving (Show, Eq)
-
--- BootInfo does not change. It is set once, using the arguments
--- passed to the program and then remains constant. The IP and the PORT
--- of the Boot node are known to the other nodes beforehand.
 
 data BootState = BootState
   { bootCurrID :: Int,
@@ -69,9 +69,12 @@ data BootState = BootState
   }
   deriving (Show, Eq)
 
+-- | This is the initial state of the boot node
 emptyBootState :: BootState
 emptyBootState = BootState 0 [] [] []
 
+-- | This is the function that the driver calls to
+-- initiate the bootstrap node logic
 bootstrapNode :: BootInfo -> IO BootState
 bootstrapNode = runReaderT bootstrapNodeLogic
 
@@ -94,17 +97,19 @@ server :: [MVar Int] -> IORef BootState -> (Socket, SockAddr) -> IO ()
 server triggers ioref (socket, _) = do
   currID <- atomicModifyIORef' ioref incrementID
   when (currID <= length triggers) $ do
-    msg <- recv socket 4096 -- should be enough to hold a public key (2048), an ip and a port
-    let keyval = decodeMaybe msg :: (PublicKey, HostName, ServiceName)
+    msg <- receiveChunks socket 4096 -- for public key (2048), an ip and a port
+    let keyval = (decode . LBS.fromStrict) msg :: (PublicKey, HostName, ServiceName)
     atomicModifyIORef' ioref $ updateState (currID, keyval)
     send socket $ encodeStrict currID
     putMVar (triggers !! (currID - 1)) 1
 
+-- | This is a helper function that creates the genesis transaction
 createGenesisTX :: Wallet -> Int -> Transaction
 createGenesisTX (pub, priv) totalnodes = createTransaction zeropub pub tx 1 priv
   where
     tx = Coins $ 1000 * fromIntegral totalnodes
 
+-- | This is a helper function that creates the genesis block
 createGenesisBlock :: UnixTime -> Wallet -> Int -> Block
 createGenesisBlock time wallet totalnodes = createBlock 1 time [genesisTX] zeropub prevHash
   where
@@ -120,7 +125,7 @@ bootstrapNodeLogic = do
   -- setup the state and locks
   state <- liftIO $ newIORef emptyBootState
   triggers <- liftIO $ mapM (const newEmptyMVar) [1 .. totalNodes]
-  _ <- liftIO $ forkIO $ serve (Host myip) myport $ server triggers state -- thread that never returns
+  _ <- liftIO $ forkIO $ serve (Host myip) myport $ server triggers state
   liftIO $ mapM_ takeMVar triggers -- wait for all nodes to connect
   time <- liftIO getUnixTime
   fstate <- liftIO $ readIORef state
