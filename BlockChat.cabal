@@ -29,7 +29,6 @@ library
       Block
       BootstrapNode
       CLI
-      Lib
       OrdinaryNode
       ServiceType
       Transaction
