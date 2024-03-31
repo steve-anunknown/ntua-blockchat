@@ -54,7 +54,8 @@ do
                 --ip "$BASE_IP$((BASE+2+1))"\
                 -p $((PORT+1)):$PORT \
                 --name node1\
-                $IMAGE_NAME --node "$BASE_IP$((BASE+2+1))" "$PORT" "$BASE_IP$((BASE+2))" "$PORT" "$CAP" +RTS -p -po$PROFLOG -RTS &
+                $IMAGE_NAME --node "$BASE_IP$((BASE+2+1))" "$PORT" "$BASE_IP$((BASE+2))" \
+                "$PORT" "$CAP" +RTS -p -po$PROFLOG -RTS &
         sleep 2
         docker logs -f node1 > $WORKDIR/node1.log &
         
@@ -67,7 +68,8 @@ do
                     --ip "$BASE_IP$((BASE+2+i))"\
                     -p $((PORT+i)):$PORT \
                     --name node"$i"\
-                    $IMAGE_NAME --node "$BASE_IP$((BASE+2+i))" "$PORT" "$BASE_IP$((BASE+2))" "$PORT" "$CAP" +RTS -p -po$PROFLOG -RTS &
+                    $IMAGE_NAME --node "$BASE_IP$((BASE+2+i))" "$PORT" "$BASE_IP$((BASE+2))"\
+                    "$PORT" "$CAP" +RTS -p -po$PROFLOG -RTS &
             sleep 2
             docker logs -f node"$i" > $WORKDIR/node"$i".log &
         done
