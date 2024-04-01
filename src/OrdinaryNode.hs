@@ -170,14 +170,13 @@ nodeLogic bootstrap capacity = do
   -- start by setting up the startup state.
   ip <- asks nodeIP
   port <- asks nodePort
-  myid <- nodeGetID bootstrap -- connect to bootstrap and get id
-  liftIO $ putStrLn $ "My id is: " ++ show myid
   mywallet@(mypub, _) <- asks nodeInfoWallet -- used in processTXs
+  myid <- nodeGetID bootstrap -- connect to bootstrap and get id
+
   trigger <- liftIO newEmptyMVar -- initialize trigger for broadcast
   queuedTXs <- liftIO (newTQueueIO :: IO TXQueue)
   queuedBlocks <- liftIO (newTQueueIO :: IO BLQueue)
   startupState <- liftIO $ newTVarIO ([] :: [(Int, PublicKey)], [] :: [Peer], emptyBlock)
-
   -- setup a server that never returns. it discriminates between
   -- the types of messages it receives and acts accordingly.
   let env = ServerEnv startupState trigger queuedTXs queuedBlocks
