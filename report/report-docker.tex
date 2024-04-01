@@ -402,6 +402,23 @@ xleftmargin=.1\textwidth]{../src/CLI.hs}
 xleftmargin=.1\textwidth]{../app/Main.hs}
 \selectlanguage{greek}
 
+\subsection{Συνολική Εικόνα}
+
+Το \eng{CLI parse}άρει την είσοδο και, καλώντας την \eng{broadcastTransaction},
+στέλνει την συναλλαγή σε όλους τους κόμβους του δικτύου. Αυτοί, μέσω της
+συνάρτησης \eng{server} που τρέχει μονίμως σε ξεχωριστό νήμα, διαχειρίζονται
+τις συναλλαγές βάζοντάς τες σε μία σειρά αναμονής. Παράλληλα, η \eng{processTXs}
+αφαιρεί τις συναλλαγές από την ουρά και, αν καταφέρει να τις επικυρώσει, τις
+προσθέτει σε μία λίστα συναλλαγών που θα περιληφθούν σε ένα \eng{block}. Όταν
+αυτή αποκτήσει μήκος \eng{capacity}, τότε καλεί την \eng{mint} για να δημιουργήσει
+ένα νέο \eng{block}, το αποστέλλει στο δίκτυο και ενημερώνει το \eng{CLI Shared State}.
+
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{app-diagram.png}
+    \caption{Διάγραμμα Εφαρμογής}
+    \label{fig:app-diagram}
+\end{figure}
+
 \clearpage
 \part{Πειράματα}
 
@@ -548,7 +565,7 @@ xleftmargin=.1\textwidth]{../run-docker-experiments.sh}
 
 \begin{equation}
     \begin{gathered}
-        \text{Χωρητικότητα = 5} \Rightarrow \text{Μπλοκς} = 41 \text{ και } \text{Συναλλαγές} = 205 \\
+        \text{Χωρητικότητα = 5} \Rightarrow \text{Μπλοκς} = 45 \text{ και } \text{Συναλλαγές} = 225 \\
         \text{Χωρητικότητα = 10} \Rightarrow \text{Μπλοκς} = 22 \text{ και } \text{Συναλλαγές} = 220 \\
         \text{Χωρητικότητα = 20} \Rightarrow \text{Μπλοκς} = 11 \text{ και } \text{Συναλλαγές} = 220 \\
     \end{gathered}
@@ -591,7 +608,7 @@ xleftmargin=.1\textwidth]{../run-docker-experiments.sh}
     \centering
     \selectlanguage{english}
     \begin{varwidth}{\linewidth}
-        \verbatiminput{../experiments/profiled_outputs/docker/throughput/blocktimes.txt}
+        \verbatiminput{../experiments/profiled_outputs/docker/throughput/blocktimes2.txt}
     \end{varwidth}
     \selectlanguage{greek}
     \caption{Μέσος χρόνος δημιουργίας \eng{block} (\eng{ms})}
@@ -608,7 +625,7 @@ xleftmargin=.1\textwidth]{../run-docker-experiments.sh}
         \text{Ρυθμαπόδοση} = \frac{\frac{\text{Συναλλαγές}}{\text{Μπλοκ}} }{\text{Μέσος χρόνος δημιουργίας μπλοκ}} = \frac{\text{Χωρητικότητα}}{\text{Μέσος χρόνος δημιουργίας μπλοκ}} \Rightarrow \\
     \boxed{
         \begin{gathered}
-            \text{Ρυθμαπόδοση}_{capacity=5} = \frac{5}{0,658} = 7,598 \text{} \frac{txs}{s}\\
+            \text{Ρυθμαπόδοση}_{capacity=5} = \frac{5}{0,555} = 8,999 \text{} \frac{txs}{s}\\
             \text{Ρυθμαπόδοση}_{capacity=10} = \frac{10}{1,045} = 9,569 \text{} \frac{txs}{s}\\
             \text{Ρυθμαπόδοση}_{capacity=20} = \frac{20}{2} = 10 \text{} \frac{txs}{s}\\
         \end{gathered}
@@ -892,7 +909,7 @@ xleftmargin=.1\textwidth]{../run-docker-experiments.sh}
                                     ]
                     data [set=capacity5] {
                         x, y
-                        5, 7.598
+                        5, 8.999
                         10, 9.090
                     }
                     data [set=capacity10] {
@@ -930,7 +947,7 @@ xleftmargin=.1\textwidth]{../run-docker-experiments.sh}
                 ]
                     data [set=capacity5] {
                         x, y
-                        5, 0.658
+                        5, 0.555
                         10, 0.550
                     }
                     data [set=capacity10] {

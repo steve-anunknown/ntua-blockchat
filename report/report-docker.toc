@@ -72,35 +72,16 @@
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {part}{{\fontencoding {OT1}\selectfont II}\hspace {1em}Πειράματα}{17}{part.2}%
-\contentsline {section}{\numberline {3}Πειραματική Διάταξη}{17}{section.3}%
+\contentsline {subsection}{\numberline {2.1}Συνολική Εικόνα}{17}{subsection.2.1}%
+\contentsline {part}{{\fontencoding {OT1}\selectfont II}\hspace {1em}Πειράματα}{18}{part.2}%
+\contentsline {section}{\numberline {3}Πειραματική Διάταξη}{18}{section.3}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{\numberline {4}Απόδοση του συστήματος}{18}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Χρονοβόρα τμήματα του κώδικα}{19}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Συναρτήσεις του συστήματος}{21}{subsection.4.2}%
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\contentsline {subsection}{\numberline {4.3}Ρυθμαπόδοση και \foreignlanguage {english}{Block time}}{24}{subsection.4.3}%
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\contentsline {section}{\numberline {5}Κλιμακωσιμότητα του συστήματος}{26}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Χρονοβόρα τμήματα του κώδικα}{26}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Συναρτήσεις του συστήματος}{28}{subsection.5.2}%
+\contentsline {section}{\numberline {4}Απόδοση του συστήματος}{19}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Χρονοβόρα τμήματα του κώδικα}{20}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Συναρτήσεις του συστήματος}{22}{subsection.4.2}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
@@ -113,7 +94,14 @@
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {subsection}{\numberline {5.3}Ρυθμαπόδοση και \foreignlanguage {english}{Block time}}{32}{subsection.5.3}%
+\contentsline {subsection}{\numberline {4.3}Ρυθμαπόδοση και \foreignlanguage {english}{Block time}}{25}{subsection.4.3}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\contentsline {section}{\numberline {5}Κλιμακωσιμότητα του συστήματος}{27}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Χρονοβόρα τμήματα του κώδικα}{27}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Συναρτήσεις του συστήματος}{29}{subsection.5.2}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
@@ -126,7 +114,20 @@
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{\numberline {6}Δικαιοσύνη}{34}{section.6}%
+\contentsline {subsection}{\numberline {5.3}Ρυθμαπόδοση και \foreignlanguage {english}{Block time}}{33}{subsection.5.3}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\contentsline {section}{\numberline {6}Δικαιοσύνη}{35}{section.6}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
