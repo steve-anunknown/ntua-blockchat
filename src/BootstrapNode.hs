@@ -24,8 +24,6 @@ import Control.Monad.Reader
     asks,
   )
 import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy as LBS
-import Data.Binary (decode)
 import Data.IORef
   ( IORef,
     atomicModifyIORef',
@@ -40,12 +38,13 @@ import Network.Simple.TCP
     SockAddr,
     Socket,
     connect,
+    recv,
     send,
     serve,
   )
 import ServiceType (ServiceType (Coins))
 import Transaction (Transaction, createTransaction, zeropub)
-import Utils (encodeStrict, receiveChunks)
+import Utils (decodeMaybe, encodeStrict)
 import Wallet (Wallet, generateWallet)
 
 data BootstrapNode = BootstrapNode HostName ServiceName
@@ -97,8 +96,10 @@ server :: [MVar Int] -> IORef BootState -> (Socket, SockAddr) -> IO ()
 server triggers ioref (socket, _) = do
   currID <- atomicModifyIORef' ioref incrementID
   when (currID <= length triggers) $ do
-    msg <- receiveChunks socket 4096 -- for public key (2048), an ip and a port
-    let keyval = (decode . LBS.fromStrict) msg :: (PublicKey, HostName, ServiceName)
+    msg <- recv socket 4096 -- for public key (2048), an ip and a port
+    -- for some reason the startup phase gets stuck
+    -- if 'receiveChunks' is used instead of 'recv'
+    let keyval = decodeMaybe msg :: (PublicKey, HostName, ServiceName)
     atomicModifyIORef' ioref $ updateState (currID, keyval)
     send socket $ encodeStrict currID
     putMVar (triggers !! (currID - 1)) 1

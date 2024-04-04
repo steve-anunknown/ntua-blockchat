@@ -10,10 +10,10 @@ module OrdinaryNode
 where
 
 import Account
-  ( Account (accountBalance, accountStake, accountNonce),
+  ( Account (accountBalance, accountNonce, accountStake),
     initialAccount,
   )
-import Block (Block (..), broadcastBlock, createBlock, emptyBlock, validateBlock, txIsUnique)
+import Block (Block (..), broadcastBlock, createBlock, emptyBlock, txIsUnique, validateBlock)
 import BootstrapNode (BootstrapNode (..))
 import CLI (CLIInfo (..), CLISharedState, shell)
 import Codec.Crypto.RSA (PublicKey (..))
@@ -46,7 +46,7 @@ import Control.Monad.State (evalState)
 import Data.Binary (decode, decodeOrFail)
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as LBS
-import Data.IORef (newIORef, readIORef, writeIORef, atomicModifyIORef')
+import Data.IORef (atomicModifyIORef', newIORef, readIORef, writeIORef)
 import qualified Data.Map as Map
 import Data.RVar (sampleStateRVar)
 import Data.Random.Distribution.Categorical (weightedCategorical)
@@ -75,7 +75,9 @@ import Utils (decodeMaybe, encodeStrict, receiveChunks)
 import Wallet (Wallet)
 
 type TXQueue = TQueue Transaction
+
 type BLQueue = TQueue Block
+
 type StartupState = ([(Int, PublicKey)], [Peer], Block)
 
 -- NodeInfo does not change.
@@ -117,7 +119,7 @@ handleDecodeStartup startupState trigger msg =
       putMVar trigger 1
 
 handleDecodeTx :: TXQueue -> BS.ByteString -> IO ()
-handleDecodeTx queue msg = 
+handleDecodeTx queue msg =
   case decodeOrFail (LBS.fromStrict msg) of
     Left (_, _, errmsg) -> putStrLn $ "From tx: " ++ errmsg
     Right (_, _, tx) -> atomically $ enqueueTQ queue tx
@@ -158,8 +160,8 @@ nodeGetID (BootstrapNode bip bport) = do
       getIDfromBoot :: (Socket, SockAddr) -> IO Int
       getIDfromBoot (socket, _) = do
         send socket msg
-        resp <- recv socket 32 -- 32 bytes enough to hold an Int
-        return $ decodeMaybe resp
+        resp <- recv socket 32 -- for some reason the startup phase gets stuck
+        return $ decodeMaybe resp -- if 'receiveChunks' is used instead of recv
   liftIO $ connect bip bport getIDfromBoot
 
 -- | This function is the main logic of the node.
@@ -170,9 +172,9 @@ nodeLogic bootstrap capacity = do
   -- start by setting up the startup state.
   ip <- asks nodeIP
   port <- asks nodePort
-  mywallet@(mypub, _) <- asks nodeInfoWallet -- used in processTXs
   myid <- nodeGetID bootstrap -- connect to bootstrap and get id
-
+  liftIO $ putStrLn $ "My id is: " ++ show myid
+  mywallet@(mypub, _) <- asks nodeInfoWallet -- used in processTXs
   trigger <- liftIO newEmptyMVar -- initialize trigger for broadcast
   queuedTXs <- liftIO (newTQueueIO :: IO TXQueue)
   queuedBlocks <- liftIO (newTQueueIO :: IO BLQueue)
@@ -207,7 +209,7 @@ nodeLogic bootstrap capacity = do
               if validateTransaction tx accmap && txIsUnique tx blockchain
                 then
                   processTXs' sharedState (tx : vTxs) qTxs (updateAccsByTX tx accmap, fallback)
-                else 
+                else
                   processTXs' sharedState vTxs qTxs (accmap, fallback)
             blockchain <- (readIORef . fst) sharedState
             (newblock, newaccs) <- mint (head blockchain) vTxs (accmap, fallback)
