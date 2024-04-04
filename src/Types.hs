@@ -1,11 +1,12 @@
 module Types
-    (   Peer,
-        PubKeyToAcc
-    ) where
+  ( Peer,
+    PubKeyToAcc,
+  )
+where
 
-import qualified Data.Map as Map
 import Account (Account)
 import Codec.Crypto.RSA (PublicKey)
+import qualified Data.Map as Map
 import Network.Simple.TCP (HostName, ServiceName)
 
 type Peer = (HostName, ServiceName)
