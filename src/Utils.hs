@@ -3,13 +3,13 @@
 module Utils
   ( encodeStrict,
     decodeMaybe,
-    receiveChunks
+    receiveChunks,
   )
 where
 
-import Data.Binary ( Binary, decode, encode )
-import Network.Simple.TCP ( Socket, recv )
+import Data.Binary (Binary, decode, encode)
 import qualified Data.ByteString as BS
+import Network.Simple.TCP (Socket, recv)
 
 encodeStrict :: (Binary a) => a -> BS.ByteString
 encodeStrict = BS.toStrict . encode
@@ -21,7 +21,7 @@ receiveChunks :: Socket -> Int -> IO BS.ByteString
 receiveChunks socket limit = receiveChunks' ""
   where
     receiveChunks' acc | BS.length acc < limit = do
-      raw <- recv socket 1024 -- have a byte
+      raw <- recv socket 4096 -- have a byte
       case raw of
         Nothing -> return acc -- can't get no more bytes
         Just msg -> receiveChunks' $ BS.append acc msg -- keep eating
