@@ -115,24 +115,24 @@ updateAccsByTX :: Transaction -> PubKeyToAcc -> PubKeyToAcc
 updateAccsByTX t m = case serviceType t of
   Coins c ->
     -- if the receiver is the zeropub, then the transaction is a staking transaction
-    if receiverAddress t == zeropub 
-    then
-      Map.adjust (updateBalanceBy (- txFee t) . updateStake c) (senderAddress t) m
-    else
-      let cost = txCost t
-          sender = senderAddress t
-          receiver = receiverAddress t
-          temp = Map.adjust (updateBalanceBy (- cost)) sender m
-       in Map.adjust (updateBalanceBy c) receiver temp
+    if receiverAddress t == zeropub
+      then
+        Map.adjust (updateBalanceBy (-txFee t) . updateStake c) (senderAddress t) m
+      else
+        let cost = txCost t
+            sender = senderAddress t
+            receiver = receiverAddress t
+            temp = Map.adjust (updateBalanceBy (-cost)) sender m
+         in Map.adjust (updateBalanceBy c) receiver temp
   Message _ ->
     let cost = txCost t
         sender = senderAddress t
-     in Map.adjust (updateBalanceBy (- cost)) sender m
+     in Map.adjust (updateBalanceBy (-cost)) sender m
   Both (c, _) ->
     let cost = txCost t
         sender = senderAddress t
         receiver = receiverAddress t
-        temp = Map.adjust (updateBalanceBy (- cost)) sender m
+        temp = Map.adjust (updateBalanceBy (-cost)) sender m
      in Map.adjust (updateBalanceBy c) receiver temp
 
 -- | This function takes a list of transactions and a state of accounts as arguments and returns
@@ -190,4 +190,3 @@ validateTransaction t m = verifySignature t && maybe False validateSender sender
   where
     validateSender acc = availableBalance acc >= txCost t
     senderAcc = Map.lookup (senderAddress t) m
-
