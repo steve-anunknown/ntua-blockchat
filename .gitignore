@@ -2,5 +2,6 @@
 test.sh
 probably-trash
 experiments/nonprofiled_outputs
+experiments/nonproper_outputs
 old
 *~
