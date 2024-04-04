@@ -1,5 +1,0 @@
-profiled_outputs/throughput_del1000ms/capacity20/node1.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14350 227 0.1 0.0 0.7 0.0
-profiled_outputs/throughput_del1000ms/capacity20/node2.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14358 222 0.1 0.0 0.9 0.0
-profiled_outputs/throughput_del1000ms/capacity20/node3.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14353 226 0.2 0.0 1.5 0.0
-profiled_outputs/throughput_del1000ms/capacity20/node4.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14354 227 0.3 0.0 1.2 0.0
-profiled_outputs/throughput_del1000ms/capacity20/node5.prof.prof: txIsUnique Block src/Block.hs:132:1-52 14350 228 0.3 0.0 1.2 0.0

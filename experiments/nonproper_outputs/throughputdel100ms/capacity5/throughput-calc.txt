@@ -1,2 +1,0 @@
-File, Time, Calls to txIsUnique, Throughput
-File,, 0.21, 230, =

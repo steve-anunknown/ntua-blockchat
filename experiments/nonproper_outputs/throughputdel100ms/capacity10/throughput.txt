@@ -1,1 +1,0 @@
-Throughput = 976.92
