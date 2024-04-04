@@ -18,7 +18,7 @@ main = getArgs >>= parseArgs >>= startDoingStuff >> exit
 
 startDoingStuff :: [String] -> IO ()
 startDoingStuff [host, port, bip, bport, capacity] = void $ do
-  wallet <- generateWallet 2056
+  wallet <- generateWallet 2048
   node (BootstrapNode bip bport) (read capacity) (NodeInfo host port wallet)
 startDoingStuff [host, port, num] = void $ bootstrapNode (BootInfo 0 host port nodes)
   where
