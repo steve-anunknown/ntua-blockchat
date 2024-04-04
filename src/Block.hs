@@ -22,10 +22,10 @@ import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as B
 import Data.UnixTime (UnixTime (..), toClockTime)
 import Network.Simple.TCP (HostName, ServiceName, connect, send)
+import System.Time
 import Transaction (Transaction)
 import Types (Peer)
 import Utils (encodeStrict)
-import System.Time
 
 data BlockInit = BlockInit
   { initIndex :: Int, -- index number of block
@@ -123,7 +123,7 @@ broadcastBlock peers block = mapM_ sendBlock peers
 -- | This function takes a transaction and a blockchain and returns True if the transaction is unique.
 -- A transaction is unique if it is not present in any of the blocks in the blockchain.
 txIsUnique :: Transaction -> Blockchain -> Bool
-txIsUnique tx = all (notElem tx . blockTransactions) 
+txIsUnique tx = all (notElem tx . blockTransactions)
 
 -- | This function takes a ClockTime and returns the number of milliseconds since 1st Jan 1970.
 milliseconds :: ClockTime -> Integer
