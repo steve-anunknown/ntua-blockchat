@@ -10,19 +10,19 @@ where
 import Account (Account (accountBalance, accountNonce))
 import Block (Block (..), Blockchain, meanBlockTime)
 import Codec.Crypto.RSA (PublicKey)
+import Control.Concurrent (threadDelay)
+import Control.Exception (IOException, catch, throwIO)
 import Control.Monad.Reader (MonadIO (liftIO), ReaderT, asks)
-import Data.IORef (IORef, readIORef, atomicModifyIORef')
+import Data.IORef (IORef, atomicModifyIORef', readIORef)
 import qualified Data.Map as Map
 import GHC.IO.Handle (hFlush)
 import Network.Simple.TCP (HostName, ServiceName)
 import ServiceType (ServiceType (..))
-import System.IO (stdout)
-import Transaction (Transaction (..), createTransaction, broadcastTransaction, zeropub)
-import Wallet (Wallet)
-import Control.Exception (IOException, catch, throwIO)
-import System.IO.Error (isEOFError)
 import System.Exit (exitSuccess)
-import Control.Concurrent (threadDelay)
+import System.IO (stdout)
+import System.IO.Error (isEOFError)
+import Transaction (Transaction (..), broadcastTransaction, createTransaction, zeropub)
+import Wallet (Wallet)
 
 data CLIInfo = CLIInfo
   { cliWallet :: Wallet, -- Wallet of the user
@@ -51,7 +51,7 @@ sendTx recvID service myacc = do
       liftIO $ broadcastTransaction peers tx -- this handles the correct sending
 
 -- | Send a staking transaction to the network
-stake :: Double -> Account -> ReaderT CLIInfo IO () 
+stake :: Double -> Account -> ReaderT CLIInfo IO ()
 stake coins myacc = do
   peers <- asks cliPeers
   (pub, priv) <- asks cliWallet
@@ -63,7 +63,6 @@ stake coins myacc = do
 -- | Handle the input from the user
 handle :: String -> CLISharedState -> ReaderT CLIInfo IO ()
 handle input shared = do
-  liftIO $ threadDelay 500000
   let tokens = words input
       (blockref, accref) = shared
   case tokens of
@@ -111,7 +110,7 @@ handle input shared = do
     ["peers"] -> do
       keymap <- asks cliIDtoKey
       liftIO $ prettyPrintPeers keymap
-    ["load", filename] -> do 
+    ["load", filename] -> do
       liftIO $ putStrLn $ "Loading transactions from " ++ filename
       -- execute each line of the file as a command
       contents <- liftIO $ readFile filename
@@ -135,7 +134,6 @@ handle input shared = do
 shell :: CLISharedState -> ReaderT CLIInfo IO ()
 shell shared = do
   liftIO $ putStrLn "Loading .."
-  liftIO $ threadDelay 2000000
   liftIO $ putStrLn "Welcome to (the s)hell!"
   liftIO $ putStrLn "Type 'help' to ask for help."
   loop
