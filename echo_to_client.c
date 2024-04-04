@@ -30,7 +30,7 @@ int main() {
     }
 
     
-    // Bind the socket to the port 12345
+    // Bind the socket to the port 35000
     if (bind(server_fd, (struct sockaddr *)&address, sizeof(address))<0) {
         perror("bind failed");
         return -1;
