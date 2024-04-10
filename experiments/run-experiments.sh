@@ -6,7 +6,7 @@ PORT="35900"
 stack clean
 stack build
 
-capacity=("5" "10" "20")
+capacity=("5" "10" "20" "1")
 initial_stake="stake 10"
 
 for test in "throughput" "scalability";
@@ -23,7 +23,7 @@ do
     msg="Running $test test"
     for cap in "${capacity[@]}";
     do
-        workdir="${test}_outdir/capacity${cap}"
+        workdir="local/harmonic/${test}/capacity${cap}"
         if [ ! -d "$workdir" ]; then
             mkdir -p "$workdir"
         fi
@@ -35,7 +35,7 @@ do
         echo -e "\t$command"
         $command &
 
-        sleep 1
+        sleep 2
         {
             time for i in $(seq 1 $nodes); do
                 stdout_log="$workdir/node${i}_stdout.log"
@@ -44,16 +44,17 @@ do
                 command="stack run -- --node $LOCALHOST $((PORT + i)) $LOCALHOST $((PORT)) $cap"
                 echo -e "\t$command"
                 (cat <(echo "$initial_stake") <(echo "load $input/trans${i}.txt") <(echo "blockchain") | $command) > "$stdout_log" 2> "$stderr_log" &
-                sleep 0.1
+                sleep 1
             done
             wait
         } 2> "$workdir/time.log"
     done
 done
 
+workdir="local/harmonic/fairness"
 # Run the fairness test
-if [ ! -d "fairness_outdir" ]; then
-    mkdir fairness_outdir
+if [ ! -d "$workdir" ]; then
+    mkdir -p "$workdir"
 fi
 
 nodes="5"
@@ -68,7 +69,7 @@ $command &
 sleep 1
 
 
-workdir="fairness_outdir/capacity${cap}"
+workdir="${workdir}/capacity${cap}"
 if [ ! -d "$workdir" ]; then
     mkdir "$workdir"
 fi
