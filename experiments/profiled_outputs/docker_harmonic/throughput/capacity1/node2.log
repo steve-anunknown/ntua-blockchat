@@ -1,0 +1,119 @@
+My id is: 2
+Loading ..
+Welcome to (the s)hell!
+Type 'help' to ask for help.
+> Staking 10.0
+> Loading transactions from experiments/input5/trans2.txt
+Sending Message "I eventually had to go down to the cellar to find them." to 4
+Sending Message "With a flashlight." to 5
+Sending Message "Time is an illusion." to 5
+Sending Message "Everything!" to 3
+Sending Message "Though I don't think that you're going to like it" to 5
+Sending Message "Ah, well, the lights had probably gone." to 3
+Sending Message "Yes...!" to 1
+Sending Message "Lunchtime doubly so." to 5
+Sending Message "Is..." to 3
+Sending Message "All right" to 3
+Sending Message "It is a mistake to think you can solve any major problems just with potatoes." to 4
+Sending Message "But look" to 4
+Sending Message "Yes" to 1
+Sending Message "This has made a lot of people very angry." to 4
+Sending Message "Tricky" to 4
+Sending Message "Good Morning" to 5
+Sending Message "There is an answer?" to 1
+Sending Message "Forty-two" to 1
+Sending Message "yes I did" to 1
+Sending Message "Beware of the Leopard" to 3
+Sending Message "do you have...er..." to 1
+Sending Message "But can you do it?" to 5
+Sending Message "But the plans were on display" to 1
+Sending Message "Forty-two, said Deep Thought, with infinite majesty and calm." to 1
+Sending Message "The Answer to what?" to 1
+Sending Message "For a moment, nothing happened." to 4
+Sending Message "Of Life, the Universe and Everything..." to 5
+Sending Message "We want you to tell us...The Answer" to 4
+Sending Message "Is..." to 3
+Sending Message "I'd far rather be happy than right any day." to 4
+Sending Message "Life!" to 4
+Sending Message "With a flashlight." to 3
+Sending Message "Time is an illusion." to 5
+Sending Message "There really is one." to 5
+Sending Message "Ah, well, the lights had probably gone." to 3
+Sending Message "Yes...!" to 3
+Sending Message "Lunchtime doubly so." to 5
+Sending Message "Is..." to 4
+Sending Message "All right" to 4
+Sending Message "Nothing travels faster than the speed of light with the possible exception of bad news." to 1
+Sending Message "Good Morning" to 3
+Sending Message "Forty-two" to 4
+Sending Message "Beware of the Leopard" to 1
+Sending Message "Don't panic" to 5
+Sending Message "For a moment, nothing happened." to 4
+Sending Message "Of Life, the Universe and Everything..." to 1
+Sending Message "We want you to tell us...The Answer" to 5
+Sending Message "Is..." to 4
+Sending Message "I eventually had to go down to the cellar to find them." to 4
+Sending Message "With a flashlight." to 5
+> ===================================================
+Block Index: 1
+Block Timestamp: UnixTime {utSeconds = 1712736630, utMicroSeconds = 263789}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: genesis
+	|TX Receiver: bootstrap
+	|TX Service: Coins 5000.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+Block Validator: genesis
+===================================================
+===================================================
+Block Index: 2
+Block Timestamp: UnixTime {utSeconds = 1712736630, utMicroSeconds = 735057}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 3
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+Block Validator: 4
+===================================================
+===================================================
+Block Index: 3
+Block Timestamp: UnixTime {utSeconds = 1712736630, utMicroSeconds = 739116}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: you
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+Block Validator: 3
+===================================================
+===================================================
+Block Index: 4
+Block Timestamp: UnixTime {utSeconds = 1712736630, utMicroSeconds = 749669}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 4
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+Block Validator: you
+===================================================
+===================================================
+Block Index: 5
+Block Timestamp: UnixTime {utSeconds = 1712736630, utMicroSeconds = 763256}
+Block Transactions: 
+	|---------------------------------------------------
+	|TX Sender: 5
+	|TX Receiver: stake
+	|TX Service: Coins 10.0
+	|TX Nonce: 1
+	|---------------------------------------------------
+Block Validator: 3
+===================================================
+Mean time between blocks: 7.233697773913745e-3
+> 990.0
+> Exiting ..
