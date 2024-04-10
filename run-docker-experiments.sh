@@ -4,9 +4,9 @@ BASE_IP="172.0.0."
 BASE="0"
 PORT="36900"
 IMAGE_NAME="blockchat"
-PREFIX="experiments/profiled_outputs/docker-nodelay"
+PREFIX="experiments/profiled_outputs/docker_harmonic"
 SUFFIX=""
-CAPACITY=("5" "10" "20")
+CAPACITY=("5" "10" "20" "1")
 TESTS=("throughput" "scalability" "fairness")
 PROFLOG="/app/node"
 
@@ -40,7 +40,7 @@ do
             --ip "$BASE_IP$((BASE+2))"\
             -p $PORT:$PORT \
             --name bootstrap\
-            $IMAGE_NAME --bootstrap "$BASE_IP$((BASE+2))" $PORT $NODES +RTS -p -RTS &
+            $IMAGE_NAME --bootstrap "$BASE_IP$((BASE+2))" $PORT $NODES &
     
         sleep 2
 
@@ -54,7 +54,8 @@ do
                 --ip "$BASE_IP$((BASE+2+1))"\
                 -p $((PORT+1)):$PORT \
                 --name node1\
-                $IMAGE_NAME --node "$BASE_IP$((BASE+2+1))" "$PORT" "$BASE_IP$((BASE+2))" "$PORT" "$CAP" +RTS -p -po$PROFLOG -RTS &
+                $IMAGE_NAME --node "$BASE_IP$((BASE+2+1))" "$PORT" "$BASE_IP$((BASE+2))" \
+                "$PORT" "$CAP" &
         sleep 2
         docker logs -f node1 > "$WORKDIR"/node1.log &
         
@@ -68,7 +69,8 @@ do
                     --ip "$BASE_IP$((BASE+2+i))"\
                     -p $((PORT+i)):$PORT \
                     --name node"$i"\
-                    $IMAGE_NAME --node "$BASE_IP$((BASE+2+i))" "$PORT" "$BASE_IP$((BASE+2))" "$PORT" "$CAP" +RTS -p -po$PROFLOG -RTS &
+                    $IMAGE_NAME --node "$BASE_IP$((BASE+2+i))" "$PORT" "$BASE_IP$((BASE+2))" \
+                    "$PORT" "$CAP" &
             sleep 2
             docker logs -f node"$i" > "$WORKDIR"/node"$i".log &
         done
