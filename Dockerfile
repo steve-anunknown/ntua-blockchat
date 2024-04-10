@@ -3,8 +3,10 @@ FROM haskell:9.6.4
 
 WORKDIR /app
 
-# Copy only the files needed for stack to download and install dependencies
+# Copy the necessary files and directories for the build
 COPY stack.yaml package.yaml /app/
+
+# Install dependencies
 RUN stack setup && stack build --dependencies-only
 
 # Now copy the rest of the project
@@ -14,7 +16,7 @@ COPY . /app
 COPY .stack-work /app/.stack-work
 
 # Build the project
-RUN stack build --profile
+RUN stack build
 
-ENTRYPOINT ["stack", "exec", "--profile", "--", "BlockChat-exe"]
+ENTRYPOINT ["stack", "exec", "--", "BlockChat-exe"]
 CMD []

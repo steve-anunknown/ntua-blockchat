@@ -24,7 +24,6 @@ dependencies:
 - containers
 - bytestring
 - unix-time
-- old-time
 - random
 - random-fu
 - rvar
@@ -36,8 +35,6 @@ dependencies:
 - memory
 - mtl
 - stm
-- directory
-- hspec
 
 ghc-options:
 - -Wall
@@ -74,3 +71,8 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - BlockChat
+    - directory
+    - hspec
+    - QuickCheck
+    - statistics
+    - vector

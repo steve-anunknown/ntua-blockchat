@@ -50,12 +50,9 @@ library
     , containers
     , crypto-api
     , cryptonite
-    , directory
-    , hspec
     , memory
     , mtl
     , network-simple
-    , old-time
     , random
     , random-fu
     , rvar
@@ -81,12 +78,9 @@ executable BlockChat-exe
     , containers
     , crypto-api
     , cryptonite
-    , directory
-    , hspec
     , memory
     , mtl
     , network-simple
-    , old-time
     , random
     , random-fu
     , rvar
@@ -106,6 +100,7 @@ test-suite BlockChat-test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       BlockChat
+    , QuickCheck
     , RSA
     , base >=4.7 && <5
     , binary
@@ -118,10 +113,11 @@ test-suite BlockChat-test
     , memory
     , mtl
     , network-simple
-    , old-time
     , random
     , random-fu
     , rvar
+    , statistics
     , stm
     , unix-time
+    , vector
   default-language: Haskell2010
