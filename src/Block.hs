@@ -20,9 +20,8 @@ import Data.ByteArray (convert)
 import Data.ByteString (ByteString)
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as B
-import Data.UnixTime (UnixTime (..), toClockTime)
+import Data.UnixTime (UnixTime (..), diffUnixTime, UnixDiffTime (UnixDiffTime))
 import Network.Simple.TCP (HostName, ServiceName, connect, send)
-import System.Time
 import Transaction (Transaction)
 import Types (Peer)
 import Utils (encodeStrict)
@@ -125,14 +124,16 @@ broadcastBlock peers block = mapM_ sendBlock peers
 txIsUnique :: Transaction -> Blockchain -> Bool
 txIsUnique tx = all (notElem tx . blockTransactions)
 
--- | This function takes a ClockTime and returns the number of milliseconds since 1st Jan 1970.
-milliseconds :: ClockTime -> Integer
-milliseconds (TOD sec pico) = sec * 1000 + pico `div` 1000000000
-
 -- | This function takes a blockchain and returns the mean time between blocks.
 meanBlockTime :: Blockchain -> Double
-meanBlockTime chain = fromIntegral (sum times'') / fromIntegral (length times)
+meanBlockTime chain = harmonicMean $ map unixdiffToSecs times''
   where
-    times = map (Data.UnixTime.toClockTime . blockTimestamp) (reverse chain)
+    times = map blockTimestamp chain
     times' = zip times (tail times)
-    times'' = map (\(a, b) -> milliseconds b - milliseconds a) times'
+    times'' = map (uncurry diffUnixTime) times'
+    unixdiffToSecs :: UnixDiffTime -> Double
+    unixdiffToSecs (UnixDiffTime sec usec) = realToFrac sec + realToFrac usec / 1000000
+
+harmonicMean :: Fractional a => [a] -> a
+harmonicMean numbers = amount / inverseSum
+  where (inverseSum, amount) = foldr (\num (a, b) -> (a + 1 / num, b + 1)) (0, 0) numbers
